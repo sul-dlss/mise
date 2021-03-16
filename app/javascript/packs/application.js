@@ -7,7 +7,13 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
+import Mirador from 'mirador/dist/es/src/index.js';
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+document.addEventListener('DOMContentLoaded', () => {
+  Mirador.viewer({
+    id: 'mirador'
+  });
+});

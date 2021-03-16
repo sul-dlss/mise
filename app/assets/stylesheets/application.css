@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+#mirador {
+  height: 900vh;
+}
