@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount OkComputer::Engine, at: "/status"
+
   root to: 'home#show'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
