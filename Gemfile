@@ -70,6 +70,12 @@ group :test do
   gem 'rspec-rails'
 end
 
+group :production do
+  gem 'honeybadger'
+  gem 'newrelic_rpm'
+  gem 'okcomputer'
+end
+
 gem 'cancancan'
 gem 'devise', github: 'heartcombo/devise' # pending https://github.com/heartcombo/devise/pull/5327
 gem 'omniauth'
