@@ -70,5 +70,10 @@ group :test do
   gem 'rspec-rails'
 end
 
+gem 'cancancan'
+gem 'devise', github: 'heartcombo/devise' # pending https://github.com/heartcombo/devise/pull/5327
+gem 'omniauth'
+gem 'omniauth-shibboleth'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
