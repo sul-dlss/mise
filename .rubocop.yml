@@ -12,6 +12,7 @@ AllCops:
     - 'bin/**/*'
     - 'db/**/*'
     - 'config/**/*'
+    - 'node_modules/**/*'
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
 
