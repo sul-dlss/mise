@@ -14,6 +14,10 @@
  *= require_self
  */
 
-#mirador {
-  height: 900vh;
+@import 'bootstrap/scss/bootstrap';
+
+.mirador-container {
+  @extend .border;
+  height: 80vh;
+  position: relative;
 }
