@@ -2,7 +2,7 @@ set :application, 'mise'
 set :repo_url, 'https://github.com/sul-dlss/mise.git'
 set :user, 'mise'
 
-# Default branch is :master
+set :branch, 'main' if ENV['DEPLOY']
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call unless ENV['DEPLOY']
 
 # Default deploy_to directory is /var/www/my_app_name
