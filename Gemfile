@@ -70,6 +70,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 
+  gem 'factory_bot_rails'
   gem 'rspec-rails'
 end
 
@@ -79,10 +80,12 @@ group :production do
   gem 'okcomputer'
 end
 
+gem 'ancestry'
 gem 'cancancan'
 gem 'devise', github: 'heartcombo/devise' # pending https://github.com/heartcombo/devise/pull/5327
 gem 'omniauth'
 gem 'omniauth-shibboleth'
+gem 'rolify'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
