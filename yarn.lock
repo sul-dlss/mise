@@ -5064,6 +5064,11 @@ minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
+mirador-image-tools@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/mirador-image-tools/-/mirador-image-tools-0.10.0.tgz#d3d25e1b7ef7349847da5b7fda640a10c1cd4d30"
+  integrity sha512-jvMJYwgWTGmiGt8ZdmwdVlC3+TqtsvrWberAqqZvGQxdSzSCSkW7CmjnyYBW4x43B09ZVihwwZmzdt/7sddn7g==
+
 mirador@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/mirador/-/mirador-3.0.0.tgz#27f6f24f0438b99499ff59484848678f30c5bb69"
@@ -6872,6 +6877,13 @@ react@^17.0.1:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+react_ujs@^2.6.0, react_ujs@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/react_ujs/-/react_ujs-2.6.1.tgz#a202a33c95c9e2bb18ab56926b7e79f3325ec855"
+  integrity sha512-9M33/A8cubStkZ2cpJSimcTD0RlCWiqXF6e90IQmMw/Caf/W0dtAzOtHtiQE3JjLbt/nhRR7NLPxMfnlm141ig==
+  dependencies:
+    react_ujs "^2.6.0"
 
 read-cache@^1.0.0:
   version "1.0.0"
