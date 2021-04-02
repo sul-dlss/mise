@@ -1,0 +1,8 @@
+<li>
+<%= link_to resource.title, resource, class: 'link-dark rounded' %>
+<ul class='btn-toggle-nav list-unstyled fw-normal pb-1 ms-1'>
+  <% children.each do |resource, children| %>
+    <%= render 'resource_tree', resource: resource, children: children %>
+  <% end %>
+</ul>
+</li>

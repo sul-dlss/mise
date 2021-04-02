@@ -4,11 +4,10 @@
 class ResourcesController < ApplicationController
   load_and_authorize_resource except: [:index]
   skip_authorization_check only: [:index]
+  before_action :root_resources, only: %i[index show]
 
   # GET /resources or /resources.json
-  def index
-    @resources = Resource.roots.with_role(:admin, current_user).distinct
-  end
+  def index; end
 
   # GET /resources/1 or /resources/1.json
   def show; end
@@ -63,5 +62,9 @@ class ResourcesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def resource_params
     params.require(:resource).permit(:title, :url, :resource_type, :parent_id)
+  end
+
+  def root_resources
+    @resources = Resource.roots.with_role(:admin, current_user).distinct
   end
 end
