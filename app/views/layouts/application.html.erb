@@ -39,6 +39,13 @@
         </div>
       </div>
     </nav>
-    <%= yield %>
+    <div class='d-flex flex-row'>
+      <aside class=''>
+        <%= content_for(:sidebar) %>
+      </aside>
+      <main class=''>
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
