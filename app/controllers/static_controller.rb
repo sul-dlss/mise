@@ -4,7 +4,5 @@
 class StaticController < ApplicationController
   skip_authorization_check
 
-  def show; end
-
   def login; end
 end
