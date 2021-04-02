@@ -8,7 +8,7 @@
       <div class="collapse show" id="home-collapse">
         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
         <% @resources.each do |resource| %>
-          <%= render 'resource_tree', resource: resource, children: resource.descendants.arrange %>
+          <%= render 'resource_tree', resource: resource, children: resource.descendants.folders.arrange %>
         <% end %>
         </ul>
       </div>
