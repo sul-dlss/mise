@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<div class="mirador-container">
+  
+  <%= react_component(
+        "Viewer",
+        {
+          config: @workspace.state['config'],
+          state: @workspace.state
+        }
+      )
+  %>
+</div>
+
+<%= link_to 'Edit', edit_workspace_path(@workspace) %> |
+<%= link_to 'Back', workspaces_path %>

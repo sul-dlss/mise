@@ -15,5 +15,8 @@ class Ability
     can :manage, Resource do |resource|
       user.has_role? :admin, resource.root
     end
+    can :manage, Workspace do |workspace|
+      user.has_role? :admin, workspace&.resource&.root
+    end
   end
 end

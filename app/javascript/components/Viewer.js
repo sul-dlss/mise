@@ -2,15 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import Mirador from 'mirador/dist/es/src/index.js';
 import miradorImageToolsPlugin from 'mirador-image-tools/es/plugins/miradorImageToolsPlugin.js';
+import { importMiradorState } from 'mirador/dist/es/src/state/actions';
 class Viewer extends React.Component {
   componentDidMount() {
-    const { config, enabledPlugins } = this.props;
-    Mirador.viewer(
+    const { config, enabledPlugins, state, updateStateSelector } = this.props;
+    const instance = Mirador.viewer(
       config,
       [
         ...((enabledPlugins.includes('imageTools') && miradorImageToolsPlugin) || []),
       ],
     )
+    instance.store.dispatch(importMiradorState(state));
+    if (updateStateSelector) {
+      instance.store.subscribe(() => {
+        var state = instance.store.getState();
+        document.querySelector(updateStateSelector).value = JSON.stringify(state);
+      });
+    }
   }
 
   render () {
@@ -26,6 +34,7 @@ Viewer.propTypes = {
 
 Viewer.defaultProps = {
   enabledPlugins: [],
+  state: {},
 }
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_213822) do
+ActiveRecord::Schema.define(version: 2021_04_02_195240) do
 
   create_table "resources", force: :cascade do |t|
     t.string "title"
@@ -62,4 +62,14 @@ ActiveRecord::Schema.define(version: 2021_04_01_213822) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "workspaces", force: :cascade do |t|
+    t.json "state"
+    t.string "state_type"
+    t.integer "resource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_workspaces_on_resource_id"
+  end
+
+  add_foreign_key "workspaces", "resources"
 end
