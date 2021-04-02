@@ -14,8 +14,9 @@ ActiveRecord::Schema.define(version: 2021_04_01_213822) do
 
   create_table "resources", force: :cascade do |t|
     t.string "title"
-    t.string "url"
+    t.string "mime_type"
     t.string "resource_type"
+    t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
