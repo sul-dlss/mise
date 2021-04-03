@@ -13,4 +13,4 @@
 </div>
 
 <%= link_to 'Edit', edit_workspace_path(@workspace) %> |
-<%= link_to 'Back', workspaces_path %>
+<%= link_to 'Back', @workspace.resource.parent %>

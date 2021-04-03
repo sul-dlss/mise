@@ -2,7 +2,10 @@
 
 # Workspaces controller
 class WorkspacesController < ApplicationController
-  load_and_authorize_resource
+  load_resource :resource
+  load_and_authorize_resource :resource, only: %i[new]
+  load_and_authorize_resource :workspace, through: :resource, singleton: true, only: %i[new]
+  load_and_authorize_resource except: %i[new]
 
   # GET /workspaces/1 or /workspaces/1.json
   def show; end
@@ -15,6 +18,8 @@ class WorkspacesController < ApplicationController
 
   # POST /workspaces or /workspaces.json
   def create
+    @workspace.resource = Resource.create!(resource_type: 'workspace', parent_id: @workspace.resource.id)
+
     respond_to do |format|
       if @workspace.save
         format.html { redirect_to @workspace, notice: 'Workspace was successfully created.' }

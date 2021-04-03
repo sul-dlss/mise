@@ -10,8 +10,12 @@
         <% else %>
           <%= link_to 'New project', new_resource_path, class: 'dropdown-item' %>
         <% end %>
-      <%= link_to 'New workspace', '#', class: 'dropdown-item' %>
       </li>
+      <% if @resource %>
+        <li>
+          <%= link_to 'New workspace', new_resource_workspace_path(@resource), class: 'dropdown-item' %>
+        </li>
+      <% end %>
     </ul>
   </div>
   <a href="/" class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">

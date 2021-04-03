@@ -10,7 +10,9 @@ class ResourcesController < ApplicationController
   def index; end
 
   # GET /resources/1 or /resources/1.json
-  def show; end
+  def show
+    redirect_to @resource.workspace if @resource.resource_type == 'workspace'
+  end
 
   # GET /resources/new
   def new
@@ -18,7 +20,9 @@ class ResourcesController < ApplicationController
   end
 
   # GET /resources/1/edit
-  def edit; end
+  def edit
+    redirect_to [:edit, @resource.workspace] if @resource.resource_type == 'workspace'
+  end
 
   # POST /resources or /resources.json
   def create

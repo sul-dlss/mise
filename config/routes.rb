@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :workspaces, except: %i[index]
+  resources :workspaces, except: %i[index new]
   resources :resources do
     member do
       get 'new' => 'resources#new', as: :new_contained
     end
+
+    resource :workspace, only: %i[new]
   end
 
   mount OkComputer::Engine, at: "/status"
