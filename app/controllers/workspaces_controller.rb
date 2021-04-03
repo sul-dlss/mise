@@ -62,7 +62,7 @@ class WorkspacesController < ApplicationController
 
   def deserialized_state
     state = params.require(:workspace)['state']
-    return nil unless state
+    return nil if state.blank?
 
     JSON.parse(state)
   end

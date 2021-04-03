@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <div class="mirador-container">
-  
+
   <%= react_component(
         "Viewer",
         {
-          config: @workspace.state['config'],
+          config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.state&.dig('config') || {}),
           state: @workspace.state
         }
       )

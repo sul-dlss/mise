@@ -17,7 +17,7 @@
     <%= react_component(
           "Viewer",
           {
-            config: { id: "m-#{SecureRandom.hex}" }.deep_merge(workspace.state['config'].to_h),
+            config: { id: "m-#{SecureRandom.hex}" }.deep_merge(workspace.state&.dig('config') || {}),
             state: workspace.state,
             updateStateSelector: '#workspace_state',
           }
