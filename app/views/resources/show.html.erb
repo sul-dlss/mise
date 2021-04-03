@@ -6,6 +6,6 @@
 
 <h1><%= @resource.title %></h1>
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Edit', edit_resource_path(@resource), class: 'btn btn-secondary' %>
 
 <%= render 'resource_list', resources: @resource.children %>
