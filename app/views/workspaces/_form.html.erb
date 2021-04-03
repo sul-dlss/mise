@@ -1,30 +1,31 @@
-<%= form_with(model: workspace) do |form| %>
-  <% if workspace.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(workspace.errors.count, "error") %> prohibited this workspace from being saved:</h2>
+<% if workspace.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(workspace.errors.count, "error") %> prohibited this workspace from being saved:</h2>
 
-      <ul>
-        <% workspace.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= form.hidden_field :state %>
-  <%= form.hidden_field :resource_id %>
-
-  <div class="mirador-container">
-    <%= react_component(
-          "Viewer",
-          {
-            config: { id: "m-#{SecureRandom.hex}" }.deep_merge(workspace.state&.dig('config') || {}),
-            state: workspace.state,
-            updateStateSelector: '#workspace_state',
-          }
-        )
-    %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
+    <ul>
+      <% workspace.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
+<div class="field">
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+</div>
+<%= form.hidden_field :state %>
+
+<div class="mirador-container">
+  <%= react_component(
+        "Viewer",
+        {
+          config: { id: "m-#{SecureRandom.hex}" }.deep_merge(workspace.state&.dig('config') || {}),
+          state: workspace.state,
+          updateStateSelector: '#workspace_state',
+        }
+      )
+  %>
+</div>
+<div class="actions">
+  <%= form.submit %>
+</div>

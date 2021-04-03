@@ -2,10 +2,13 @@
 
 # Workspaces controller
 class WorkspacesController < ApplicationController
-  load_resource :resource
-  load_and_authorize_resource :resource, only: %i[new]
-  load_and_authorize_resource :workspace, through: :resource, singleton: true, only: %i[new]
-  load_and_authorize_resource except: %i[new]
+  load_and_authorize_resource :project
+  load_and_authorize_resource through: :project, shallow: true
+
+  # GET /workspaces
+  def index
+    render layout: 'project'
+  end
 
   # GET /workspaces/1 or /workspaces/1.json
   def show; end
@@ -18,8 +21,6 @@ class WorkspacesController < ApplicationController
 
   # POST /workspaces or /workspaces.json
   def create
-    @workspace.resource = Resource.create!(resource_type: 'workspace', parent_id: @workspace.resource.id)
-
     respond_to do |format|
       if @workspace.save
         format.html { redirect_to @workspace, notice: 'Workspace was successfully created.' }
@@ -57,7 +58,7 @@ class WorkspacesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def workspace_params
-    params.require(:workspace).permit(:state, :state_type, :resource_id).merge({ state: deserialized_state })
+    params.require(:workspace).permit(:title, :state, :state_type, :project_id).merge({ state: deserialized_state })
   end
 
   def deserialized_state

@@ -1,0 +1,5 @@
+<div class="card">
+  <h2><%= link_to project.title, project %></h2>
+
+  <%= render partial: 'workspace_preview', collection: project.workspaces.first(2), as: :workspace %>
+</div>

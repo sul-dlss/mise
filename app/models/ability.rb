@@ -9,14 +9,12 @@ class Ability
 
     can :manage, :all if user.has_role? :site_admin
 
-    can :create, Resource, resource_type: 'folder', parent_id: nil
+    can :create, Project
 
-    can :manage, Resource, id: Resource.roots.with_role(:admin, user).pluck(:id)
-    can :manage, Resource do |resource|
-      user.has_role? :admin, resource.root
-    end
-    can :manage, Workspace do |workspace|
-      user.has_role? :admin, workspace&.resource&.root
-    end
+    projects = Project.with_role(:admin, user).pluck(:id)
+
+    can :manage, Project, id: projects
+    can :manage, Workspace, project: { id: projects }
+    can :manage, Resource, project: { id: projects }
   end
 end

@@ -41,7 +41,7 @@
         <%= content_for(:sidebar) %>
       </aside>
       <main class='col'>
-        <%= yield %>
+        <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
     </div>
   </body>

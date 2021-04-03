@@ -2,34 +2,27 @@
 
 # Generic resources controller
 class ResourcesController < ApplicationController
-  load_and_authorize_resource except: [:index]
-  skip_authorization_check only: [:index]
-  before_action :root_resources, only: %i[index show]
+  layout 'project'
+
+  load_and_authorize_resource :project
+  load_and_authorize_resource through: :project, shallow: true
 
   # GET /resources or /resources.json
   def index; end
 
   # GET /resources/1 or /resources/1.json
-  def show
-    redirect_to @resource.workspace if @resource.resource_type == 'workspace'
-  end
+  def show; end
 
   # GET /resources/new
-  def new
-    @resource.parent_id = params[:id]
-  end
+  def new; end
 
   # GET /resources/1/edit
-  def edit
-    redirect_to [:edit, @resource.workspace] if @resource.resource_type == 'workspace'
-  end
+  def edit; end
 
   # POST /resources or /resources.json
   def create
     respond_to do |format|
       if @resource.save
-        current_user.add_role(:admin, @resource)
-
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render :show, status: :created, location: @resource }
       else
@@ -65,10 +58,6 @@ class ResourcesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def resource_params
-    params.require(:resource).permit(:title, :url, :resource_type, :parent_id)
-  end
-
-  def root_resources
-    @resources = Resource.roots.with_role(:admin, current_user).distinct
+    params.require(:resource).permit(:title, :url, :resource_type, :project_id)
   end
 end

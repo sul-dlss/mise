@@ -1,6 +1,8 @@
 <h1>Editing Workspace</h1>
 
-<%= render 'form', workspace: @workspace %>
+<%= form_with(model: @workspace) do |form| %>
+  <%= render 'form', workspace: @workspace, form: form %>
+<% end %>
 
 <%= link_to 'Show', @workspace %> |
-<%= link_to 'Back', @workspace.resource.parent %>
+<%= link_to 'Back', project_workspaces_path(@workspace.project) %>
