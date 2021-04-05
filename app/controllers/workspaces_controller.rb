@@ -4,6 +4,7 @@
 class WorkspacesController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource through: :project, shallow: true
+  before_action :allow_iframe, only: %i[embed]
 
   # GET /workspaces
   def index
@@ -71,5 +72,9 @@ class WorkspacesController < ApplicationController
     return nil if state.blank?
 
     JSON.parse(state)
+  end
+
+  def allow_iframe
+    response.headers.delete('X-Frame-Options')
   end
 end
