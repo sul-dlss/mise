@@ -44,6 +44,7 @@ class WorkspacesController < ApplicationController
       if @workspace.update(workspace_params)
         format.html { redirect_to @workspace, notice: 'Workspace was successfully updated.' }
         format.json { render :show, status: :ok, location: @workspace }
+        format.js { render json: {}, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @workspace.errors, status: :unprocessable_entity }
@@ -64,6 +65,8 @@ class WorkspacesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def workspace_params
+    return {} unless params[:workspace]
+
     params.require(:workspace).permit(:title, :state, :state_type, :project_id).merge({ state: deserialized_state })
   end
 

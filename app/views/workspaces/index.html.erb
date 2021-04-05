@@ -4,4 +4,4 @@
 
 <%= render @workspaces %>
 
-<%= link_to 'New workspace', new_project_workspace_path(@project) %>
+<%= link_to 'New workspace', project_workspaces_path(@project), method: :post %>

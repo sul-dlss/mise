@@ -12,4 +12,8 @@ class Workspace < ApplicationRecord
     state
       &.deep_merge({ 'config' => { 'workspaceControlPanel' => { 'enabled' => false } } })
   end
+
+  before_validation do
+    self.title ||= 'Untitled workspace'
+  end
 end
