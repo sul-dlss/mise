@@ -64,6 +64,8 @@ class WorkspacesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def workspace_params
+    return {} unless params[:workspace]
+
     params.require(:workspace).permit(:title, :state, :state_type, :project_id).merge({ state: deserialized_state })
   end
 

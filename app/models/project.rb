@@ -8,4 +8,8 @@ class Project < ApplicationRecord
 
   include FriendlyId
   friendly_id :slug_candidates, use: %i[finders slugged], slug_generator_class: UuidSlugGenerator
+
+  before_validation do
+    self.title ||= 'Untitled project'
+  end
 end

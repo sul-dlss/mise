@@ -15,5 +15,6 @@ class Resource < ApplicationRecord
 
   before_validation do
     self.project ||= parent&.project
+    self.title ||= 'Untitled resource'
   end
 end
