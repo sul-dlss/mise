@@ -6,16 +6,6 @@ FactoryBot.define do
       parent factory: :resource
     end
 
-    trait :created_by do
-      transient { user { nil } }
-
-      after(:create) do |resource, evaluator|
-        evaluator&.user&.add_role :admin, resource
-      end
-    end
-
-    trait :folder do
-      resource_type { 'folder' }
-    end
+    project factory: :project
   end
 end

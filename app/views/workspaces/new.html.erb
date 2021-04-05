@@ -1,5 +1,7 @@
 <h1>New Workspace</h1>
 
-<%= render 'form', workspace: @workspace %>
+<%= form_with(model: @workspace, url: project_workspaces_path(@project)) do |form| %>
+  <%= render 'form', workspace: @workspace, form: form %>
+<% end %>
 
-<%= link_to 'Back', workspaces_path %>
+<%= link_to 'Back', project_workspaces_path(@workspace.project) %>

@@ -40,8 +40,8 @@
       <aside class=''>
         <%= content_for(:sidebar) %>
       </aside>
-      <main class=''>
-        <%= yield %>
+      <main class='col'>
+        <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
     </div>
   </body>

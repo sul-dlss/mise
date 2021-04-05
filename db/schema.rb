@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_195240) do
+ActiveRecord::Schema.define(version: 2021_04_03_013706) do
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "resources", force: :cascade do |t|
     t.string "title"
@@ -20,7 +26,9 @@ ActiveRecord::Schema.define(version: 2021_04_02_195240) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
+    t.integer "project_id", null: false
     t.index ["ancestry"], name: "index_resources_on_ancestry"
+    t.index ["project_id"], name: "index_resources_on_project_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -65,11 +73,13 @@ ActiveRecord::Schema.define(version: 2021_04_02_195240) do
   create_table "workspaces", force: :cascade do |t|
     t.json "state"
     t.string "state_type"
-    t.integer "resource_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["resource_id"], name: "index_workspaces_on_resource_id"
+    t.integer "project_id", null: false
+    t.string "title"
+    t.index ["project_id"], name: "index_workspaces_on_project_id"
   end
 
-  add_foreign_key "workspaces", "resources"
+  add_foreign_key "resources", "projects"
+  add_foreign_key "workspaces", "projects"
 end

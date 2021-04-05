@@ -1,8 +1,10 @@
-<tr>
-  <td><%= resource.title %></td>
-  <td><%= resource.url %></td>
-  <td><%= resource.resource_type %></td>
-  <td><%= link_to 'Show', resource %></td>
-  <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-  <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-</tr>
+<div class="card">
+  <div class="card-body d-flex justify-space-between">
+    <h2 class="fs-4 card-title me-auto mb-0"><%= link_to resource.title, resource %></h2>
+
+    <div>
+      <%= link_to 'Edit', edit_resource_path(resource), class: 'btn btn-secondary' %>
+      <%= link_to 'Destroy', resource, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+</div>

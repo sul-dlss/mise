@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  resources :workspaces, except: %i[index]
-  resources :resources do
-    member do
-      get 'new' => 'resources#new', as: :new_contained
-    end
+  resources :projects do
+    resources :workspaces, except: %i[show delete edit]
+    resources :resources, except: %i[show delete edit]
   end
+  resources :workspaces, only: %i[show delete edit update]
+  resources :resources, only: %i[show delete edit update]
 
   mount OkComputer::Engine, at: "/status"
 
   authenticated do
-    root to: 'resources#index'
+    root to: 'projects#index'
   end
 
   root to: 'home#show', as: :landing_page

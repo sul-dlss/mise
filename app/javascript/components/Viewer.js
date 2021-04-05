@@ -12,7 +12,7 @@ class Viewer extends React.Component {
         ...((enabledPlugins.includes('imageTools') && miradorImageToolsPlugin) || []),
       ],
     )
-    instance.store.dispatch(importMiradorState(state));
+    if (state) instance.store.dispatch(importMiradorState(state));
     if (updateStateSelector) {
       instance.store.subscribe(() => {
         var state = instance.store.getState();
@@ -34,7 +34,7 @@ Viewer.propTypes = {
 
 Viewer.defaultProps = {
   enabledPlugins: [],
-  state: {},
+  state: null,
 }
 
 

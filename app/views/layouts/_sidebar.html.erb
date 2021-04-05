@@ -1,0 +1,19 @@
+<div class="p-3 bg-white" style="width: 280px;">
+  <a href="/" class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">
+    <span class="fs-5 fw-semibold">Projects</span>
+  </a>
+  <ul class="list-unstyled ps-0">
+    <li class="mb-1">
+      <div class="collapse show" id="home-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <% Project.accessible_by(current_ability).each do |project| %>
+            <li><%= link_to project.title, project, class: 'link-dark rounded' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <div>
+    <%= link_to '+ New project', new_project_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

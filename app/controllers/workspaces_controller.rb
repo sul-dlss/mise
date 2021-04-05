@@ -2,7 +2,13 @@
 
 # Workspaces controller
 class WorkspacesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :project
+  load_and_authorize_resource through: :project, shallow: true
+
+  # GET /workspaces
+  def index
+    render layout: 'project'
+  end
 
   # GET /workspaces/1 or /workspaces/1.json
   def show; end
@@ -52,12 +58,12 @@ class WorkspacesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def workspace_params
-    params.require(:workspace).permit(:state, :state_type, :resource_id).merge({ state: deserialized_state })
+    params.require(:workspace).permit(:title, :state, :state_type, :project_id).merge({ state: deserialized_state })
   end
 
   def deserialized_state
     state = params.require(:workspace)['state']
-    return nil unless state
+    return nil if state.blank?
 
     JSON.parse(state)
   end

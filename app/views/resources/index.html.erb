@@ -1,12 +1,4 @@
-<% content_for(:sidebar) do %>
-  <%= render 'sidebar' %>
-<% end %>
-
 <p id="notice"><%= notice %></p>
 
 <h1>Resources</h1>
 <%= render 'resource_list', resources: @resources %>
-
-<br>
-
-<%= link_to 'New Resource', new_resource_path %>
