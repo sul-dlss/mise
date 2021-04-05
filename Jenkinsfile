@@ -31,11 +31,11 @@ pipeline {
           bundle exec cap stage deploy
           
           if [ $? = 0 ]; then
-            status = "The deploy to stage was successful"
+            deploystatus="The deploy to stage was successful"
           else
-            status = "The deploy to stage was unsuccessful"
+            deploystatus="The deploy to stage was unsuccessful"
           fi
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"$status"}' $SLACK_WEBHOOK_URL
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$deploystatus"'"}' $SLACK_WEBHOOK_URL
           '''
         }
       }
