@@ -13,6 +13,11 @@ class WorkspacesController < ApplicationController
   # GET /workspaces/1 or /workspaces/1.json
   def show; end
 
+  # GET /workspaces/1/embed
+  def embed
+    render layout: 'embedded'
+  end
+
   # GET /workspaces/new
   def new; end
 
