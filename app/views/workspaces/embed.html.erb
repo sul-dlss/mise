@@ -1,0 +1,10 @@
+<div class="embeded-mirador-container">
+  <%= react_component(
+        "Viewer",
+        {
+          config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.state&.dig('config') || {}),
+          state: @workspace.embedded_workspace_state
+        }
+      )
+  %>
+</div>
