@@ -5,6 +5,9 @@ class Resource < ApplicationRecord
   has_ancestry
   resourcify
 
+  include FriendlyId
+  friendly_id :slug_candidates, use: %i[finders slugged], slug_generator_class: UuidSlugGenerator
+
   belongs_to :project
 
   has_one_attached :thumbnail
