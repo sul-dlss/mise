@@ -14,7 +14,9 @@ class ProjectsController < ApplicationController
   def show; end
 
   # GET /projects/new
-  def new; end
+  def new
+    render layout: 'application'
+  end
 
   # GET /projects/1/edit
   def edit; end
