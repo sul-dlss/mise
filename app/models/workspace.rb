@@ -7,6 +7,6 @@ class Workspace < ApplicationRecord
 
   def embedded_workspace_state
     state
-      .deep_merge({ 'config' => { 'workspaceControlPanel' => { 'enabled' => false } } })
+      &.deep_merge({ 'config' => { 'workspaceControlPanel' => { 'enabled' => false } } })
   end
 end
