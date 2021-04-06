@@ -3,7 +3,7 @@
 <h1>Workspaces</h1>
 
 <div class="card-group g-4">
-  <%= render partial: 'workspaces/card', collection: @project.workspaces.order(last_updated: :desc).first(2), layout: 'layouts/cols', as: :workspace %>
+  <%= render partial: 'workspaces/card', collection: @project.workspaces.order(updated_at: :desc).first(2), layout: 'layouts/cols', as: :workspace %>
 </div>
 
 <%= link_to 'New workspace', project_workspaces_path(@project), method: :post %>
