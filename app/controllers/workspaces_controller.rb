@@ -72,14 +72,14 @@ class WorkspacesController < ApplicationController
 
     params.require(:workspace)
           .permit(:title, :state, :state_type, :project_id, :description, :published)
-          .merge({ state: deserialized_state })
+          .merge(deserialized_state)
   end
 
   def deserialized_state
     state = params.require(:workspace)['state']
-    return nil if state.blank?
+    return {} if state.blank?
 
-    JSON.parse(state)
+    { state: JSON.parse(state) }
   end
 
   def allow_iframe
