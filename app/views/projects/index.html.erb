@@ -5,4 +5,8 @@
   <%= render(partial: 'layouts/sidebar') %>
 <% end %>
 
+<% content_for(:top_level_nav) do %>
+  <%= render(partial: 'layouts/top_level_nav') %>
+<% end %>
+
 <%= render @projects %>

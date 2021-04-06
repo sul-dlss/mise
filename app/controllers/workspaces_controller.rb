@@ -8,7 +8,10 @@ class WorkspacesController < ApplicationController
   layout 'project'
 
   # GET /workspaces
-  def index; end
+  def index
+    @workspaces = @workspaces.accessible_by(current_ability, :update) unless @project
+    render layout: 'application' unless @project
+  end
 
   # GET /workspaces/1 or /workspaces/1.json
   def show
