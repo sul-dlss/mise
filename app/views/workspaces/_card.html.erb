@@ -1,5 +1,8 @@
-<div class="card h-100 workspace-card" >
-  <img class="card-img-top" alt=" " aria-hidden="true" style="max-height: 200px;"/>
+<div class="card workspace-card">
+  <%= link_to workspace do %>
+    <%= image_tag workspace.thumbnail.presence || 'placeholder.png', class: 'card-img-top', alt: ' ', aria: { hidden: true }, style: 'max-height: 200px' %>
+  <% end %>
+
   <div class="card-body">
     <%= link_to workspace.title, workspace, class: 'card-title' %>
     <%= react_component 'Favorite', favorite: workspace.favorite, csrfToken: form_authenticity_token, updateUrl: workspace_path(workspace) %>
