@@ -23,9 +23,12 @@
   </div>
   <div class="col-3 border-start border-2 h-100">
     <nav class="d-flex flex-column mt-2 ms-2 align-items-start">
+      <h2 class="h4">Share</h2>
+
+      <%= react_component("ShareModal", { embedLink: embed_workspace_url(@workspace) }) %>
+
       <h2 class="h4">Workspace actions</h2>
       <%= link_to 'Open workspace', edit_workspace_path(@workspace), class: 'btn btn-outline-primary my-1' %>
-      <%= link_to 'Embed workspace', embed_workspace_path(@workspace), class: 'btn btn-outline-secondary my-1' %>
       <%= link_to 'Duplicate workspace', project_workspaces_path(@workspace.project, template: @workspace), class: 'btn btn-outline-secondary my-1', method: :post %>
       <%= link_to 'Delete workspace', workspace_path(@workspace), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger my-1' %>
     </nav>
