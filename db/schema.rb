@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_234411) do
+ActiveRecord::Schema.define(version: 2021_04_06_141201) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 2021_04_05_234411) do
     t.integer "project_id", null: false
     t.string "title"
     t.string "slug"
+    t.text "description"
+    t.boolean "published"
     t.index ["project_id"], name: "index_workspaces_on_project_id"
     t.index ["slug"], name: "index_workspaces_on_slug", unique: true
   end
