@@ -1,5 +1,17 @@
-<div class="card">
-  <h2><%= link_to project.title, project %></h2>
+<div class="card mb-4 p-3">
+  <div class="row g-0">
+    <div class="col">
+      <h2><%= link_to project.title, project %></h2>
+      <div><%= link_to pluralize(project.workspaces.count, 'workspace'), project_workspaces_path(project) %></div>
+      <p><%= project.description %></p>
+    </div>
 
-  <%= render partial: 'workspaces/card', collection: project.workspaces.first(2), as: :workspace %>
+    <div class="col card-group">
+      <%= render partial: 'workspaces/card', collection: project.workspaces.first(2), as: :workspace %>
+    </div>
+
+    <div class="col-1 ps-2 align-self-center">
+      <%= link_to 'View all', project_workspaces_path(project), class: 'btn btn-outline-secondary' %>
+    </div>
+  </div>
 </div>
