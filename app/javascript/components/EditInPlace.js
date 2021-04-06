@@ -31,7 +31,7 @@ function EditInPlace(props) {
   } else {
     content = <React.Fragment>
       <span onClick={() => setMode('edit')}>{value || <i>{props.placeholder}</i>}</span>
-      <button onClick={() => setMode('edit')}>edit</button>
+      <button class="btn btn-link" onClick={() => setMode('edit')}><i class="bi-pencil-square" aria-hidden="true" /><span class="visually-hidden">edit</span></button>
     </React.Fragment>;
   }
 
