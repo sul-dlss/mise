@@ -1,3 +1,19 @@
+.main-content {
+  display: grid;
+  grid-template-columns: 230px 100%;
+  height: calc(100vh - 71px);
+  width: calc(100vw - 230px);
+
+  aside {
+    width: 100%;
+  }
+
+  main {
+    margin-left: 2rem;
+  }
+}
+
+
 .b-example-divider {
   width: 1.5rem;
   height: 100%;
