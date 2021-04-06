@@ -5,14 +5,15 @@ class WorkspacesController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource through: :project, shallow: true
   before_action :allow_iframe, only: %i[embed]
+  layout 'project'
 
   # GET /workspaces
-  def index
-    render layout: 'project'
-  end
+  def index; end
 
   # GET /workspaces/1 or /workspaces/1.json
-  def show; end
+  def show
+    @project = @workspace.project
+  end
 
   # GET /workspaces/1/embed
   def embed
@@ -23,7 +24,9 @@ class WorkspacesController < ApplicationController
   def new; end
 
   # GET /workspaces/1/edit
-  def edit; end
+  def edit
+    render layout: 'application'
+  end
 
   # POST /workspaces or /workspaces.json
   def create
@@ -67,7 +70,9 @@ class WorkspacesController < ApplicationController
   def workspace_params
     return {} unless params[:workspace]
 
-    params.require(:workspace).permit(:title, :state, :state_type, :project_id).merge({ state: deserialized_state })
+    params.require(:workspace)
+          .permit(:title, :state, :state_type, :project_id, :description, :published)
+          .merge({ state: deserialized_state })
   end
 
   def deserialized_state
