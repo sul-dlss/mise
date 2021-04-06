@@ -8,7 +8,7 @@ class Resource < ApplicationRecord
   include FriendlyId
   friendly_id :slug_candidates, use: %i[finders slugged], slug_generator_class: UuidSlugGenerator
 
-  belongs_to :project
+  belongs_to :project, counter_cache: true
 
   has_one_attached :thumbnail
   has_one_attached :file

@@ -2,7 +2,7 @@
   <div class="row g-0">
     <div class="col">
       <h2><%= link_to project.title, project %></h2>
-      <div><%= link_to pluralize(project.workspaces.count, 'workspace'), project_workspaces_path(project) %></div>
+      <div><%= link_to pluralize(project.workspaces_count, 'workspace'), project_workspaces_path(project) %></div>
       <p><%= project.description %></p>
     </div>
 
