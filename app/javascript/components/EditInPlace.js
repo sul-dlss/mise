@@ -25,13 +25,13 @@ function EditInPlace(props) {
     content = <React.Fragment>
       <form onSubmit={onSave}>
         <input autoFocus value={value || ''} onChange={onChange} onBlur={onSave} className="form-input" />
-        <input type="submit" value="save"/>
+        <input className="btn btn-primary" type="submit" value="save"/>
       </form>
     </React.Fragment>;
   } else {
     content = <React.Fragment>
       <span onClick={() => setMode('edit')}>{value || <i>{props.placeholder}</i>}</span>
-      <button class="btn btn-link" onClick={() => setMode('edit')}><i class="bi-pencil-square" aria-hidden="true" /><span class="visually-hidden">edit</span></button>
+      <button className="btn btn-link" onClick={() => setMode('edit')}><i className="bi-pencil-square" aria-hidden="true" /><span className="visually-hidden">edit</span></button>
     </React.Fragment>;
   }
 
