@@ -3,7 +3,7 @@
 ##
 # Workspace class
 class Workspace < ApplicationRecord
-  belongs_to :project
+  belongs_to :project, touch: true, counter_cache: true
 
   include FriendlyId
   friendly_id :slug_candidates, use: %i[finders slugged], slug_generator_class: UuidSlugGenerator
