@@ -3,6 +3,8 @@
 ##
 # Workspace class
 class Workspace < ApplicationRecord
+  has_one_attached :thumbnail
+
   has_paper_trail
 
   belongs_to :project, touch: true, counter_cache: true
