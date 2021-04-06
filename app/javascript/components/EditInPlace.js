@@ -23,12 +23,14 @@ function EditInPlace(props) {
 
   if (mode === 'edit') {
     content = <React.Fragment>
-      <input autoFocus value={value} onChange={onChange} onBlur={onSave} className="form-input" />
-      <button onClick={onSave}>save</button>
+      <form onSubmit={onSave}>
+        <input autoFocus value={value || ''} onChange={onChange} onBlur={onSave} className="form-input" />
+        <input type="submit" value="save"/>
+      </form>
     </React.Fragment>;
   } else {
     content = <React.Fragment>
-      <span onClick={() => setMode('edit')}>{value}</span>
+      <span onClick={() => setMode('edit')}>{value || <i>{props.placeholder}</i>}</span>
       <button onClick={() => setMode('edit')}>edit</button>
     </React.Fragment>;
   }
