@@ -88,6 +88,7 @@ gem 'devise', github: 'heartcombo/devise' # pending https://github.com/heartcomb
 gem 'friendly_id'
 gem 'omniauth'
 gem 'omniauth-shibboleth'
+gem 'paper_trail'
 gem 'rolify'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

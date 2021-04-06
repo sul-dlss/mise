@@ -3,6 +3,7 @@
 <% if can? :edit, @workspace %>
   <%= react_component("EditInPlace", { field: 'title', value: @workspace.title, csrfToken: form_authenticity_token }, tag: 'h1') %>
 
+  <span class="fst-italic">Last updated <%= time_ago_in_words(@workspace.updated_at) %> ago <%= "by #{User.find(@workspace.paper_trail.originator)&.uid}" if @workspace.paper_trail.originator.present? %></span>
   <div>
     <%= react_component("EditInPlace", { field: 'description', placeholder: 'Project description', value: @workspace.description, csrfToken: form_authenticity_token }) %>
   </div>

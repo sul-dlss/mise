@@ -2,6 +2,8 @@
 
 # Projects group together workspaces and resources
 class Project < ApplicationRecord
+  has_paper_trail
+
   has_many :workspaces, dependent: :destroy
   has_many :resources, dependent: :destroy
   resourcify
