@@ -5,6 +5,10 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, Project, published: true
+    can :read, Workspace, published: true, project: { published: true }
+    can :read, Resource, project: { published: true }
+
     return unless user
 
     can :manage, :all if user.has_role? :site_admin
@@ -16,9 +20,5 @@ class Ability
     can :manage, Project, id: projects
     can :manage, Workspace, project: { id: projects }
     can :manage, Resource, project: { id: projects }
-
-    can :manage, Project, published: true
-    can :manage, Workspace, project: { published: true }
-    can :manage, Resource, project: { published: true }
   end
 end
