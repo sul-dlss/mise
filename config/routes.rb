@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   resources :projects do
-    resources :workspaces, except: %i[show delete edit]
-    resources :resources, except: %i[show delete edit]
+    resources :workspaces, except: %i[show destroy edit]
+    resources :resources, except: %i[show destroy edit]
   end
 
-  resources :workspaces, only: %i[index show delete edit update] do
+  resources :workspaces, only: %i[index show destroy edit update] do
     member do
       get 'embed'
     end
   end
-  resources :resources, only: %i[show delete edit update]
+  resources :resources, only: %i[show destroy edit update]
 
   mount OkComputer::Engine, at: "/status"
 
