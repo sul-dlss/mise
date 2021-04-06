@@ -4,6 +4,7 @@
 # Workspace class
 class Workspace < ApplicationRecord
   has_one_attached :thumbnail
+  scope :favorites, -> { where(favorite: true) }
 
   has_paper_trail
 
