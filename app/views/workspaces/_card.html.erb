@@ -2,6 +2,7 @@
   <img class="card-img-top" alt=" " aria-hidden="true" style="max-height: 200px;"/>
   <div class="card-body">
     <%= link_to workspace.title, workspace, class: 'card-title' %>
+    <%= react_component 'Favorite', favorite: workspace.favorite, csrfToken: form_authenticity_token, updateUrl: workspace_path(workspace) %>
     <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
   </div>
 </div>

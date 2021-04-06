@@ -74,7 +74,7 @@ class WorkspacesController < ApplicationController
     return {} unless params[:workspace]
 
     params.require(:workspace)
-          .permit(:title, :state, :state_type, :project_id, :description, :published)
+          .permit(:title, :state, :state_type, :project_id, :description, :published, :favorite)
           .merge(deserialized_state)
   end
 
