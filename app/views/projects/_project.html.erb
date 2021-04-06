@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-4 p-3 m-4">
   <h2><%= link_to project.title, project %></h2>
 
   <%= render partial: 'workspaces/card', collection: project.workspaces.first(2), as: :workspace %>
