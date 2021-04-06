@@ -5,13 +5,13 @@
 <% content_for(:content) do %>
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <%= link_to @project.title, @project, class: 'nav-link fw-bold' %>
+      <%= link_to @project.title, @project, class: "nav-link fw-bold #{'active' if current_page? @project }", aria: { current: ('page' if current_page? @project) } %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Workspaces', project_workspaces_path(@project), class: 'nav-link' %>
+      <%= link_to 'Workspaces', project_workspaces_path(@project), class: "nav-link  #{'active' if current_page? project_workspaces_path(@project) }", aria: { current: ('page' if current_page? project_workspaces_path(@project)) } %>
     </li>
     <li class="nav-item">
-      <%= link_to 'Resources', project_resources_path(@project), class: 'nav-link' %>
+      <%= link_to 'Resources', project_resources_path(@project), class: "nav-link #{'active' if current_page? project_resources_path(@project) }", aria: { current: ('page' if current_page? project_resources_path(@project)) } %>
     </li>
   </ul>
 
