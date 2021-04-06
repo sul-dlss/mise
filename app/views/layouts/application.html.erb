@@ -44,9 +44,10 @@
       <% end %>
 
       <main class='col py-4'>
-        <% if content_for?(:top_level_nav) %>
-            <%= content_for(:top_level_nav) %>
-        <% end %>
+        <%= render 'layouts/flash_messages' %>
+
+        <%= content_for(:top_level_nav) if content_for?(:top_level_nav) %>
+
         <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
     </div>
