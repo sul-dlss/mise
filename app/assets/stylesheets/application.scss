@@ -27,3 +27,11 @@ $body-bg: #f3f3f3;
   height: 100%;
   width: 100%;
 }
+
+.workspace-card {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: calc(var(--bs-gutter-x) / 2);
+  margin-right: calc(var(--bs-gutter-x) / 2);
+  max-width: 18rem;
+}
