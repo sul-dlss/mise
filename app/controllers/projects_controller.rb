@@ -64,6 +64,6 @@ class ProjectsController < ApplicationController
   def project_params
     return {} unless params[:project]
 
-    params.require(:project).permit(:title)
+    params.require(:project).permit(:title, :description, :published)
   end
 end

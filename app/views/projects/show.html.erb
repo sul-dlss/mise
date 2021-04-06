@@ -2,6 +2,26 @@
 
 <% if can? :edit, @project %>
   <%= react_component("EditInPlace", { field: 'title', value: @project.title, csrfToken: form_authenticity_token }, tag: 'h1') %>
+
+  <div>
+    <%= react_component("EditInPlace", { field: 'description', placeholder: 'Project description', value: @project.description, csrfToken: form_authenticity_token }) %>
+  </div>
+
+  <%= form_with(model: @project) do |form| %>
+    <div class="form-check">
+      <label class="form-check-label">
+        <%= form.check_box :published, class: 'form-check-input', onChange: 'this.form.submit()' %>
+        Visible to public
+      </label>
+    </div>
+  <% end %>
 <% else %>
   <h1><%= @project.title %></h1>
+
+  <div><%= @project.description %></div>
 <% end %>
+
+<h2 class="mt-3">Recent activity</h2>
+<div class="card-group g-4">
+  <%= render partial: 'workspaces/card', collection: @project.workspaces.order(last_updated: :desc).first(2), layout: 'layouts/cols', as: :workspace %>
+</div>

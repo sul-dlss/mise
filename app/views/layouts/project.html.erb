@@ -5,7 +5,7 @@
 <% content_for(:content) do %>
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <%= link_to 'Project', @project, class: 'nav-link' %>
+      <%= link_to @project.title, @project, class: 'nav-link fw-bold' %>
     </li>
     <li class="nav-item">
       <%= link_to 'Workspaces', project_workspaces_path(@project), class: 'nav-link' %>

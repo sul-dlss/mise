@@ -16,5 +16,9 @@ class Ability
     can :manage, Project, id: projects
     can :manage, Workspace, project: { id: projects }
     can :manage, Resource, project: { id: projects }
+
+    can :manage, Project, published: true
+    can :manage, Workspace, project: { published: true }
+    can :manage, Resource, project: { published: true }
   end
 end

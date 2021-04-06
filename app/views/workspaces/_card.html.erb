@@ -1,0 +1,7 @@
+<div class="card h-100" style="max-width: 18rem;">
+  <img class="card-img-top" alt=" " aria-hidden="true"/>
+  <div class="card-body">
+    <%= link_to workspace.title, workspace, class: 'card-title' %>
+    <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
+  </div>
+</div>
