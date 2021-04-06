@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
         <%= link_to 'MISE', root_url, class: 'navbar-brand' %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,11 +36,14 @@
         </div>
       </div>
     </nav>
-    <div class='d-flex flex-row'>
-      <aside class=''>
-        <%= content_for(:sidebar) %>
-      </aside>
-      <main class='col'>
+    <div class='d-flex flex-row align-items-stretch'>
+      <% if content_for?(:sidebar) %>
+        <aside class='me-5 bg-white'>
+          <%= content_for(:sidebar) %>
+        </aside>
+      <% end %>
+
+      <main class='col py-4'>
         <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
     </div>
