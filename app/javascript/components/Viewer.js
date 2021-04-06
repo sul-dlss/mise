@@ -16,7 +16,10 @@ class Viewer extends React.Component {
     if (updateStateSelector) {
       instance.store.subscribe(() => {
         var state = instance.store.getState();
-        document.querySelector(updateStateSelector).value = JSON.stringify(state);
+        const inputElement = document.querySelector(updateStateSelector);
+        if (inputElement) {
+          inputElement.value = JSON.stringify(state);
+        }
       });
     }
   }
