@@ -81,6 +81,18 @@ class WorkspacesController < ApplicationController
           .merge(deserialized_state)
   end
 
+  def create_params
+    return workspace_params unless params[:template]
+
+    template = Workspace.find(params[:template])
+
+    authorize! :read, template
+
+    workspace_params.reverse_merge(
+      template.attributes.slice('title', 'state', 'state_type', 'description', 'published')
+    )
+  end
+
   def deserialized_state
     state = params.require(:workspace)['state']
     return {} if state.blank?
