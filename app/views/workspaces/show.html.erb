@@ -1,23 +1,33 @@
-<% if can? :edit, @workspace %>
-  <%= react_component("EditInPlace", { field: 'title', value: @workspace.title, csrfToken: form_authenticity_token }, tag: 'h1') %>
+<div class="d-flex">
+  <div class="col">
+    <% if can? :edit, @workspace %>
+      <%= react_component("EditInPlace", { field: 'title', value: @workspace.title, csrfToken: form_authenticity_token }, tag: 'h1') %>
 
-  <span class="fst-italic">Last updated <%= time_ago_in_words(@workspace.updated_at) %> ago <%= "by #{User.find(@workspace.paper_trail.originator)&.uid}" if @workspace.paper_trail.originator.present? %></span>
-  <div>
-    <%= react_component("EditInPlace", { field: 'description', placeholder: 'Project description', value: @workspace.description, csrfToken: form_authenticity_token }) %>
+      <span class="fst-italic">Last updated <%= time_ago_in_words(@workspace.updated_at) %> ago <%= "by #{User.find(@workspace.paper_trail.originator)&.uid}" if @workspace.paper_trail.originator.present? %></span>
+      <div>
+        <%= react_component("EditInPlace", { field: 'description', placeholder: 'Project description', value: @workspace.description, csrfToken: form_authenticity_token }) %>
+      </div>
+
+      <%= form_with(model: @workspace) do |form| %>
+        <div class="form-check">
+          <label class="form-check-label">
+            <%= form.check_box :published, class: 'form-check-input', onChange: 'this.form.submit()' %>
+            Visible to public
+          </label>
+        </div>
+      <% end %>
+    <% else %>
+      <h1><%= @workspace.title %></h1>
+      <%= @workspace.description %>
+    <% end %>
   </div>
-
-  <%= form_with(model: @workspace) do |form| %>
-    <div class="form-check">
-      <label class="form-check-label">
-        <%= form.check_box :published, class: 'form-check-input', onChange: 'this.form.submit()' %>
-        Visible to public
-      </label>
-    </div>
-  <% end %>
-<% else %>
-  <h1><%= @workspace.title %></h1>
-  <%= @workspace.description %>
-<% end %>
-<%= link_to 'Open', edit_workspace_path(@workspace) %>
-
-<%= link_to 'Embed', embed_workspace_path(@workspace) %>
+  <div class="col-3 border-start border-2 h-100">
+    <nav class="d-flex flex-column mt-2 ms-2 align-items-start">
+      <h2 class="h4">Workspace actions</h2>
+      <%= link_to 'Open workspace', edit_workspace_path(@workspace), class: 'btn btn-outline-primary my-1' %>
+      <%= link_to 'Embed workspace', embed_workspace_path(@workspace), class: 'btn btn-outline-secondary my-1' %>
+      <%= link_to 'Duplicate workspace', project_workspaces_path(@workspace.project, template: @workspace), class: 'btn btn-outline-secondary my-1', method: :post %>
+      <%= link_to 'Delete workspace', workspace_path(@workspace), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger my-1' %>
+    </nav>
+  </div>
+</div>
