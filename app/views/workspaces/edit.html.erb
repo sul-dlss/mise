@@ -5,7 +5,7 @@
 
     <%= form_with(model: @workspace, class: 'me-2') do |form| %>
       <%= form.hidden_field :state %>
-      <%= form.submit class: 'btn btn-primary' %>
+      <%= form.submit 'Save workspace', class: 'btn btn-primary' %>
     <% end %>
   <% else %>
     <h1><%= @workspace.title %></h1>
