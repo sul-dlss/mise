@@ -1,0 +1,8 @@
+<div class="flash_messages">
+  <% { success: 'alert-success', notice: 'alert-info', error: 'alert-danger' }.select { |type, classes| flash[type] }.each do |type, classes| %>
+    <div class="alert <%= classes %> d-flex align-items-center justify-content-between" role="alert">
+      <span><%= flash[type] %></span>
+      <a class="close btn" data-dismiss="alert" href="#"><span aria-hidden="true">&times;</span> <span class="visually-hidden">close</span></a>
+    </div>
+  <% end %>
+</div>

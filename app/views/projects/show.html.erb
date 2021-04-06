@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <% if can? :edit, @project %>
   <%= react_component("EditInPlace", { field: 'title', value: @project.title, csrfToken: form_authenticity_token }, tag: 'h1') %>
 
