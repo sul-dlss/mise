@@ -2,6 +2,18 @@
   <img class="card-img-top" alt=" " aria-hidden="true" style="max-height: 200px;"/>
   <div class="card-body">
     <%= link_to workspace.title, workspace, class: 'card-title' %>
-    <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
+
+    <div class="d-flex justify-content-between">
+      <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
+      <div class="dropdown align-self-end ms-3">
+        <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="bi-three-dots"><span class="visually-hidden">Options</span></span>
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><%= link_to 'Delete workspace', workspace, class: 'dropdown-item', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

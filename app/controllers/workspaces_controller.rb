@@ -62,7 +62,10 @@ class WorkspacesController < ApplicationController
   def destroy
     @workspace.destroy
     respond_to do |format|
-      format.html { redirect_to workspaces_url, notice: 'Workspace was successfully destroyed.' }
+      format.html do
+        url = @workspace.project ? project_workspaces_url(@workspace.project) : workspaces_url
+        redirect_to url, notice: 'Workspace was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
