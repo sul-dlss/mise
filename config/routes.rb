@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :workspaces, only: %i[index show destroy edit update] do
     member do
+      get 'duplicate'
       get 'embed'
     end
   end
