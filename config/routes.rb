@@ -3,7 +3,8 @@ Rails.application.routes.draw do
     resources :workspaces, except: %i[show delete edit]
     resources :resources, except: %i[show delete edit]
   end
-  resources :workspaces, only: %i[show delete edit update] do
+
+  resources :workspaces, only: %i[index show delete edit update] do
     member do
       get 'embed'
     end
