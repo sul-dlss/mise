@@ -8,7 +8,7 @@
   <%= render(partial: 'layouts/top_level_nav') %>
 <% end unless @project %>
 
-<div class="workspace-cards g-4 flex-wrap">
+<div class="row workspace-cards g-4 flex-wrap">
   <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
 </div>
 
