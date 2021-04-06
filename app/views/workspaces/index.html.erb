@@ -10,8 +10,8 @@
   <%= render(partial: 'layouts/top_level_nav') %>
 <% end unless @project %>
 
-<div class="card-group g-4 flex-wrap">
-  <%= render partial: 'workspaces/card', collection: @workspaces, layout: 'layouts/cols', as: :workspace %>
+<div class="workspace-cards g-4 flex-wrap">
+  <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
 </div>
 
 <%= link_to 'New workspace', project_workspaces_path(@project), method: :post if @project %>
