@@ -5,9 +5,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Project, published: true
-    can :read, Workspace, published: true, project: { published: true }
-    can :read, Resource, project: { published: true }
+    alias_action :embed, to: :read
+    anonymous_abilities
 
     return unless user
 
@@ -20,5 +19,11 @@ class Ability
     can :manage, Project, id: projects
     can :manage, Workspace, project: { id: projects }
     can :manage, Resource, project: { id: projects }
+  end
+
+  def anonymous_abilities
+    can :read, Project, published: true
+    can :read, Workspace, published: true, project: { published: true }
+    can :read, Resource, project: { published: true }
   end
 end
