@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Mirador from 'mirador/dist/es/src/index.js';
 import miradorImageToolsPlugin from 'mirador-image-tools/es/plugins/miradorImageToolsPlugin.js';
 import { importMiradorState } from 'mirador/dist/es/src/state/actions';
+import { getExportableState } from 'mirador/dist/es/src/state/selectors';
+
 class Viewer extends React.Component {
   componentDidMount() {
     const { config, enabledPlugins, state, updateStateSelector } = this.props;
@@ -18,7 +20,7 @@ class Viewer extends React.Component {
         var state = instance.store.getState();
         const inputElement = document.querySelector(updateStateSelector);
         if (inputElement) {
-          inputElement.value = JSON.stringify(state);
+          inputElement.value = JSON.stringify(getExportableState(state));
         }
       });
     }
