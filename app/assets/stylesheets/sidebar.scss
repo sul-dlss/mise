@@ -1,8 +1,8 @@
 .main-content {
   display: grid;
-  grid-template-columns: 230px 100%;
+  grid-template-columns: 280px 100%;
   height: calc(100vh - 56px);
-  width: calc(100vw - 230px);
+  width: calc(100vw - 280px);
 
   aside {
     width: 100%;
@@ -13,6 +13,9 @@
   }
 }
 
+.project-list {
+  list-style: square;
+}
 
 .b-example-divider {
   width: 1.5rem;

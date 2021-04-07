@@ -18,13 +18,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <%= link_to 'Home', root_path, class: ['nav-link', ('active' if current_page?(root_path))].join(' '), aria: { current: ('page' if current_page?(root_path)) } %>
-            </li>
-          </ul>
-
-          <ul class="navbar-nav mb-auto me-2 me-md-0">
+          <ul class="navbar-nav mb-auto ms-auto me-2 me-md-0">
             <li class="nav-item">
               <% if current_user.present? %>
                 <%= link_to current_user.uid, '#', class: 'nav-link' %>

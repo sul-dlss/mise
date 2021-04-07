@@ -1,19 +1,24 @@
 <div class="p-3 bg-white">
-  <a href="/" class="d-flex pb-3 mb-3 link-dark text-decoration-none border-bottom">
+  <ul class="navbar-nav mt-2 mb-2 mb-md-0">
+    <li class="nav-item">
+      <%= link_to 'Dashboard', root_path, class: ['nav-link', ('active' if current_page?(root_path))].join(' '), aria: { current: ('page' if current_page?(root_path)) } %>
+    </li>
+  </ul>
+  <a href="/" class="d-flex mt-3 pb-2 mb-2 link-dark text-decoration-none border-bottom">
     <span class="fs-5 fw-semibold">Projects</span>
   </a>
   <ul class="list-unstyled ps-0">
     <li class="mb-1">
       <div class="collapse show" id="home-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <ul class="btn-toggle-nav fw-normal pb-3 ps-3 border-bottom project-list">
           <% Project.accessible_by(current_ability, :update).each do |project| %>
-            <li><%= link_to project.title, project, class: 'link-dark rounded' %></li>
+            <li><%= link_to project.title, project, class: 'link-dark rounded ms-0' %></li>
           <% end %>
         </ul>
       </div>
     </li>
   </ul>
   <div>
-    <%= link_to '+ New project', projects_path, class: 'btn btn-secondary', method: :post %>
+    <%= link_to '+ New project', projects_path, class: 'btn btn-outline-secondary', method: :post %>
   </div>
 </div>
