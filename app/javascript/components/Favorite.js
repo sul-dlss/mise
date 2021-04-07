@@ -1,26 +1,35 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function Favorite(props) {
-  const [favorite, setFavorite] = useState(props.favorite);
+function Favorite({ csrfToken, favorite, updateUrl }) {
+  const [isFavorite, setFavorite] = useState(favorite);
 
-  const changeFavorite = e => {
-    fetch(props.updateUrl, {
-      method: 'PATCH',
+  const changeFavorite = () => {
+    fetch(updateUrl, {
+      body: JSON.stringify({ favorite: !isFavorite }),
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
-        'X-CSRF-Token': props.csrfToken,
+        'X-CSRF-Token': csrfToken,
       },
-      body: JSON.stringify({ 'favorite': !favorite })
+      method: 'PATCH',
     }).then(response => response.json())
-    .then(data => setFavorite(data.favorite))
+      .then(data => setFavorite(data.favorite));
   };
 
-  let classes = 'bi-star'
+  let classes = 'bi-star btn btn-link';
   if (favorite) {
-    classes='bi-star-fill'
+    classes = 'bi-star-fill btn btn-link';
   }
-  return (<span className={classes} onClick={changeFavorite}></span>)
+  return (
+    <button type="button" className={classes} onClick={changeFavorite} aria-label="Favorite" />
+  );
 }
 
-export default Favorite
+Favorite.propTypes = {
+  csrfToken: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  updateUrl: PropTypes.string.isRequired,
+};
+
+export default Favorite;
