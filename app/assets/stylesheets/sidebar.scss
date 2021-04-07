@@ -1,16 +1,10 @@
-.main-content {
+$top-navbar-height: 56px;
+
+.with-sidebar {
   display: grid;
-  grid-template-columns: 280px 100%;
-  height: calc(100vh - 56px);
-  width: calc(100vw - 280px);
-
-  aside {
-    width: 100%;
-  }
-
-  main {
-    margin-left: 2rem;
-  }
+  grid-column-gap: 2rem;
+  grid-template-columns: 280px minmax(200px, 100%);
+  height: calc(100vh - #{$top-navbar-height});
 }
 
 .project-list {

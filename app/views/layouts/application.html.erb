@@ -30,9 +30,9 @@
         </div>
       </div>
     </nav>
-    <div class="main-content">
+    <div class="main-content <%= 'with-sidebar' if content_for?(:sidebar) %>">
       <% if content_for?(:sidebar) %>
-        <aside class='me-5 bg-white'>
+        <aside class='bg-white'>
           <%= content_for(:sidebar) %>
         </aside>
       <% end %>
