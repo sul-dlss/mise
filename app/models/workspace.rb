@@ -21,4 +21,10 @@ class Workspace < ApplicationRecord
   before_validation do
     self.title ||= 'Untitled workspace'
   end
+
+  after_save do
+    next unless saved_change_to_state?
+
+    ScreenshotWorkspaceJob.perform_now(self)
+  end
 end

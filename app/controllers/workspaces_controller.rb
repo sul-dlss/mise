@@ -2,9 +2,21 @@
 
 # Workspaces controller
 class WorkspacesController < ApplicationController
+  before_action :set_current_ability_from_token, only: :embed
+
   load_and_authorize_resource :project
   load_and_authorize_resource through: :project, shallow: true
   before_action :allow_iframe, only: %i[embed]
+
+  def set_current_ability_from_token
+    return unless params[:token]
+
+    payload, _header = JWT.decode(params[:token], Rails.application.secret_key_base, true, { algorithm: 'HS256' })
+    raise unless payload['workspace'] == params[:id]
+
+    @current_ability = Ability.new(nil, service: true)
+  end
+
   layout 'project'
 
   # GET /workspaces

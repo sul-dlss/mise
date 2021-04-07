@@ -4,9 +4,11 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, service: false)
     alias_action :embed, to: :read
     anonymous_abilities
+
+    can :read, :all and return if service
 
     return unless user
 
