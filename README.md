@@ -1,24 +1,19 @@
-# README
+# mise 🛒🧑‍🍳🥒🍽
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![CI](https://github.com/sul-dlss/mise/actions/workflows/ruby.yml/badge.svg)](https://github.com/sul-dlss/mise/actions/workflows/ruby.yml)
 
-Things you may want to cover:
+Gather, arrange, and share.
 
-* Ruby version
+## Local installation
 
-* System dependencies
+Installing project dependencies
 
-* Configuration
+```sh
+$ bin/setup
+```
 
-* Database creation
+Running a local server
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+$ rails s
+```
