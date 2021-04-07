@@ -3,7 +3,7 @@ $top-navbar-height: 56px;
 .with-sidebar {
   display: grid;
   grid-column-gap: 2rem;
-  grid-template-columns: 280px minmax(200px, 100%);
+  grid-template-columns: 280px 1fr;
   height: calc(100vh - #{$top-navbar-height});
 }
 
