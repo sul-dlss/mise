@@ -19,9 +19,9 @@ function Favorite({ csrfToken, favorite, updateUrl }) {
       .then(data => setFavorite(data.favorite));
   };
 
-  let classes = 'bi-star btn btn-link';
+  let classes = 'favorite-action bi-star btn btn-link';
   if (isFavorite) {
-    classes = 'bi-star-fill btn btn-link';
+    classes = 'favorite-action bi-star-fill btn btn-link';
   }
   return (
     <button type="button" className={classes} onClick={changeFavorite} aria-label="Favorite" />
