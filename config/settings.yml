@@ -1,0 +1,4 @@
+screenshot: true
+screenshot_url_parameters:
+  host: 'localhost'
+  port: '3000'

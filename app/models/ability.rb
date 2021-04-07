@@ -4,9 +4,15 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  # rubocop:disable Metrics/MethodLength
+  def initialize(user, service: false)
     alias_action :embed, to: :read
     anonymous_abilities
+
+    if service
+      can :read, :all
+      can :read_historical, :all
+    end
 
     return unless user
 
@@ -20,6 +26,7 @@ class Ability
     can :manage, Workspace, project: { id: projects }
     can :manage, Resource, project: { id: projects }
   end
+  # rubocop:enable Metrics/MethodLength
 
   def anonymous_abilities
     can :read, Project, published: true
