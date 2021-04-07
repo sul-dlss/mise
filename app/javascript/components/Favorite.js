@@ -5,6 +5,8 @@ function Favorite({ csrfToken, favorite, updateUrl }) {
   const [isFavorite, setFavorite] = useState(favorite);
 
   const changeFavorite = () => {
+    setFavorite(!isFavorite);
+
     fetch(updateUrl, {
       body: JSON.stringify({ favorite: !isFavorite }),
       headers: {
