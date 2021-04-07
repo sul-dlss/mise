@@ -22,7 +22,7 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call unless ENV['D
 set :linked_files, %w(config/database.yml config/honeybadger.yml config/newrelic.yml config/settings/production.yml)
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w(config/settings log node_modules tmp/pids tmp/cache tmp/sockets vendor/bundle public/packs public/system)
+set :linked_dirs, %w(config/settings log node_modules tmp/pids tmp/cache tmp/sockets vendor/bundle public/packs public/system storage)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
