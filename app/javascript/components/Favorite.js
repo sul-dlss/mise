@@ -20,7 +20,7 @@ function Favorite({ csrfToken, favorite, updateUrl }) {
   };
 
   let classes = 'bi-star btn btn-link';
-  if (favorite) {
+  if (isFavorite) {
     classes = 'bi-star-fill btn btn-link';
   }
   return (
