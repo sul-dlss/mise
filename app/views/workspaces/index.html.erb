@@ -12,4 +12,4 @@
   <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
 </div>
 
-<%= link_to 'New workspace', project_workspaces_path(@project), method: :post if @project %>
+<%= link_to 'New workspace', project_workspaces_path(@project), method: :post, class: 'btn btn-outline-secondary mt-3' if @project %>
