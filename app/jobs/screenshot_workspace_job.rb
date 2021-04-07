@@ -5,10 +5,10 @@ require 'puppeteer'
 ##
 # Captures a screenshot of something
 class ScreenshotWorkspaceJob < ApplicationJob
-  def perform(workspace)
+  def perform(workspace, timestamp = nil)
     Puppeteer.launch(headless: true) do |browser|
       page = browser.pages.first || browser.new_page
-      page.goto(embed_path_with_token(workspace))
+      page.goto(embed_path_with_token(workspace, timestamp))
       page.wait_for_timeout(5000)
 
       Tempfile.create do |t|
@@ -18,7 +18,7 @@ class ScreenshotWorkspaceJob < ApplicationJob
     end
   end
 
-  def embed_path_with_token(workspace)
+  def embed_path_with_token(workspace, timestamp)
     secret = JWT.encode(
       { workspace: workspace.to_param, exp: 5.minutes.from_now.to_i },
       Rails.application.secret_key_base,
@@ -26,7 +26,7 @@ class ScreenshotWorkspaceJob < ApplicationJob
     )
 
     Rails.application.routes.url_helpers.url_for(
-      { action: 'embed', controller: 'workspaces', id: workspace.to_param, token: secret }
+      { action: 'embed', controller: 'workspaces', id: workspace.to_param, token: secret, timestamp: timestamp }
         .merge(Settings.screenshot_url_parameters.to_h)
     )
   end

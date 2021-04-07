@@ -32,6 +32,11 @@ class WorkspacesController < ApplicationController
 
   # GET /workspaces/1/embed
   def embed
+    if params[:timestamp] && (can?(:manage, @workspace) || can?(:read_historical, @workspace))
+      @previous_workspace = @workspace.paper_trail.version_at(params[:timestamp])
+      @workspace = @previous_workspace if @previous_workspace.present?
+    end
+
     render layout: 'embedded'
   end
 
