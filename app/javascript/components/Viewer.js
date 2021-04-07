@@ -3,23 +3,36 @@ import PropTypes from 'prop-types';
 import mapValues from 'lodash/mapValues';
 import Mirador from 'mirador/dist/es/src/index';
 import miradorImageToolsPlugin from 'mirador-image-tools/es/plugins/miradorImageToolsPlugin';
+import miradorAnnotationsPlugins from 'mirador-annotations/es';
 import { addResource, importMiradorState } from 'mirador/dist/es/src/state/actions';
 import { getExportableState } from 'mirador/dist/es/src/state/selectors';
+import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 
 /** */
 class Viewer extends React.Component {
   /** */
   componentDidMount() {
     const {
-      config, enabledPlugins, state, updateStateSelector, projectResourcesUrl,
+      annototEndpointUrl, config, enabledPlugins, state, updateStateSelector, projectResourcesUrl,
     } = this.props;
 
     delete config.export;
 
+    let annotationsConfig = {};
+
+    if (annototEndpointUrl) {
+      annotationsConfig = {
+        annotation: {
+          adapter: (canvasId) => new AnnototAdapter(canvasId, annototEndpointUrl)
+        }
+      };
+    }
+
     const instance = Mirador.viewer(
-      config,
+      { ...config, ...annotationsConfig },
       [
         ...((enabledPlugins.includes('imageTools') && miradorImageToolsPlugin) || []),
+        ...((enabledPlugins.includes('annotations') && miradorAnnotationsPlugins) || []),
       ],
     );
     if (state) instance.store.dispatch(importMiradorState({ ...state, config: instance.store.getState().config }));
@@ -44,6 +57,7 @@ class Viewer extends React.Component {
 }
 
 Viewer.propTypes = {
+  annototEndpointUrl: PropTypes.string,
   config: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   enabledPlugins: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
   state: PropTypes.object, // eslint-disable-line react/forbid-prop-types
@@ -52,6 +66,7 @@ Viewer.propTypes = {
 };
 
 Viewer.defaultProps = {
+  annototEndpointUrl: null,
   config: {},
   enabledPlugins: [],
   state: null,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_202121) do
+ActiveRecord::Schema.define(version: 2021_04_07_202143) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(version: 2021_04_06_202121) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "annotot_annotations", force: :cascade do |t|
+    t.string "uuid"
+    t.string "canvas"
+    t.binary "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id", null: false
+    t.index ["canvas"], name: "index_annotot_annotations_on_canvas"
+    t.index ["project_id"], name: "index_annotot_annotations_on_project_id"
+    t.index ["uuid"], name: "index_annotot_annotations_on_uuid"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -144,6 +156,7 @@ ActiveRecord::Schema.define(version: 2021_04_06_202121) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "annotot_annotations", "projects"
   add_foreign_key "resources", "projects"
   add_foreign_key "workspaces", "projects"
 end

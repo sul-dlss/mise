@@ -26,10 +26,12 @@ class Ability
     can :manage, Project, id: projects
     can :manage, Workspace, project: { id: projects }
     can :manage, Resource, project: { id: projects }
+    can :manage, Annotot::Annotation, project: { id: projects }
   end
   # rubocop:enable Metrics/MethodLength
 
   def anonymous_abilities
+    can :read, Annotot::Annotation, project: { published: true }
     can :read, Project, published: true
     can :read, Workspace, published: true, project: { published: true }
     can :read, Resource, project: { published: true }

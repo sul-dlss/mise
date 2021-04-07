@@ -93,6 +93,8 @@ gem 'omniauth-shibboleth'
 gem 'paper_trail'
 gem 'rolify'
 
+gem 'annotot', github: 'mejackreed/annotot'
+
 gem 'puppeteer-ruby'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

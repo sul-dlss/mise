@@ -6,6 +6,7 @@ class Project < ApplicationRecord
 
   has_many :workspaces, dependent: :destroy
   has_many :resources, dependent: :destroy
+  has_many :annotations, class_name: 'Annotot::Annotation', dependent: :destroy
   resourcify
 
   include FriendlyId
