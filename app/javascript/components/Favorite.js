@@ -5,6 +5,8 @@ function Favorite({ csrfToken, favorite, updateUrl }) {
   const [isFavorite, setFavorite] = useState(favorite);
 
   const changeFavorite = () => {
+    setFavorite(!isFavorite);
+
     fetch(updateUrl, {
       body: JSON.stringify({ favorite: !isFavorite }),
       headers: {
@@ -17,9 +19,9 @@ function Favorite({ csrfToken, favorite, updateUrl }) {
       .then(data => setFavorite(data.favorite));
   };
 
-  let classes = 'bi-star btn btn-link';
-  if (favorite) {
-    classes = 'bi-star-fill btn btn-link';
+  let classes = 'favorite-action bi-star btn btn-link';
+  if (isFavorite) {
+    classes = 'favorite-action bi-star-fill btn btn-link';
   }
   return (
     <button type="button" className={classes} onClick={changeFavorite} aria-label="Favorite" />
