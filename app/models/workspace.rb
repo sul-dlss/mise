@@ -25,6 +25,6 @@ class Workspace < ApplicationRecord
   after_save do
     next unless saved_change_to_state?
 
-    ScreenshotWorkspaceJob.perform_later(self, updated_at.iso8601) if Settings.screenshot
+    ScreenshotWorkspaceJob.perform_later(self, (updated_at + 1.second).iso8601) if Settings.screenshot
   end
 end
