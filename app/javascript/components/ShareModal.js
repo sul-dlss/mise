@@ -45,7 +45,7 @@ function ShareModal(props) {
     <button className="btn btn-outline-primary my-1" onClick={handleOpen}>Share</button>
     <Snackbar open={openSnack} autoHideDuration={6000} onClose={handleSnackClose}>
       <div className="alert alert-success">
-        Copied to clipboard
+        Embed code copied to clipboard
       </div>
     </Snackbar>
 
@@ -66,11 +66,11 @@ function ShareModal(props) {
             <button type="button" className="btn btn-link" onClick={openIframeCode ? handleIframeCodeClose : handleIframeCodeOpen}>Get embed code</button>
           </div>
           {
-            openIframeCode && <div className="modal-footer justify-content-start row">
-              <textarea value={iframeCode} readOnly className="col-7" />
-              <div className="col-4">
-                <button type="button" className="btn btn-link" onClick={handleIframeCodeClose}>Cancel</button>
-                <button type="button" className="btn btn-primary" onClick={handleCopyIframeCode}>Copy</button>
+            openIframeCode && <div className="modal-footer justify-content-start share-modal">
+              <textarea value={iframeCode} readOnly className="embed-textarea p-2" />
+              <div className="col-12 pt-2 px-2">
+                <button type="button" className="btn btn-primary float-end" onClick={handleCopyIframeCode}>Copy</button>
+                <button type="button" className="btn btn-link float-end" onClick={handleIframeCodeClose}>Cancel</button>
               </div>
             </div>
           }
