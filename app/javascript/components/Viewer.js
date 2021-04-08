@@ -12,13 +12,16 @@ class Viewer extends React.Component {
     const {
       config, enabledPlugins, state, updateStateSelector,
     } = this.props;
+
+    delete config.export;
+
     const instance = Mirador.viewer(
       config,
       [
         ...((enabledPlugins.includes('imageTools') && miradorImageToolsPlugin) || []),
       ],
     );
-    if (state) instance.store.dispatch(importMiradorState(state));
+    if (state) instance.store.dispatch(importMiradorState({ ...state, config: instance.store.getState().config }));
     if (updateStateSelector) {
       instance.store.subscribe(() => {
         const currentState = instance.store.getState();
