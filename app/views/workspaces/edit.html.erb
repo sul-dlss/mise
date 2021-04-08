@@ -19,7 +19,8 @@
         {
           config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.state&.dig('config') || {}),
           state: @workspace.state,
-          updateStateSelector: '#workspace_state'
+          updateStateSelector: '#workspace_state',
+          projectResourcesUrl: iiif_project_resources_url(@workspace.project),
         }
       )
   %>
