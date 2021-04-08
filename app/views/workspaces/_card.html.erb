@@ -3,11 +3,11 @@
     <%= image_tag workspace.thumbnail.presence&.variant(resize_to_limit: [200, 200]) || 'placeholder.png', class: 'card-img-top', alt: ' ', aria: { hidden: true }, style: 'max-height: 200px' %>
   <% end %>
 
-  <div class="card-body">
+  <div class="card-body d-flex flex-column">
     <%= link_to workspace.title, workspace, class: 'card-title' %>
     <%= react_component 'Favorite', favorite: workspace.favorite, csrfToken: form_authenticity_token, updateUrl: workspace_path(workspace) %>
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex flex-grow-1 justify-content-between">
       <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
       <div class="dropdown align-self-end ms-3">
         <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
