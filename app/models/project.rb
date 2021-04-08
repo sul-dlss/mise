@@ -15,6 +15,7 @@ class Project < ApplicationRecord
     self.title ||= 'Untitled project'
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def iiif_collection_resources(except: [])
     workspaces.find_each.with_object({}) do |workspace, hash|
       workspace.state&.dig('catalog')&.pluck('manifestId')&.each do |manifest_id|
@@ -27,4 +28,5 @@ class Project < ApplicationRecord
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
