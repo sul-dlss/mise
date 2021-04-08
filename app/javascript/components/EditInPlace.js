@@ -7,7 +7,7 @@ function EditInPlace(props) {
 
   const onChange = e => { setValue(e.target.value); };
   const onSave = () => {
-    props.value != value && fetch(document.location, {
+    props.value != value && fetch(props.url || document.location, {
       method: 'PATCH',
       headers: {
         Accept: 'application/json',
@@ -53,12 +53,14 @@ function EditInPlace(props) {
 EditInPlace.propTypes = {
   field: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  url: PropTypes.string,
   value: PropTypes.string,
 };
 
 EditInPlace.defaultProps = {
   placeholder: '',
   value: '',
+  url: undefined,
 };
 
 export default EditInPlace;
