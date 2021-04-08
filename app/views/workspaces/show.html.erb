@@ -22,8 +22,12 @@
     <% end %>
 
     <%= link_to(can?(:edit, @workspace) ? edit_workspace_path(@workspace) : embed_workspace_url(@workspace), target: ('_blank' unless can? :edit, @workspace) ) do %>
-      <div class="d-inline-block position-relative my-3">
-        <%= image_tag @workspace.thumbnail.presence&.variant(resize_to_limit: [400, 400]) || 'placeholder.png', alt: ' ', aria: { hidden: true }, style: 'max-height: 400px' %>
+      <div class="d-flex position-relative my-3 w-25">
+        <% if @workspace.thumbnail.present? %>
+          <%= image_tag @workspace.thumbnail.presence.variant(resize_to_limit: [400, 400]), alt: ' ', aria: { hidden: true }, style: 'max-height: 400px; width: 100%' %>
+        <% else %>
+           <%= image_tag 'placeholder.png', style: 'width: 400px; height: 200px;' %>
+        <% end %>
         <span class="caption-overlay">
           <span class="btn btn-primary stretched-link">Open workspace</span>
         </span>
