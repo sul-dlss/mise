@@ -13,9 +13,10 @@ class Workspace < ApplicationRecord
   include FriendlyId
   friendly_id :slug_candidates, use: %i[finders slugged], slug_generator_class: UuidSlugGenerator
 
-  def embedded_workspace_state
+  def embedded_workspace_config
     state
       &.deep_merge({ 'config' => { 'workspaceControlPanel' => { 'enabled' => false } } })
+      &.dig('config')
   end
 
   before_validation do
