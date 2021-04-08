@@ -14,4 +14,17 @@ class Project < ApplicationRecord
   before_validation do
     self.title ||= 'Untitled project'
   end
+
+  def iiif_collection_resources(except: [])
+    workspaces.find_each.with_object({}) do |workspace, hash|
+      workspace.state&.dig('catalog')&.pluck('manifestId')&.each do |manifest_id|
+        next if hash.dig(manifest_id, :label) || except.include?(manifest_id)
+
+        hash[manifest_id] = {
+          label: workspace.state&.dig('__mise_cache__', 'manifests', manifest_id, 'label'),
+          '@type': workspace.state&.dig('__mise_cache__', 'manifests', manifest_id, '@type')
+        }
+      end
+    end
+  end
 end
