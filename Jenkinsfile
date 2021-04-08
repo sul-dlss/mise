@@ -25,11 +25,11 @@ pipeline {
           # Load RVM
           rvm use 2.7.1@mise --create
           gem install bundler
-          bundle install
+          bundle install --without production
 
           # Deploy it
           bundle exec cap stage deploy
-          
+
           if [ $? = 0 ]; then
             deploystatus="The deploy to stage was successful"
           else
