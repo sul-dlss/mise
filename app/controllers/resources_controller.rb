@@ -19,6 +19,12 @@ class ResourcesController < ApplicationController
   # GET /resources/1/edit
   def edit; end
 
+  def iiif
+    respond_to do |format|
+      format.json
+    end
+  end
+
   # POST /resources or /resources.json
   def create
     respond_to do |format|
