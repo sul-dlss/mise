@@ -11,7 +11,7 @@
       <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
       <% options = capture do %>
         <% if can? :read, workspace %>
-          <li><%= link_to 'Open workspace', viewer_workspace_path(workspace), class: 'dropdown-item' %></li>
+          <li><%= link_to 'Open workspace', viewer_workspace_path(workspace), class: 'dropdown-item', data: { turbolinks: false } %></li>
         <% end %>
         <% if can? :duplicate, workspace %>
           <li><%= link_to 'Duplicate workspace', project_workspaces_path(workspace.project, template: workspace), class: 'dropdown-item', method: :post %></li>
