@@ -2,6 +2,7 @@
   <ul class="navbar-nav mt-2 mb-2 mb-md-0">
     <li class="nav-item">
       <%= link_to 'Dashboard', root_path, class: ['nav-link', ('active' if current_page?(root_path))].join(' '), aria: { current: ('page' if current_page?(root_path)) } %>
+      <%= link_to 'Explore', explore_path, class: 'nav-link' %>
     </li>
   </ul>
 
