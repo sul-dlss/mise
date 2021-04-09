@@ -40,7 +40,7 @@
     <nav class="d-flex flex-column mt-2 ms-2 align-items-start">
       <h2 class="h4">Shared with</h2>
       <% User.with_role(:admin, @project).each do |user| %>
-        <%= user.uid %>
+        <div><%= user.uid %></div>
       <% end %>
 
       <h2 class="h4">Project actions</h2>
