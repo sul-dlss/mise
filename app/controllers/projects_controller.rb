@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = @projects.accessible_by(current_ability, :update)
+    @projects = current_user&.projects
     render layout: 'application'
   end
 

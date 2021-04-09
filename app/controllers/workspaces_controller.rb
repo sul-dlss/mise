@@ -21,7 +21,7 @@ class WorkspacesController < ApplicationController
 
   # GET /workspaces
   def index
-    @workspaces = @workspaces.accessible_by(current_ability, :update) unless @project
+    @workspaces = current_user&.workspaces
     render layout: 'application' unless @project
   end
 
