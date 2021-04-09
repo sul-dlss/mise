@@ -1,6 +1,6 @@
 <div class="d-flex">
   <div class="col">
-    <% if can? :edit, @project %>
+    <% if can? :update, @project %>
       <%= react_component("EditInPlace", { field: 'title', value: @project.title, csrfToken: form_authenticity_token }, tag: 'h1') %>
 
       <div>
@@ -38,13 +38,15 @@
 
   <div class="col-3 border-start border-2 h-100">
     <nav class="d-flex flex-column mt-2 ms-2 align-items-start">
-      <h2 class="h4">Shared with</h2>
-      <% User.with_role(:admin, @project).each do |user| %>
-        <div><%= user.uid %></div>
+      <% if can? :update, @project %>
+        <h2 class="h4">Shared with</h2>
+        <% User.with_role(:admin, @project).each do |user| %>
+          <div><%= user.uid %></div>
+        <% end %>
       <% end %>
 
       <h2 class="h4">Project actions</h2>
-      <%= link_to 'Delete project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger my-1' %>
+      <%= link_to 'Delete project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger my-1' if can? :delete, @project %>
     </nav>
   </div>
 </div>
