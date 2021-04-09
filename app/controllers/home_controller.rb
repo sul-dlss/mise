@@ -4,5 +4,7 @@
 class HomeController < ApplicationController
   skip_authorization_check
 
-  def show; end
+  def show
+    @workspaces = Workspace.accessible_by(Ability.new(nil)).order(updated_at: :desc).limit(5)
+  end
 end
