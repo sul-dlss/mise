@@ -5,7 +5,7 @@
 
       <span class="fst-italic">Last updated <%= time_ago_in_words(@workspace.updated_at) %> ago <%= "by #{User.find(@workspace.paper_trail.originator)&.uid}" if @workspace.paper_trail.originator.present? %></span>
       <div>
-        <%= react_component("EditInPlace", { field: 'description', placeholder: 'Project description', value: @workspace.description, csrfToken: form_authenticity_token }) %>
+        <%= react_component("EditInPlace", { field: 'description', placeholder: 'Workspace description', value: @workspace.description, csrfToken: form_authenticity_token }) %>
       </div>
 
       <%= form_with(model: @workspace) do |form| %>
