@@ -16,7 +16,7 @@
 <% end %>
 
 <div class="<%= @embed ? 'embedded-mirador-container' : 'mirador-container mx-2' %>">
-  <% viewer_props = if can? :update, @workspace
+  <% viewer_props = if can? :update, @workspace && !@embed
         {
           config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.state&.dig('config') || {}),
           state: @workspace.state,
