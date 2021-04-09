@@ -20,7 +20,7 @@
       <h1><%= @workspace.title %></h1>
       <%= @workspace.description %>
     <% end %>
-    <%= link_to(viewer_workspace_url(@workspace)) do %>
+    <%= link_to(viewer_workspace_url(@workspace), data: { turbolinks: false }) do %>
       <div class="card workspace-card my-3">
         <% if @workspace.thumbnail.present? %>
           <%= image_tag @workspace.thumbnail.presence.variant(resize_to_limit: [400, 400]), class: 'card-img-top', alt: ' ', aria: { hidden: true }, style: 'max-height: 400px; width: 100%' %>
@@ -40,7 +40,7 @@
       <%= react_component("ShareModal", { embedLink: embed_workspace_url(@workspace) }) %>
 
       <h2 class="h4">Workspace actions</h2>
-      <%= link_to 'Open workspace', viewer_workspace_path(@workspace), class: 'btn btn-outline-primary my-1' %>
+      <%= link_to 'Open workspace', viewer_workspace_path(@workspace), class: 'btn btn-outline-primary my-1', data: { turbolinks: false } %>
       <% if can? :update, @workspace %>
         <%= button_tag 'Move workspace', class: 'btn btn-outline-primary my-1', data: { 'bs-toggle': 'modal', 'bs-target': '#moveWorkspaceModal' } %>
         <div class="modal fade" id="moveWorkspaceModal" tabindex="-1" aria-labelledby="moveWorkspaceModalLabel" aria-hidden="true">
