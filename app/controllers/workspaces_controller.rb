@@ -93,6 +93,8 @@ class WorkspacesController < ApplicationController
   def workspace_params
     return {} unless params[:workspace]
 
+    authorize! :update, Project.find(params.dig('workspace', 'project_id')) if params.dig('workspace', 'project_id')
+
     params.require(:workspace)
           .permit(:title, :state, :state_type, :project_id, :description, :published, :favorite, :thumbnail)
           .merge(deserialized_state)
