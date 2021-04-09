@@ -9,6 +9,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[shibboleth]
 
+  has_many :projects, through: :roles, source: :resource, source_type: 'Project'
+  has_many :workspaces, through: :projects
+
   before_validation do
     if provider.blank?
       self.provider = 'local'

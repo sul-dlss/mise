@@ -4,21 +4,24 @@
       <%= link_to 'Dashboard', root_path, class: ['nav-link', ('active' if current_page?(root_path))].join(' '), aria: { current: ('page' if current_page?(root_path)) } %>
     </li>
   </ul>
-  <a href="/" class="d-flex mt-3 pb-2 mb-2 link-dark text-decoration-none border-bottom">
-    <span class="fs-5 fw-semibold">Projects</span>
-  </a>
-  <ul class="list-unstyled ps-0">
-    <li class="mb-1">
-      <div class="collapse show" id="home-collapse">
-        <ul class="btn-toggle-nav fw-normal pb-3 ps-3 border-bottom project-list">
-          <% Project.accessible_by(current_ability, :update).each do |project| %>
-            <li><%= link_to project.title, project, class: "link-dark rounded ms-0 #{'active' if @project == project }" %></li>
-          <% end %>
-        </ul>
-      </div>
-    </li>
-  </ul>
+
+  <% if current_user&.projects&.any? %>
+    <a href="/" class="d-flex mt-3 pb-2 mb-2 link-dark text-decoration-none border-bottom">
+      <span class="fs-5 fw-semibold">Projects</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+      <li class="mb-1">
+        <div class="collapse show" id="home-collapse">
+          <ul class="btn-toggle-nav fw-normal pb-3 ps-3 border-bottom project-list">
+            <% current_user.projects.each do |project| %>
+              <li><%= link_to project.title, project, class: "link-dark rounded ms-0 #{'active' if @project == project }" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  <% end %>
   <div>
-    <%= link_to '+ New project', projects_path, class: 'btn btn-outline-secondary', method: :post %>
+    <%= link_to '+ New project', projects_path, class: 'btn btn-outline-secondary', method: :post if can? :create, Project %>
   </div>
 </div>
