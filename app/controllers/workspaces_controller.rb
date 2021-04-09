@@ -40,9 +40,6 @@ class WorkspacesController < ApplicationController
     render layout: 'embedded'
   end
 
-  # GET /workspaces/new
-  def new; end
-
   # GET /workspaces/1/edit
   def edit
     render layout: 'application'

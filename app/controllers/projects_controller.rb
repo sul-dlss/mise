@@ -14,14 +14,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1 or /projects/1.json
   def show; end
 
-  # GET /projects/new
-  def new
-    render layout: 'application'
-  end
-
-  # GET /projects/1/edit
-  def edit; end
-
   # POST /projects or /projects.json
   def create
     respond_to do |format|

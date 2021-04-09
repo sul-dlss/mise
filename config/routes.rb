@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :projects do
-    resources :workspaces, except: %i[show destroy edit]
+  resources :projects, except: %i[new edit] do
+    resources :workspaces, only: %i[index create]
     resources :resources, except: %i[show destroy edit] do
       collection do
         get 'iiif', defaults: { format: :json }

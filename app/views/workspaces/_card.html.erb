@@ -9,15 +9,25 @@
 
     <div class="d-flex flex-grow-1 justify-content-between">
       <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
-      <div class="dropdown align-self-end ms-3">
-        <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="bi-three-dots"><span class="visually-hidden">Options</span></span>
-        </a>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <% options = capture do %>
+        <% if can? :duplicate, workspace %>
           <li><%= link_to 'Duplicate workspace', project_workspaces_path(workspace.project, template: workspace), class: 'dropdown-item', method: :post %></li>
+        <% end %>
+        <% if can? :delete, workspace %>
           <li><%= link_to 'Delete workspace', workspace, class: 'dropdown-item', method: :delete, data: { confirm: 'Are you sure?' } %>
-        </ul>
+        <% end %>
+      <% end %>
+
+      <div class="dropdown align-self-end ms-3">
+        <% if options.present? %>
+          <a class="btn btn-outline-secondary" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="bi-three-dots"><span class="visually-hidden">Options</span></span>
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <%= options %>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>
