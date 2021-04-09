@@ -20,13 +20,12 @@
       <h1><%= @workspace.title %></h1>
       <%= @workspace.description %>
     <% end %>
-
     <%= link_to(can?(:edit, @workspace) ? edit_workspace_path(@workspace) : embed_workspace_url(@workspace), target: ('_blank' unless can? :edit, @workspace) ) do %>
-      <div class="d-flex position-relative my-3 w-25">
+      <div class="card workspace-card my-3">
         <% if @workspace.thumbnail.present? %>
-          <%= image_tag @workspace.thumbnail.presence.variant(resize_to_limit: [400, 400]), alt: ' ', aria: { hidden: true }, style: 'max-height: 400px; width: 100%' %>
+          <%= image_tag @workspace.thumbnail.presence.variant(resize_to_limit: [400, 400]), class: 'card-img-top', alt: ' ', aria: { hidden: true }, style: 'max-height: 400px; width: 100%' %>
         <% else %>
-           <%= image_tag 'placeholder.png', style: 'width: 400px; height: 200px;' %>
+           <%= image_tag 'placeholder.png', class: 'card-img-top' %>
         <% end %>
         <span class="caption-overlay">
           <span class="btn btn-primary stretched-link">Open workspace</span>

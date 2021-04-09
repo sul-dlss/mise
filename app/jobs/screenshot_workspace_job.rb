@@ -6,10 +6,11 @@ require 'puppeteer'
 # Captures a screenshot of something
 class ScreenshotWorkspaceJob < ApplicationJob
   def perform(workspace, timestamp = nil)
-    Puppeteer.launch(headless: true) do |browser|
+    Puppeteer.launch(headless: true, args: ['--window-size=1280,800']) do |browser|
       page = browser.pages.first || browser.new_page
-      page.goto(embed_path_with_token(workspace, timestamp))
-      page.wait_for_timeout(5000)
+      page.viewport = Puppeteer::Viewport.new(width: 1280, height: 800)
+      page.goto(embed_path_with_token(workspace, timestamp), wait_until: 'domcontentloaded')
+      page.wait_for_timeout(3000)
 
       Tempfile.create do |t|
         page.screenshot(path: t.path, type: :png)
