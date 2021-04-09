@@ -42,7 +42,7 @@
       <h2 class="h4">Workspace actions</h2>
       <%= link_to 'Open workspace', viewer_workspace_path(@workspace), class: 'btn btn-outline-primary my-1' %>
       <% if can? :update, @workspace %>
-        <%= button_tag 'Move Workspace', class: 'btn btn-outline-primary my-1', data: { 'bs-toggle': 'modal', 'bs-target': '#moveWorkspaceModal' } %>
+        <%= button_tag 'Move workspace', class: 'btn btn-outline-primary my-1', data: { 'bs-toggle': 'modal', 'bs-target': '#moveWorkspaceModal' } %>
         <div class="modal fade" id="moveWorkspaceModal" tabindex="-1" aria-labelledby="moveWorkspaceModalLabel" aria-hidden="true">
           <%= form_with(model: @workspace, class: 'me-2 modal-dialog move-workspace') do |form| %>
             <div class="modal-content">
