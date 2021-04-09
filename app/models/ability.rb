@@ -7,6 +7,7 @@ class Ability
   # rubocop:disable Metrics/MethodLength
   def initialize(user, service: false)
     alias_action :embed, to: :read
+    alias_action :viewer, to: :read
     anonymous_abilities
 
     if service

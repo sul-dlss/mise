@@ -10,8 +10,9 @@ Rails.application.routes.draw do
 
   resources :workspaces, only: %i[index show destroy edit update] do
     member do
-      get 'duplicate'
+      post 'duplicate'
       get 'embed'
+      get 'viewer'
     end
   end
   resources :resources, only: %i[show destroy edit update]
