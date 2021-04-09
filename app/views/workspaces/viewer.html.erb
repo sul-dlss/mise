@@ -1,0 +1,35 @@
+<% unless @embed %>
+  <div class="d-flex justify-content-between">
+    <%= link_to '<i class="bi bi-arrow-left"></i> Back'.html_safe, @workspace, class: 'btn btn-link' %>
+    <% if can? :update, @workspace %>
+      <%= react_component("EditInPlace", { field: 'title', value: @workspace.title, csrfToken: form_authenticity_token, url: url_for(@workspace) }, tag: 'h1') %>
+
+      <%= form_with(model: @workspace, class: 'me-2') do |form| %>
+        <%= form.hidden_field :state %>
+        <%= form.submit 'Save workspace', class: 'btn btn-primary' %>
+      <% end %>
+    <% else %>
+      <h1><%= @workspace.title %></h1>
+      <span></span>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="<%= @embed ? 'embedded-mirador-container' : 'mirador-container mx-2' %>">
+  <% viewer_props = if can? :update, @workspace
+        {
+          config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.state&.dig('config') || {}),
+          state: @workspace.state,
+          updateStateSelector: '#workspace_state',
+          projectResourcesUrl: iiif_project_resources_url(@workspace.project),
+        }
+      else
+        {
+          config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.embedded_workspace_config || {}),
+          state: @workspace.state
+        }
+      end
+  %>
+
+  <%= react_component("Viewer", viewer_props) %>
+</div>

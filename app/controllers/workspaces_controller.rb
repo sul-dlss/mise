@@ -37,11 +37,13 @@ class WorkspacesController < ApplicationController
       @workspace = @previous_workspace if @previous_workspace.present?
     end
 
-    render layout: 'embedded'
+    @embed = true
+
+    render template: 'workspaces/viewer', layout: 'embedded'
   end
 
-  # GET /workspaces/1/edit
-  def edit
+  # GET /workspaces/1/viewer
+  def viewer
     render layout: 'application'
   end
 
