@@ -95,5 +95,11 @@ gem 'rolify'
 
 gem 'puppeteer-ruby'
 
+source 'https://gems.contribsys.com/' do
+  gem 'sidekiq-pro', group: :production
+end
+
+gem 'sidekiq'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

@@ -26,6 +26,10 @@ jobs:
           ${{ runner.os }}-gems-202103
     - name: Bundle install
       run: bundle config path vendor/bundle
+    - name: Use sidekiq pro
+      env:
+        BUNDLE_GEMS__CONTRIBSYS__COM: ${{ secrets.BUNDLE_GEMS__CONTRIBSYS__COM }}
+      run: bundle config --local gems.contribsys.com ${BUNDLE_GEMS__CONTRIBSYS__COM}
     - name: Install dependencies
       run: bin/setup
     - name: Lint JavaScript

@@ -24,6 +24,12 @@ Rails.application.routes.draw do
     get 'explore', to: 'home#show', as: :explore
   end
 
+  authenticate :user, lambda { |u| u.has_role? :superadmin } do
+    require 'sidekiq/web'
+    require 'sidekiq/pro/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   root to: 'home#show', as: :landing_page
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
