@@ -14,7 +14,7 @@
       <li class="mb-1 nav-item">
         <div class="collapse show" id="home-collapse">
           <ul class="btn-toggle-nav fw-normal ps-3 project-list">
-            <% current_user.projects.each do |project| %>
+            <% current_user.projects.order(title: :asc).each do |project| %>
               <li><%= link_to project.title, project, class: "link-dark rounded ms-0 #{'active' if @project == project }" %></li>
             <% end %>
           </ul>
