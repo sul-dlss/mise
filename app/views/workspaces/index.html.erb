@@ -4,10 +4,6 @@
   <%= render(partial: 'layouts/sidebar') %>
 <% end unless @project %>
 
-<% content_for(:top_level_nav) do %>
-  <%= render(partial: 'layouts/top_level_nav') %>
-<% end unless @project %>
-
 <div class="row workspace-cards g-4 flex-wrap align-self-stretch">
   <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
 </div>
