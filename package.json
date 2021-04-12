@@ -18,6 +18,7 @@
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "mirador": "^3.0.0",
+    "mirador-annotations": "^0.5.0",
     "mirador-image-tools": "^0.10.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

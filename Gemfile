@@ -93,6 +93,8 @@ gem 'omniauth-shibboleth'
 gem 'paper_trail'
 gem 'rolify'
 
+gem 'annotot', github: 'mejackreed/annotot'
+
 gem 'puppeteer-ruby'
 
 source 'https://gems.contribsys.com/' do

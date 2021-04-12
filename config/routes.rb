@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   resources :projects, except: %i[new edit] do
     resources :workspaces, only: %i[index create]
+
+    resources :annotations, except: %i[new edit], defaults: { format: :json } do
+      collection do
+        get 'lists'
+        get 'pages'
+      end
+    end
+
     resources :resources, except: %i[show destroy edit] do
       collection do
         get 'iiif', defaults: { format: :json }

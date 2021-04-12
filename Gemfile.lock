@@ -9,6 +9,13 @@ GIT
       responders
       warden (~> 1.2.3)
 
+GIT
+  remote: https://github.com/mejackreed/annotot.git
+  revision: a6229b218a9271218708bdbbe005b361873e3e9b
+  specs:
+    annotot (0.7.0)
+      rails (>= 5.1, < 7)
+
 GEM
   remote: https://gems.contribsys.com/
   specs:
@@ -414,6 +421,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  annotot!
   bootsnap (>= 1.4.4)
   byebug
   cancancan
