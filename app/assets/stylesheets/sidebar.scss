@@ -9,15 +9,16 @@ $top-navbar-height: 56px;
 
 .project-list {
   list-style: square;
+}
 
-
-  a {
+.sidebar-nav {
+  .nav-link, .project-list a {
     padding-right: 2em;
     position: relative;
     width: 100%;
   }
 
-  .active {
+  .nav-link.active, .project-list a.active {
     font-weight: bold;
     &::after {
       display: inline-block;
