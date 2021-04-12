@@ -24,8 +24,24 @@
     <li class="nav-item">
       <%= link_to 'Workspaces', workspaces_path, class: "nav-link  #{'active' if current_page? workspaces_path }", aria: { current: ('page' if current_page? workspaces_path) } %>
     </li>
-    <li class="nav-item mt-3 border-top pt-3">
-      <%= link_to '+ New project', projects_path, class: 'btn btn-outline-secondary', method: :post if can? :create, Project %>
-    </li>
+
+    <% new_content = capture do %>
+      <% if can? :create, Project %>
+        <li><%= link_to 'Project', projects_path, class: 'dropdown-item', method: :post %></li>
+      <% end %>
+    <% end %>
+
+    <% if new_content.present? %>
+      <li class="nav-item mt-3 border-top pt-3">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="newDropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            + New
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="newDropdownMenuButton">
+            <%= new_content %>
+          </ul>
+        </div>
+      </li>
+    <% end %>
   </ul>
 </div>
