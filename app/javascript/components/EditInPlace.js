@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 
 function EditInPlace(props) {
   const [value, setValue] = useState(props.value);
+  const [savedValue, setSavedValue] = useState(value);
   const [mode, setMode] = useState('view');
 
   const onChange = e => { setValue(e.target.value); };
   const onSave = () => {
+    if (isEmpty(value)) { setValue(savedValue); setMode('saved'); return }
+
     props.value != value && fetch(props.url || document.location, {
       method: 'PATCH',
       headers: {
@@ -15,9 +20,12 @@ function EditInPlace(props) {
         'X-CSRF-Token': props.csrfToken,
       },
       body: JSON.stringify({ [props.field]: value }),
-    });
+    }).then(response => response.json())
+      .then(data => setValue(data[props.field]) && setSavedValue(data[props.field]));
 
-    setMode('view');
+    setSavedValue(value);
+
+    setMode('saved');
   };
 
   let content;
@@ -25,8 +33,8 @@ function EditInPlace(props) {
   if (mode === 'edit') {
     content = (
       <>
-        <form onSubmit={onSave}>
-          <input autoFocus value={value || ''} onChange={onChange} onBlur={onSave} className="form-input" />
+        <form onSubmit={onSave} className="input-group w-50 edit-in-place-form">
+          <input autoFocus value={value || ''} onChange={onChange} onBlur={onSave} className="edit-in-place form-control" />
           <input className="btn btn-primary" type="submit" value="save" />
         </form>
       </>
@@ -43,8 +51,23 @@ function EditInPlace(props) {
     );
   }
 
+  const Portal = ({ value, container, ...props }) => {
+    const [innerHtmlEmptied, setInnerHtmlEmptied] = React.useState(false)
+
+    React.useEffect(() => {
+      if (!innerHtmlEmptied) {
+        container.innerHTML = ''
+        setInnerHtmlEmptied(true)
+      }
+    }, [innerHtmlEmptied])
+
+    if (!innerHtmlEmptied) return null
+    return ReactDOM.createPortal(value, container)
+  }
+
   return (
     <span>
+      { props.uuid && $('[data-field="' + props.field +'"][data-uuid="' + props.uuid + '"]').map((i, c) => <Portal value={savedValue} container={c} />) }
       {content}
     </span>
   );
