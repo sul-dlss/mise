@@ -1,5 +1,10 @@
-<h1>Workspaces</h1>
-
+<% if @project %>
+  <% title [@project.title, 'Workspaces']  %>
+  <h2>Workspaces</h2>
+<% else %>
+  <% title 'Workspaces' %>
+  <h1>All workspaces</h1>
+<% end %>
 <% content_for(:sidebar) do %>
   <%= render(partial: 'layouts/sidebar') %>
 <% end unless @project %>

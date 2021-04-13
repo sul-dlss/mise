@@ -92,6 +92,7 @@ gem 'omniauth'
 gem 'omniauth-shibboleth'
 gem 'paper_trail'
 gem 'rolify'
+gem 'tophat'
 
 gem 'annotot', github: 'mejackreed/annotot'
 
