@@ -29,8 +29,8 @@ function EditInPlace(props) {
   if (mode === 'edit') {
     content = (
       <>
-        <form onSubmit={onSave}>
-          <input autoFocus value={value || ''} onChange={onChange} onBlur={onSave} className="form-input" />
+        <form onSubmit={onSave} className="input-group w-50 edit-in-place-form">
+          <input autoFocus value={value || ''} onChange={onChange} onBlur={onSave} className="edit-in-place form-control" />
           <input className="btn btn-primary" type="submit" value="save" />
         </form>
       </>
