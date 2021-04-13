@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   mount OkComputer::Engine, at: "/status"
 
   authenticated do
-    root to: 'projects#index'
+    root to: 'home#dashboard'
     get 'explore', to: 'home#show', as: :explore
   end
 
