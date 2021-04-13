@@ -2,7 +2,7 @@
   <div class="col">
     <% if can? :update, @project %>
       <div class="h4">
-        <%= react_component("EditInPlace", { field: 'title', value: @project.title, csrfToken: form_authenticity_token }) %>
+        <%= react_component("EditInPlace", { field: 'title', value: @project.title, csrfToken: form_authenticity_token, uuid: @project.slug }) %>
       </div>
 
       <div>

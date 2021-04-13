@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 function EditInPlace(props) {
   const [value, setValue] = useState(props.value);
+  const [savedValue, setSavedValue] = useState(value);
   const [mode, setMode] = useState('view');
 
   const onChange = e => { setValue(e.target.value); };
@@ -17,7 +19,9 @@ function EditInPlace(props) {
       body: JSON.stringify({ [props.field]: value }),
     });
 
-    setMode('view');
+    setSavedValue(value);
+
+    setMode('saved');
   };
 
   let content;
@@ -43,8 +47,23 @@ function EditInPlace(props) {
     );
   }
 
+  const Portal = ({ value, container, ...props }) => {
+    const [innerHtmlEmptied, setInnerHtmlEmptied] = React.useState(false)
+
+    React.useEffect(() => {
+      if (!innerHtmlEmptied) {
+        container.innerHTML = ''
+        setInnerHtmlEmptied(true)
+      }
+    }, [innerHtmlEmptied])
+
+    if (!innerHtmlEmptied) return null
+    return ReactDOM.createPortal(value, container)
+  }
+
   return (
     <span>
+      { props.uuid && $('[data-field="' + props.field +'"][data-uuid="' + props.uuid + '"]').map((i, c) => <Portal value={savedValue} container={c} />) }
       {content}
     </span>
   );
