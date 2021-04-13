@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 
 function EditInPlace(props) {
   const [value, setValue] = useState(props.value);
@@ -9,6 +10,8 @@ function EditInPlace(props) {
 
   const onChange = e => { setValue(e.target.value); };
   const onSave = () => {
+    if (isEmpty(value)) { setValue(savedValue); setMode('saved'); return }
+
     props.value != value && fetch(props.url || document.location, {
       method: 'PATCH',
       headers: {
