@@ -20,7 +20,8 @@ function EditInPlace(props) {
         'X-CSRF-Token': props.csrfToken,
       },
       body: JSON.stringify({ [props.field]: value }),
-    });
+    }).then(response => response.json())
+      .then(data => setValue(data[props.field]) && setSavedValue(data[props.field]));
 
     setSavedValue(value);
 
