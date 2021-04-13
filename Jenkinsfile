@@ -25,6 +25,8 @@ pipeline {
           # Load RVM
           rvm use 2.7.1@mise --create
           gem install bundler
+
+          bundle config --global gems.contribsys.com $SIDEKIQ_PRO_SECRET
           bundle install --without production
 
           # Deploy it
