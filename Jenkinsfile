@@ -29,17 +29,21 @@ pipeline {
 
           # Deploy it
           bundle exec cap stage deploy
-          deploy_exit_code=$?
-
-          if [ $deploy_exit_code = 0 ]; then
-            deploystatus="The deploy to stage was successful"
-          else
-            deploystatus="The deploy to stage was unsuccessful"
-          fi
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"'"$deploystatus"'"}' $SLACK_WEBHOOK_URL
-
-          exit $deploy_exit_code
           '''
+        }
+
+        post {
+          success {
+            sh '''#!/bin/bash -l
+              curl -X POST -H 'Content-type: application/json' --data '{"text":"The deploy to stage was successful"}' $SLACK_WEBHOOK_URL
+            '''
+          }
+
+          failure {
+            sh '''#!/bin/bash -l
+              curl -X POST -H 'Content-type: application/json' --data '{"text":"The deploy to stage was unsuccessful"}' $SLACK_WEBHOOK_URL
+            '''
+          }
         }
       }
     }
