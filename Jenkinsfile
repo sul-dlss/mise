@@ -31,19 +31,19 @@ pipeline {
           bundle exec cap stage deploy
           '''
         }
+      }
 
-        post {
-          success {
-            sh '''#!/bin/bash -l
-              curl -X POST -H 'Content-type: application/json' --data '{"text":"The deploy to stage was successful"}' $SLACK_WEBHOOK_URL
-            '''
-          }
+      post {
+        success {
+          sh '''#!/bin/bash -l
+            curl -X POST -H 'Content-type: application/json' --data '{"text":"The deploy to stage was successful"}' $SLACK_WEBHOOK_URL
+          '''
+        }
 
-          failure {
-            sh '''#!/bin/bash -l
-              curl -X POST -H 'Content-type: application/json' --data '{"text":"The deploy to stage was unsuccessful"}' $SLACK_WEBHOOK_URL
-            '''
-          }
+        failure {
+          sh '''#!/bin/bash -l
+            curl -X POST -H 'Content-type: application/json' --data '{"text":"The deploy to stage was unsuccessful"}' $SLACK_WEBHOOK_URL
+          '''
         }
       }
     }
