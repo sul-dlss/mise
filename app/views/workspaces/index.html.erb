@@ -1,6 +1,6 @@
 <% if @project %>
   <% title [@project.title, 'Workspaces']  %>
-  <h2>Workspaces</h2>
+  <h2 class="h3 mt-4 pb-2">Workspaces</h2>
 <% else %>
   <% title 'Workspaces' %>
   <h1>All workspaces</h1>
@@ -13,4 +13,4 @@
   <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
 </div>
 
-<%= link_to 'New workspace', project_workspaces_path(@project), method: :post, class: 'btn btn-outline-secondary mt-3' if @project && can?(:add_to, @project) %>
+<%= link_to 'New workspace', project_workspaces_path(@project), method: :post, class: 'btn btn-outline-secondary mt-4' if @project && can?(:add_to, @project) %>
