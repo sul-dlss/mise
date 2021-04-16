@@ -2,16 +2,16 @@
   <%= render(partial: 'layouts/sidebar') %>
 <% end %>
 
-<h1 class="display-5">Dashboard</h1>
+<h1>Dashboard</h1>
 
 <% if @favorites.any? %>
-  <h2 class="mt-3">Favorite workspaces</h2>
+  <h2 class="h3 mt-4 py-2 border-top">Favorite workspaces</h2>
   <div class="row workspace-cards g-4">
     <%= render partial: 'workspaces/card', collection: @favorites, as: :workspace %>
   </div>
 <% end %>
 
-<h2 class="mt-3">Recent workspace activity</h2>
+<h2 class="h3 mt-5 py-2 border-top">Recent workspace activity</h2>
 <div class="row workspace-cards g-4">
   <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
 </div>
