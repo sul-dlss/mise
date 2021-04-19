@@ -1,4 +1,4 @@
-<div class="card workspace-card">
+<div class="card workspace-card mb-3">
   <%= link_to workspace do %>
     <%= image_tag workspace.thumbnail.presence&.variant(resize_to_limit: [400, 400]) || 'placeholder.png', class: 'card-img-top', alt: ' ', aria: { hidden: true }, style: 'max-height: 200px' %>
   <% end %>

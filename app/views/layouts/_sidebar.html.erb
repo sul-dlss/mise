@@ -1,4 +1,4 @@
-<div class="p-3 bg-white sidebar-nav">
+<div class="px-3 py-4 bg-white sidebar-nav">
   <ul class="list-unstyled ps-0">
     <li class="nav-item">
       <%= link_to 'Dashboard', root_path, class: ['nav-link', ('active' if current_page?(root_path))].join(' '), aria: { current: ('page' if current_page?(root_path)) } %>
@@ -13,7 +13,7 @@
     <% if current_user&.projects&.any? %>
       <li class="mb-1 nav-item">
         <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav fw-normal ps-3 project-list">
+          <ul class="btn-toggle-nav fw-normal project-list">
             <% current_user.projects.order(title: :asc).each do |project| %>
               <li><%= link_to project.title, project, class: "link-dark rounded ms-0 #{'active' if @project == project }", data: { field: 'title', uuid: project.slug } %></li>
             <% end %>
@@ -32,7 +32,7 @@
     <% end %>
 
     <% if new_content.present? %>
-      <li class="nav-item mt-3 border-top pt-3">
+      <li class="nav-item mt-3 ms-3 border-top pt-3">
         <div class="dropdown">
           <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="newDropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             + New

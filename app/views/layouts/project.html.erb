@@ -3,9 +3,9 @@
 <% end %>
 
 <% content_for(:top_level_nav) do %>
-  <%= content_tag :h1, @project.title, class: 'display-5', data: { field: 'title', uuid: @project.slug } %>
+  <%= content_tag :h1, @project.title, data: { field: 'title', uuid: @project.slug } %>
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs mt-4">
     <li class="nav-item">
       <%= link_to 'Project details', @project, class: "nav-link fw-bold #{'active' if current_page? @project }", aria: { current: ('page' if current_page? @project) } %>
     </li>
