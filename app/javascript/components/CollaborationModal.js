@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 
-function CollaborationModal({ adminUsers, embedLink }) {
+function CollaborationModal({ url, csrfToken }) {
   const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState();
+  const [projectRoles, setProjectRoles] = useState([]);
+
+  const fetchProjectRole = ()=> {
+    fetch(url, {
+      headers: {
+        Accept: 'application/json',
+      },
+      method: 'GET',
+    }).then(response => response.json())
+      .then(data => setProjectRoles(data));
+  };
+
+  useEffect(() => {fetchProjectRole()},[])
 
   const handleOpen = () => {
     setOpen(true);
@@ -13,26 +27,44 @@ function CollaborationModal({ adminUsers, embedLink }) {
     setOpen(false);
   };
 
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleNewCollaborator = () => {
+    fetch(url, {
+      body: JSON.stringify({ uid: email, role: 'admin'}),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
+      },
+      method: 'POST',
+    }).then(response => response.json())
+      .then(data => fetchProjectRole());
+    setEmail('');
+  }
+
   const CollaborationUser = ({uid, role}) => {
     return <div className="row">
       <div className="col">{uid}</div>
       <div className="col-3">
-        <div class="dropdown">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="dropdown">
+          <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
             {role}
           </button>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+          <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
             <li>
-              <button class="dropdown-item active" aria-current="true" type="button">{role}</button>
+              <button className="dropdown-item active" aria-current="true" type="button">{role}</button>
             </li>
             <li>
-              <button class="dropdown-item" type="button">other role</button>
+              <button className="dropdown-item" type="button">other role</button>
             </li>
             <li>
               <hr className="dropdown-divider"/>
             </li>
             <li>
-              <button class="dropdown-item" type="button">Remove collaborator</button>
+              <button className="dropdown-item" type="button">Remove collaborator</button>
             </li>
           </ul>
         </div></div>
@@ -57,10 +89,17 @@ function CollaborationModal({ adminUsers, embedLink }) {
             </div>
             <div className="modal-body">
 
-            {adminUsers.map((user) => (
-              <CollaborationUser uid={user} key={user} role="admin"
+            {projectRoles.map((role) => (
+              <CollaborationUser uid={role.uid} key={role.uid} role={role.role}
               />
             ))}
+            </div>
+            <div className="modal-body border-top">
+              Add new collaborators
+              <div className="input-group mb-3">
+                <input value={email || ''} onChange={onEmailChange} type="text" className="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                <button onClick={handleNewCollaborator} className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+              </div>
             </div>
             <div className="modal-footer justify-content-start">
               <button type="button" className="btn btn-link" onClick={handleClose}>Done</button>
@@ -73,8 +112,8 @@ function CollaborationModal({ adminUsers, embedLink }) {
 }
 
 CollaborationModal.propTypes = {
-  adminUsers: PropTypes.arrayOf(PropTypes.string),
-  embedLink: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  csrfToken: PropTypes.string.isRequired,
 };
 
 export default CollaborationModal;
