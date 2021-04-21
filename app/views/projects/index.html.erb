@@ -5,4 +5,4 @@
   <%= render(partial: 'layouts/sidebar') %>
 <% end %>
 
-<%= render @projects %>
+<%= render @projects if @projects.present? %>
