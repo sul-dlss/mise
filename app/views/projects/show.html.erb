@@ -43,12 +43,12 @@
   <div class="col-3 border-start border-2 h-100">
     <nav class="d-flex flex-column ms-4 align-items-start">
       <% if can? :update, @project %>
-        <h2 class="h4 mt-4">Shared with</h2>
+        <h2 class="h4 mt-4">Collaboration</h2>
         <% User.with_role(:admin, @project).each do |user| %>
           <div><%= user.uid %></div>
         <% end %>
       <% end %>
-
+      <%= react_component("CollaborationModal", { adminUsers: User.with_role(:admin, @project).pluck(:uid), csrfToken: form_authenticity_token }) %>
       <h2 class="h4 mt-4">Project actions</h2>
       <%= link_to 'New workspace', project_workspaces_path(@project), method: :post, class: 'btn btn-outline-secondary my-2' if @project && can?(:add_to, @project) %>
       <%= link_to 'Delete project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger my-2' if can? :delete, @project %>
