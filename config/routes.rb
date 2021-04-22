@@ -15,7 +15,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :roles, only: %i[index create destroy]
+    resources :roles, only: %i[index create] do
+      collection do
+        delete '/', to: 'roles#destroy'
+      end
+    end
   end
 
   resources :workspaces, only: %i[index show destroy edit update] do

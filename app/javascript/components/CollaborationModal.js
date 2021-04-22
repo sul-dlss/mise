@@ -33,7 +33,7 @@ function CollaborationModal({ url, csrfToken }) {
 
   const handleNewCollaborator = () => {
     fetch(url, {
-      body: JSON.stringify({role: { uid: email, role_name: 'admin'}}),
+      body: JSON.stringify({role: { uid: email, role_name: 'admin' }}),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -45,7 +45,19 @@ function CollaborationModal({ url, csrfToken }) {
     setEmail('');
   }
 
-  const CollaborationUser = ({uid, role}) => {
+  const CollaborationUser = ({uid, role, provider}) => {
+    const handleRemoveCollaborator = () => {
+      fetch(url, {
+        body: JSON.stringify({role: { provider: provider, uid: uid }}),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+        method: 'DELETE',
+      }).then(response => response)
+        .then(data => fetchProjectRole());
+    }
     return <li className="px-0 list-group-item d-flex align-items-center">
       <div className="col">{uid}</div>
       <div className="col-3">
@@ -64,7 +76,7 @@ function CollaborationModal({ url, csrfToken }) {
               <hr className="dropdown-divider"/>
             </li>
             <li>
-              <button className="dropdown-item" type="button">Remove collaborator</button>
+              <button onClick={handleRemoveCollaborator} className="dropdown-item" type="button">Remove collaborator</button>
             </li>
           </ul>
         </div></div>
@@ -90,7 +102,7 @@ function CollaborationModal({ url, csrfToken }) {
             <div className="modal-body">
               <ul className="list-group list-group-flush">
                 {projectRoles.map((role) => (
-                  <CollaborationUser uid={role.uid || role.email} key={role.uid} role={role.role}
+                  <CollaborationUser uid={role.uid || role.email} key={role.uid} role={role.role} provider={role.provider}
                   />
                 ))}
               </ul>

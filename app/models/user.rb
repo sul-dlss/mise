@@ -34,4 +34,10 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  def remove_all_roles(resource)
+    roles.where(resource: resource).find_each do |role|
+      remove_role role.name, resource
+    end
+  end
 end
