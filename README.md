@@ -17,3 +17,7 @@ Running a local server
 ```sh
 $ rails s
 ```
+In a separate window
+```sh
+$ bin/webpack-dev-server
+```
