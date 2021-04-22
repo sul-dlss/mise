@@ -33,20 +33,20 @@ function CollaborationModal({ url, csrfToken }) {
 
   const handleNewCollaborator = () => {
     fetch(url, {
-      body: JSON.stringify({ uid: email, role: 'admin'}),
+      body: JSON.stringify({role: { uid: email, role_name: 'admin'}}),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrfToken,
       },
       method: 'POST',
-    }).then(response => response.json())
+    }).then(response => response)
       .then(data => fetchProjectRole());
     setEmail('');
   }
 
   const CollaborationUser = ({uid, role}) => {
-    return <div className="row">
+    return <li className="px-0 list-group-item d-flex align-items-center">
       <div className="col">{uid}</div>
       <div className="col-3">
         <div className="dropdown">
@@ -68,7 +68,7 @@ function CollaborationModal({ url, csrfToken }) {
             </li>
           </ul>
         </div></div>
-    </div>
+    </li>
   }
 
   return (
@@ -88,11 +88,12 @@ function CollaborationModal({ url, csrfToken }) {
               <button type="button" className="btn-close" onClick={handleClose} data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
-
-            {projectRoles.map((role) => (
-              <CollaborationUser uid={role.uid} key={role.uid} role={role.role}
-              />
-            ))}
+              <ul className="list-group list-group-flush">
+                {projectRoles.map((role) => (
+                  <CollaborationUser uid={role.uid || role.email} key={role.uid} role={role.role}
+                  />
+                ))}
+              </ul>
             </div>
             <div className="modal-body border-top">
               Add new collaborators

@@ -4,3 +4,9 @@ screenshot_url_parameters:
   port: '3000'
 
 sidekiq: {}
+
+action_mailer:
+  default_options:
+    from: "example-team@example.com"
+  default_url_options:
+    host: "example.com"
