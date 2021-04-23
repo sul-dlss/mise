@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   after_create do
     Project.create(title: 'Default project').tap do |p|
-      add_role :admin, p
+      add_role :owner, p
     end
   end
 

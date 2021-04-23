@@ -27,7 +27,7 @@ RSpec.describe Ability do
 
   describe 'some user' do
     let(:user) { create(:user) }
-    let!(:project) { create(:project, :with_admin, user: user) }
+    let!(:project) { create(:project, :with_owner, user: user) }
     let!(:another_project) { create(:project) }
 
     it { is_expected.to be_able_to(:create, Project) }

@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   def create
     respond_to do |format|
       if @project.save
-        current_user.add_role(:admin, @project)
+        current_user.add_role(:owner, @project)
 
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
