@@ -102,7 +102,7 @@ function CollaborationModal({ url, csrfToken, currentUser }) {
     return <li className="px-0 list-group-item d-flex align-items-center">
       <div className="col">{email}</div>
       <div className="col-3">
-        {currentUser == id ? <span className="btn btn-outline-secondary disabled">{role}</span> : roleDropdown}
+        {currentUser == id || !projectRoles.assignableRoles.includes(role) ? <span className="btn btn-outline-secondary disabled">{role}</span> : roleDropdown}
         </div>
     </li>
   }

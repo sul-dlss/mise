@@ -11,5 +11,15 @@ FactoryBot.define do
         evaluator&.user&.add_role :owner, resource
       end
     end
+
+    trait :with_editor do
+      transient do
+        user { nil }
+      end
+
+      after(:create) do |resource, evaluator|
+        evaluator&.user&.add_role :editor, resource
+      end
+    end
   end
 end

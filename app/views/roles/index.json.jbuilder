@@ -3,4 +3,4 @@
 json.users do
   json.array! @users, partial: 'roles/user', as: :user
 end
-json.assignableRoles Settings.project_roles
+json.assignableRoles(Settings.project_roles.select { |role| can? :manage, @project.roles.build(name: role) })

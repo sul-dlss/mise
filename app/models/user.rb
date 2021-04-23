@@ -40,4 +40,8 @@ class User < ApplicationRecord
       remove_role role.name, resource
     end
   end
+
+  def resource_roles(resource)
+    roles.where(resource: resource)
+  end
 end

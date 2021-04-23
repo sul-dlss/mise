@@ -55,7 +55,7 @@
       <% end %>
 
 
-      <% if can? :update, @project %>
+      <% if can? :manage, @project.roles.build(name: 'viewer') %>
         <%= react_component("CollaborationModal", { url: project_roles_url(@project), currentUser: current_user&.id, csrfToken: form_authenticity_token }) %>
       <% end %>
 

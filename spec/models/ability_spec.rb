@@ -25,7 +25,7 @@ RSpec.describe Ability do
     it { is_expected.not_to be_able_to(:read, workspace) }
   end
 
-  describe 'some user' do
+  context 'with a user with the owner role' do
     let(:user) { create(:user) }
     let!(:project) { create(:project, :with_owner, user: user) }
     let!(:another_project) { create(:project) }
@@ -33,8 +33,23 @@ RSpec.describe Ability do
     it { is_expected.to be_able_to(:create, Project) }
     it { is_expected.to be_able_to(:manage, project.workspaces.create) }
     it { is_expected.to be_able_to(:manage, project.resources.create) }
+    it { is_expected.to be_able_to(:manage, project.roles.build(name: 'viewer')) }
+    it { is_expected.to be_able_to(:manage, project.roles.build(name: 'editor')) }
+    it { is_expected.to be_able_to(:manage, project.roles.build(name: 'manager')) }
+    it { is_expected.to be_able_to(:manage, project.roles.build(name: 'owner')) }
 
     it { is_expected.not_to be_able_to(:manage, another_project.workspaces.create) }
     it { is_expected.not_to be_able_to(:manage, another_project.resources.create) }
+    it { is_expected.not_to be_able_to(:manage, another_project.roles.build(name: 'viewer')) }
+  end
+
+  context 'with a user with the editor role' do
+    let(:user) { create(:user) }
+    let!(:project) { create(:project, :with_editor, user: user) }
+
+    it { is_expected.to be_able_to(:manage, project.roles.build(name: 'viewer')) }
+    it { is_expected.to be_able_to(:manage, project.roles.build(name: 'editor')) }
+    it { is_expected.not_to be_able_to(:manage, project.roles.build(name: 'manager')) }
+    it { is_expected.not_to be_able_to(:manage, project.roles.build(name: 'owner')) }
   end
 end
