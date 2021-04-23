@@ -19,7 +19,7 @@ class RolesController < ApplicationController
     authorize! :manage, @project
     user = User.find_or_initialize_by(email: create_params[:email])
     if user.new_record?
-      user.update(provider: 'invited', uid: create_params[:email])
+      user.update(provider: 'local', uid: create_params[:email])
       user.invite!(current_user)
     end
 
