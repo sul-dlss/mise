@@ -31,7 +31,9 @@ function CollaborationModal({ url, csrfToken, currentUser }) {
     setEmail(e.target.value);
   };
 
-  const handleNewCollaborator = () => {
+  const handleNewCollaborator = (e) => {
+    e.preventDefault();
+
     fetch(url, {
       body: JSON.stringify({role: { email, role_name: 'viewer' }}),
       headers: {
@@ -131,10 +133,10 @@ function CollaborationModal({ url, csrfToken, currentUser }) {
             </div>
             <div className="modal-body border-top">
               Add new collaborators
-              <div className="input-group mb-3">
+              <form className="input-group mb-3" onSubmit={handleNewCollaborator}>
                 <input value={email || ''} onChange={onEmailChange} type="text" className="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                <button onClick={handleNewCollaborator} className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
-              </div>
+                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+              </form>
             </div>
             <div className="modal-footer justify-content-start">
               <button type="button" className="btn btn-link" onClick={handleClose}>Done</button>
