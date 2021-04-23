@@ -12,7 +12,6 @@ action_mailer:
     host: "example.com"
 
 project_roles:
-  - admin
   - owner
   - manager
   - editor
