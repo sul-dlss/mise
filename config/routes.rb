@@ -14,6 +14,8 @@ Rails.application.routes.draw do
         get 'iiif', defaults: { format: :json }
       end
     end
+
+    resources :roles, only: %i[index create update destroy]
   end
 
   resources :workspaces, only: %i[index show destroy edit update] do

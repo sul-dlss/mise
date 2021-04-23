@@ -4,7 +4,7 @@
 class Ability
   include CanCan::Ability
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def initialize(user, service: false)
     alias_action :embed, to: :read
     alias_action :viewer, to: :read
@@ -21,14 +21,30 @@ class Ability
 
     can :create, Project
 
-    projects = Project.with_role(:admin, user).pluck(:id)
+    project_ids = Project.with_roles(Settings.project_roles, user).pluck(:id)
+    can :read, Project, id: project_ids
+    can :read, Workspace, project: { id: project_ids }
+    can :read, Resource, project: { id: project_ids }
+    can :read, Annotot::Annotation, project: { id: project_ids }
 
-    can :manage, Project, id: projects
-    can :manage, Workspace, project: { id: projects }
-    can :manage, Resource, project: { id: projects }
-    can :manage, Annotot::Annotation, project: { id: projects }
+    projects = Project.with_roles([:admin] + Settings.project_roles.excluding('viewer'), user)
+    project_ids = projects.pluck(:id)
+    can %i[read add_to], Project, id: project_ids
+    can :manage, Workspace, project: { id: project_ids }
+    can :manage, Resource, project: { id: project_ids }
+    can :manage, Annotot::Annotation, project: { id: project_ids }
+    can :manage, Role, resource: projects, name: 'viewer'
+    can :manage, Role, resource: projects, name: 'editor'
+
+    projects = Project.with_roles(%i[manager], user)
+    can :manage, Role, resource: projects, name: 'manager'
+
+    projects = Project.with_roles(%i[admin owner], user)
+    project_ids = projects.pluck(:id)
+    can :manage, Project, id: project_ids
+    can :manage, Role, resource: projects
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   def anonymous_abilities
     can :read, Annotot::Annotation, project: { published: true }

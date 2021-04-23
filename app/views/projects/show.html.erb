@@ -42,11 +42,21 @@
 
   <div class="col-3 border-start border-2 h-100">
     <nav class="d-flex flex-column ms-4 align-items-start">
-      <% if can? :update, @project %>
-        <h2 class="h4 mt-4">Shared with</h2>
-        <% User.with_role(:admin, @project).each do |user| %>
-          <div><%= user.uid %></div>
-        <% end %>
+      <h2 class="h4 mt-4">Collaboration</h2>
+
+      <% Settings.project_roles.excluding('viewer').each do |role| %>
+        <% users = User.with_role(role.to_sym, @project) %>
+        <h3 class="h5"><%= role.capitalize.pluralize(users.count) %></h3>
+        <ul class="list-unstyled">
+          <% users.each do |user| %>
+            <li><%= user.uid %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+
+      <% if can? :manage, @project.roles.build(name: 'viewer') %>
+        <%= react_component("CollaborationModal", { url: project_roles_url(@project), currentUser: current_user&.id, csrfToken: form_authenticity_token }) %>
       <% end %>
 
       <h2 class="h4 mt-4">Project actions</h2>

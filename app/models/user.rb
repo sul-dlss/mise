@@ -5,7 +5,7 @@ class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[shibboleth]
 
@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   after_create do
     Project.create(title: 'Default project').tap do |p|
-      add_role :admin, p
+      add_role :owner, p
     end
   end
 
@@ -33,5 +33,15 @@ class User < ApplicationRecord
       # if/when we add confirmable:
       # user.skip_confirmation!
     end
+  end
+
+  def remove_all_roles(resource)
+    roles.where(resource: resource).find_each do |role|
+      remove_role role.name, resource
+    end
+  end
+
+  def resource_roles(resource)
+    roles.where(resource: resource)
   end
 end

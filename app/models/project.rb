@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   has_many :resources, dependent: :destroy
   has_many :annotations, class_name: 'Annotot::Annotation', dependent: :destroy
   resourcify
+  has_many :users, through: :roles
 
   include FriendlyId
   friendly_id :slug_candidates, use: %i[finders slugged], slug_generator_class: UuidSlugGenerator
