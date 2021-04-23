@@ -10,3 +10,10 @@ action_mailer:
     from: "example-team@example.com"
   default_url_options:
     host: "example.com"
+
+project_roles:
+  - admin
+  - owner
+  - manager
+  - editor
+  - viewer

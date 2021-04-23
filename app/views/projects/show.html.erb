@@ -48,7 +48,7 @@
           <div><%= user.uid %></div>
         <% end %>
       <% end %>
-      <%= react_component("CollaborationModal", { url: project_roles_url(@project), csrfToken: form_authenticity_token }) %>
+      <%= react_component("CollaborationModal", { url: project_roles_url(@project), currentUser: current_user&.id, csrfToken: form_authenticity_token }) %>
       <h2 class="h4 mt-4">Project actions</h2>
       <%= link_to 'New workspace', project_workspaces_path(@project), method: :post, class: 'btn btn-outline-secondary my-2' if @project && can?(:add_to, @project) %>
       <%= link_to 'Delete project', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger my-2' if can? :delete, @project %>

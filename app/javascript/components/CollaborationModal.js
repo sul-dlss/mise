@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 
-function CollaborationModal({ url, csrfToken }) {
+function CollaborationModal({ url, csrfToken, currentUser }) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState();
-  const [projectRoles, setProjectRoles] = useState([]);
+  const [projectRoles, setProjectRoles] = useState({users: [], assignable_roles: []});
 
   const fetchProjectRole = ()=> {
     fetch(url, {
@@ -33,7 +33,7 @@ function CollaborationModal({ url, csrfToken }) {
 
   const handleNewCollaborator = () => {
     fetch(url, {
-      body: JSON.stringify({role: { uid: email, role_name: 'admin' }}),
+      body: JSON.stringify({role: { email, role_name: 'viewer' }}),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -45,10 +45,9 @@ function CollaborationModal({ url, csrfToken }) {
     setEmail('');
   }
 
-  const CollaborationUser = ({uid, role, provider}) => {
+  const CollaborationUser = ({email, role, id, url}) => {
     const handleRemoveCollaborator = () => {
       fetch(url, {
-        body: JSON.stringify({role: { provider: provider, uid: uid }}),
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -58,28 +57,51 @@ function CollaborationModal({ url, csrfToken }) {
       }).then(response => response)
         .then(data => fetchProjectRole());
     }
+
+    const handleChangeRole = (e) => {
+      fetch(url, {
+        body: JSON.stringify({role: {role_name: e.target.value }}),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+        method: 'PATCH',
+      }).then(response => response)
+        .then(data => fetchProjectRole());
+      setEmail('');
+    }
+
+    const roleDropdown = <div className="dropdown">
+      <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+        {role}
+      </button>
+      <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+        {
+          projectRoles.assignableRoles.map((roleName) => (<li>
+            <button className={[
+                'dropdown-item', roleName == role
+                  ? 'active'
+                  : ''
+              ].join(' ')} type="button" aria-current={roleName == role} onClick={handleChangeRole} value={roleName}>
+              {roleName}
+            </button>
+          </li>))
+        }
+        <li>
+          <hr className="dropdown-divider"/>
+        </li>
+        <li>
+          <button onClick={handleRemoveCollaborator} className="dropdown-item" type="button">Remove collaborator</button>
+        </li>
+      </ul>
+    </div>
+
     return <li className="px-0 list-group-item d-flex align-items-center">
-      <div className="col">{uid}</div>
+      <div className="col">{email}</div>
       <div className="col-3">
-        <div className="dropdown">
-          <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            {role}
-          </button>
-          <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
-            <li>
-              <button className="dropdown-item active" aria-current="true" type="button">{role}</button>
-            </li>
-            <li>
-              <button className="dropdown-item" type="button">other role</button>
-            </li>
-            <li>
-              <hr className="dropdown-divider"/>
-            </li>
-            <li>
-              <button onClick={handleRemoveCollaborator} className="dropdown-item" type="button">Remove collaborator</button>
-            </li>
-          </ul>
-        </div></div>
+        {currentUser == id ? <span className="btn btn-outline-secondary disabled">{role}</span> : roleDropdown}
+        </div>
     </li>
   }
 
@@ -101,8 +123,8 @@ function CollaborationModal({ url, csrfToken }) {
             </div>
             <div className="modal-body">
               <ul className="list-group list-group-flush">
-                {projectRoles.map((role) => (
-                  <CollaborationUser uid={role.uid || role.email} key={role.uid} role={role.role} provider={role.provider}
+                {projectRoles.users.map((role) => (
+                  <CollaborationUser email={role.email} key={role.id} role={role.role} id={role.id} url={role.url}
                   />
                 ))}
               </ul>
