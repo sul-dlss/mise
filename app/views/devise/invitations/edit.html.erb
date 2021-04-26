@@ -1,0 +1,26 @@
+<div class="text-center">
+  <h2><%= t "devise.invitations.edit.header" %></h2>
+
+  <%= form_with(model: resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }, class: 'form-signin') do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render 'layouts/omni_auth_logins' %>
+
+    <%= f.hidden_field :invitation_token, readonly: true %>
+
+    <% if f.object.class.require_password_on_accepting %>
+      <div class="form-floating">
+        <%= f.password_field :password, autofocus: true, class: 'form-control' %>
+        <%= f.label :password %>
+      </div>
+
+      <div class="form-floating">
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.label :password_confirmation %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit t("devise.invitations.edit.submit_button"), class: 'btn btn-primary w-100' %>
+    </div>
+  <% end %>
+</div>

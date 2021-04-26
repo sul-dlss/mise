@@ -35,6 +35,10 @@ class User < ApplicationRecord
     end
   end
 
+  def update_from_omniauth(auth)
+    update(provider: auth.provider, uid: auth.uid, email: auth.info.email || email)
+  end
+
   def remove_all_roles(resource)
     roles.where(resource: resource).find_each do |role|
       remove_role role.name, resource
