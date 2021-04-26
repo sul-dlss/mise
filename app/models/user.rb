@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[shibboleth]
+         :omniauthable, omniauth_providers: %i[shibboleth] + [(:developer unless Rails.env.production?)]
 
   has_many :projects, through: :roles, source: :resource, source_type: 'Project'
   has_many :workspaces, through: :projects
@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
+      user.email = auth.info.email || auth.uid
       user.password = Devise.friendly_token[0, 20]
 
       # if/when we add confirmable:
@@ -36,7 +36,7 @@ class User < ApplicationRecord
   end
 
   def update_from_omniauth(auth)
-    update(provider: auth.provider, uid: auth.uid, email: auth.info.email || email)
+    update(provider: auth.provider, uid: auth.uid, email: auth.info.email || auth.uid)
   end
 
   def remove_all_roles(resource)

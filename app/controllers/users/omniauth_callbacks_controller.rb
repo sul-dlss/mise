@@ -3,11 +3,20 @@
 module Users
   # Wiring to integrate Devise + Omniauth
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    skip_before_action :verify_authenticity_token, only: :developer unless Rails.env.production?
+
     def shibboleth
       @user = load_user
 
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: 'Shibboleth') if is_navigational_format?
+    end
+
+    def developer
+      @user = load_user
+
+      sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
+      set_flash_message(:notice, :success, kind: 'Developer') if is_navigational_format?
     end
 
     def load_user

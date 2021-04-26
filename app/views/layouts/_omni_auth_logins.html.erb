@@ -6,7 +6,7 @@
         Stanford users sign in with SUNet ID
       <% end %>
     <% else %>
-      <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider, invitation_token: params[:invitation_token]), method: :post %><br />
+      <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider, invitation_token: params[:invitation_token]), method: :post, class: 'btn btn-outline-secondary my-2 w-100' %>
     <% end %>
   <% end %>
 <% end %>
