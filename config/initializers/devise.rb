@@ -326,6 +326,11 @@ Devise.setup do |config|
     info_fields: { email: 'mail', name: 'cn', last_name: 'sn' }
   }
 
+  config.omniauth :developer, {
+    uid_field: 'uid',
+    info_fields: { email: 'email' }
+  } unless Rails.env.production?
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
