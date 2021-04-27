@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[shibboleth] + [(:developer unless Rails.env.production?)]
+         :omniauthable, omniauth_providers: %i[shibboleth] + [(:developer unless Rails.env.production?)].compact
 
   has_many :projects, through: :roles, source: :resource, source_type: 'Project'
   has_many :workspaces, through: :projects
