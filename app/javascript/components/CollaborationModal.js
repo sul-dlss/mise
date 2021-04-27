@@ -135,7 +135,7 @@ function CollaborationModal({ url, csrfToken, currentUser }) {
               Add new collaborators
               <form className="input-group mb-3" onSubmit={handleNewCollaborator}>
                 <input value={email || ''} onChange={onEmailChange} type="text" className="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                <button className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+                <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
               </form>
             </div>
             <div className="modal-footer justify-content-start">
