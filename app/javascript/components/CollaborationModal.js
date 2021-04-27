@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
+import groupBy from 'lodash/groupBy';
+import capitalize from 'lodash/capitalize';
 
-function CollaborationModal({ url, csrfToken, currentUser }) {
+function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState();
   const [projectRoles, setProjectRoles] = useState({users: [], assignable_roles: []});
@@ -107,8 +109,28 @@ function CollaborationModal({ url, csrfToken, currentUser }) {
     </li>
   }
 
+  const UserList = (users) => {
+    const usersByGroup = groupBy(projectRoles.users, e => e.role);
+
+    return <>
+      {
+        displayRoles.map((roleName) => (
+          usersByGroup[roleName] && (
+            <>
+              <h3 className="h5">{capitalize(roleName)}{usersByGroup[roleName].length > 1 && 's'}</h3>
+              <ul className="list-unstyled">
+                {usersByGroup[roleName].map(({ uid }) => <li key={uid}>{uid}</li>)}
+              </ul>
+            </>
+          )
+        ))
+      }
+    </>
+  };
+
   return (
     <>
+      <UserList users={projectRoles}/>
       <button type="button" className="btn btn-outline-primary my-1" onClick={handleOpen}>Manage collaboration</button>
 
       <Modal
@@ -149,6 +171,7 @@ function CollaborationModal({ url, csrfToken, currentUser }) {
 }
 
 CollaborationModal.propTypes = {
+  displayRoles: PropTypes.arrayOf(PropTypes.string),
   url: PropTypes.string.isRequired,
   csrfToken: PropTypes.string.isRequired,
 };
