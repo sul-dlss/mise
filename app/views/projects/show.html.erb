@@ -46,12 +46,14 @@
 
       <% Settings.project_roles.excluding('viewer').each do |role| %>
         <% users = User.with_role(role.to_sym, @project) %>
-        <h3 class="h5"><%= role.capitalize.pluralize(users.count) %></h3>
-        <ul class="list-unstyled">
-          <% users.each do |user| %>
-            <li><%= user.uid %></li>
-          <% end %>
-        </ul>
+        <% if users.any? %>
+          <h3 class="h5"><%= role.capitalize.pluralize(users.count) %></h3>
+          <ul class="list-unstyled">
+            <% users.each do |user| %>
+              <li><%= user.uid %></li>
+            <% end %>
+          </ul>
+        <% end %>
       <% end %>
 
 
