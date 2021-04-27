@@ -7,6 +7,7 @@ import miradorAnnotationsPlugins from 'mirador-annotations/es';
 import { addResource, importMiradorState } from 'mirador/dist/es/src/state/actions';
 import { getExportableState } from 'mirador/dist/es/src/state/selectors';
 import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
+import WorkspacePluginsMenu from './WorkspacePluginsMenu';
 
 /** */
 class Viewer extends React.Component {
@@ -33,6 +34,12 @@ class Viewer extends React.Component {
       [
         ...((enabledPlugins.includes('imageTools') && miradorImageToolsPlugin) || []),
         ...((enabledPlugins.includes('annotations') && miradorAnnotationsPlugins) || []),
+        {
+          target: 'BackgroundPluginArea',
+          mode: 'add',
+          name: 'MiradorWorkspacePluginMenu',
+          component: WorkspacePluginsMenu,
+        }
       ],
     );
     if (state) instance.store.dispatch(importMiradorState({ ...state, config: instance.store.getState().config }));
