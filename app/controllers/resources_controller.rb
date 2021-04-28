@@ -8,7 +8,9 @@ class ResourcesController < ApplicationController
   load_and_authorize_resource through: :project, shallow: true
 
   # GET /resources or /resources.json
-  def index; end
+  def index
+    @catalog_resources = @project.workspaces.flat_map(&:catalog_resources).uniq { |resource| resource['@id'] }
+  end
 
   # GET /resources/1 or /resources/1.json
   def show; end
