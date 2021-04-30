@@ -117,8 +117,8 @@ function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) 
         displayRoles.map((roleName) => (
           usersByGroup[roleName] && (
             <>
-              <h3 className="h5">{capitalize(roleName)}{usersByGroup[roleName].length > 1 && 's'}</h3>
-              <ul className="list-unstyled">
+              <h3 className="h6 mb-0">{capitalize(roleName)}{usersByGroup[roleName].length > 1 && 's'}</h3>
+              <ul className="list-unstyled small-font-size">
                 {usersByGroup[roleName].map(({ uid }) => <li key={uid}>{uid}</li>)}
               </ul>
             </>
@@ -154,7 +154,7 @@ function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) 
               </ul>
             </div>
             <div className="modal-body border-top mb-1">
-              <div class="fw-bold">Add new collaborators</div>
+              <div className="fw-bold">Add new collaborators</div>
               <form className="input-group mt-2 mb-3" onSubmit={handleNewCollaborator}>
                 <input value={email || ''} onChange={onEmailChange} type="text" className="form-control" placeholder="Enter collaborator email address" aria-label="Recipient's username" aria-describedby="button-addon2" />
                 <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
