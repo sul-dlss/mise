@@ -17,6 +17,10 @@
 $body-bg: #f3f3f3;
 @import 'bootstrap/scss/bootstrap';
 
+.small-font-size {
+  font-size: .925rem;
+}
+
 .mirador-container {
   @extend .border;
   height: 80vh;

@@ -76,7 +76,7 @@ function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) 
       setEmail('');
     }
 
-    const roleDropdown = <div className="dropdown">
+    const roleDropdown = <div className="dropdown float-end">
       <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
         {role}
       </button>
@@ -104,7 +104,7 @@ function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) 
     return <li className="px-0 list-group-item d-flex align-items-center">
       <div className="col">{email}</div>
       <div className="col-3">
-        {currentUser == id || !projectRoles.assignableRoles.includes(role) ? <span className="btn btn-outline-secondary disabled">{role}</span> : roleDropdown}
+        {currentUser == id || !projectRoles.assignableRoles.includes(role) ? <span className="btn btn-outline-secondary disabled float-end">{role}</span> : roleDropdown}
         </div>
     </li>
   }
@@ -117,8 +117,8 @@ function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) 
         displayRoles.map((roleName) => (
           usersByGroup[roleName] && (
             <>
-              <h3 className="h5">{capitalize(roleName)}{usersByGroup[roleName].length > 1 && 's'}</h3>
-              <ul className="list-unstyled">
+              <h3 className="h6 mb-0">{capitalize(roleName)}{usersByGroup[roleName].length > 1 && 's'}</h3>
+              <ul className="list-unstyled small-font-size">
                 {usersByGroup[roleName].map(({ uid }) => <li key={uid}>{uid}</li>)}
               </ul>
             </>
@@ -141,8 +141,8 @@ function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) 
       >
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Project collaboration</h5>
+            <div className="modal-header text-body bg-light">
+              <h5 className="modal-title h4">Project collaboration</h5>
               <button type="button" className="btn-close" onClick={handleClose} data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
@@ -153,15 +153,15 @@ function CollaborationModal({ displayRoles = [], url, csrfToken, currentUser }) 
                 ))}
               </ul>
             </div>
-            <div className="modal-body border-top">
-              Add new collaborators
-              <form className="input-group mb-3" onSubmit={handleNewCollaborator}>
-                <input value={email || ''} onChange={onEmailChange} type="text" className="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2" />
+            <div className="modal-body border-top mb-1">
+              <div className="fw-bold">Add new collaborators</div>
+              <form className="input-group mt-2 mb-3" onSubmit={handleNewCollaborator}>
+                <input value={email || ''} onChange={onEmailChange} type="text" className="form-control" placeholder="Enter collaborator email address" aria-label="Recipient's username" aria-describedby="button-addon2" />
                 <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
               </form>
             </div>
-            <div className="modal-footer justify-content-start">
-              <button type="button" className="btn btn-link" onClick={handleClose}>Done</button>
+            <div className="modal-footer justify-content-end">
+              <button type="button" className="btn btn-primary" onClick={handleClose}>Done</button>
             </div>
           </div>
         </div>
