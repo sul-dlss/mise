@@ -39,3 +39,7 @@ $body-bg: #f3f3f3;
   margin-right: calc(var(--bs-gutter-x) / 2);
   max-width: 18rem;
 }
+
+.project-description {
+  max-width: 65ch;
+}

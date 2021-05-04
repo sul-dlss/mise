@@ -1,4 +1,4 @@
-<div class="card workspace-card mb-3">
+<div class="card workspace-card mb-3 mx-2 border-2">
   <%= link_to workspace do %>
     <%= image_tag workspace.thumbnail.presence&.variant(resize_to_limit: [400, 400]) || 'placeholder.png', class: 'card-img-top', alt: ' ', aria: { hidden: true }, style: 'max-height: 200px' %>
   <% end %>
@@ -8,7 +8,7 @@
     <%= react_component 'Favorite', favorite: workspace.favorite, csrfToken: form_authenticity_token, updateUrl: workspace_path(workspace) %>
 
     <div class="d-flex flex-grow-1 justify-content-between">
-      <p>Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
+      <p class="small-font-size">Last edited <%= time_ago_in_words(workspace.updated_at) %> ago</p>
       <% options = capture do %>
         <% if can? :read, workspace %>
           <li><%= link_to 'Open workspace', viewer_workspace_path(workspace), class: 'dropdown-item', data: { turbolinks: false } %></li>
