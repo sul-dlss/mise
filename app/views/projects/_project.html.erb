@@ -1,19 +1,20 @@
 <div class="card p-3 my-4">
   <div class="row g-0">
-    <div class="col-4">
-      <h2 class="h3 mb-3"><%= link_to project.title, project %></h2>
-      <div><%= link_to pluralize(project.workspaces_count, 'workspace'), project_workspaces_path(project) %></div>
-      <p class="my-3 me-4"><%= project.description %></p>
-    </div>
-
     <div class="col">
-      <div class="row workspace-cards">
-        <%= render partial: 'workspaces/card', collection: project.workspaces.first(2), as: :workspace %>
-      </div>
+      <h2 class="h3 mb-3 d-flex justify-content-between"><%= link_to project.title, project %>
+        <span class="fs-6 badge bg-light border">
+          <%= link_to pluralize(project.workspaces_count, 'workspace'), project_workspaces_path(project) %>
+        </span>
+      </h2>
+      <p class="my-3 me-4 project-description"><%= project.description %></p>
     </div>
+  </div>
 
-    <div class="col-1 ps-2 align-self-center">
-      <%= link_to 'View all', project_workspaces_path(project), class: 'btn btn-outline-secondary' %>
+  <div class="row g-0">
+    <div class="col">
+      <div class="workspace-cards d-lg-flex justify-content-lg-evenly">
+        <%= render partial: 'workspaces/card', collection: project.workspaces.first(3), as: :workspace %>
+      </div>
     </div>
   </div>
 </div>
