@@ -11,7 +11,11 @@
   </div>
 <% end %>
 
-<h2 class="h3 mt-5 py-2 border-top">Recent workspace activity</h2>
-<div class="row workspace-cards g-4">
-  <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
-</div>
+  <h2 class="h3 mt-5 py-2 border-top">Recent workspace activity</h2>
+  <% if @workspaces.any? %>
+    <div class="row workspace-cards g-4">
+      <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
+    </div>
+  <% else %>
+    <p class="fst-italic">There hasn't been any recent activity on your workspaces.</p>
+  <% end %>

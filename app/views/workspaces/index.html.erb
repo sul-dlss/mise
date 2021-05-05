@@ -9,8 +9,16 @@
   <%= render(partial: 'layouts/sidebar') %>
 <% end unless @project %>
 
-<div class="row workspace-cards g-4 flex-wrap align-self-stretch">
-  <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
-</div>
+<% if @workspaces.any? %>
+  <div class="row workspace-cards g-4 flex-wrap align-self-stretch">
+    <%= render partial: 'workspaces/card', collection: @workspaces, as: :workspace %>
+  </div>
+<% else %>
+  <% if @project %>
+    <p class="fst-italic">There are no workspaces in this project.</p>
+  <% else %>
+    <p class="fst-italic">You don't have any workspaces. To create a workspace, first select a project.</p>
+  <% end %>
+<% end %>
 
 <%= link_to 'New workspace', project_workspaces_path(@project), method: :post, class: 'btn btn-outline-secondary mt-4' if @project && can?(:add_to, @project) %>
