@@ -1086,10 +1086,10 @@
   resolved "https://registry.yarnpkg.com/@psychobolt/react-paperjs-editor/-/react-paperjs-editor-0.0.14.tgz#9d159407be0332b7aeb1e20847875ff6150fc6ac"
   integrity sha512-8sqgK+CBv2lD5hS0loX87Yy9CCUhzefkBfh2kMwfMnMd/A7mkJBDUK7UQ1vmAX4D3myoovr3WE3YdJIjD+xm7A==
 
-"@psychobolt/react-paperjs@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@psychobolt/react-paperjs/-/react-paperjs-1.0.1.tgz#1ef7643ba8b606524b50e27d7b2b58f065a08a73"
-  integrity sha512-zTKBUBMIepd0Drgv7/+t4GYhZrDsiyuTnrKFXwTgNgyCWony65CLJYUoPuzWN5zEm3KrUHGzEq6st6S/lgabYA==
+"@psychobolt/react-paperjs@1.0.0", "@psychobolt/react-paperjs@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@psychobolt/react-paperjs/-/react-paperjs-1.0.0.tgz#fe45f98c7dec9c31d2eda99c0dc6496776cf7293"
+  integrity sha512-V1kyGv+9JLPGFtYJWnWQwbZLGRa+4wKM6FIITbZYePot23LYt8mpy6ztv/qmq+xZUKhOAacWImjXqtCFiNmy2w==
   dependencies:
     react-is "^16.13.1"
 
