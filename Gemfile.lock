@@ -1,15 +1,4 @@
 GIT
-  remote: https://github.com/heartcombo/devise.git
-  revision: c82e4cf47b02002b2fd7ca31d441cf1043fc634c
-  specs:
-    devise (4.8.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-
-GIT
   remote: https://github.com/mejackreed/annotot.git
   revision: a6229b218a9271218708bdbbe005b361873e3e9b
   specs:
@@ -144,6 +133,12 @@ GEM
     connection_pool (2.2.5)
     crass (1.0.6)
     deep_merge (1.2.1)
+    devise (4.8.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     devise_invitable (2.0.5)
       actionmailer (>= 5.0)
       devise (>= 4.6)
@@ -446,7 +441,7 @@ DEPENDENCIES
   capistrano-shared_configs
   capybara (>= 3.26)
   config
-  devise!
+  devise (~> 4.8)
   devise_invitable
   dlss-capistrano
   factory_bot_rails

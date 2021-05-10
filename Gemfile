@@ -83,7 +83,7 @@ gem 'okcomputer'
 gem 'ancestry'
 gem 'cancancan'
 gem 'config'
-gem 'devise', github: 'heartcombo/devise' # pending https://github.com/heartcombo/devise/pull/5327
+gem 'devise', '~> 4.8'
 gem 'devise_invitable'
 
 gem 'friendly_id'
