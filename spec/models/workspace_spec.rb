@@ -7,7 +7,7 @@ RSpec.describe Workspace do
   describe 'scopes' do
     let!(:favorite_workspace) { create(:workspace, :favorite) }
     let!(:featured_workspace) { create(:workspace, :featured) }
-    let!(:published_workspace) { create(:workspace, :published, project: create(:project, published: true)) }
+    let!(:published_workspace) { create(:workspace, :published, project: create(:project, :published)) }
 
     describe '.favorites' do
       subject(:favorites) { described_class.favorites }
