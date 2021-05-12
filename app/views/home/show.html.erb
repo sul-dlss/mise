@@ -1,3 +1,7 @@
+<% content_for(:sidebar) do %>
+  <%= render(partial: 'layouts/sidebar') if current_user %>
+<% end %>
+
 <div class="container">
   <h2>Recently updated workspaces</h2>
   <div class="row workspace-cards g-4 flex-wrap align-self-stretch">
