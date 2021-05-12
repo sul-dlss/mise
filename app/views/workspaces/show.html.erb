@@ -19,6 +19,14 @@
             Visible to public
           </label>
         </div>
+        <% if can?(:feature, @workspace) && Ability.new(nil).can?(:read, @workspace) %>
+          <div class="form-check mt-3">
+            <label class="form-check-label">
+              <%= form.check_box :featured, class: 'form-check-input', onChange: 'this.form.submit()' %>
+              Feature workspace
+            </label>
+          </div>
+        <% end %>
       <% end %>
     <% else %>
       <h1 class="h4 mt-4"><%= @workspace.title %></h1>
