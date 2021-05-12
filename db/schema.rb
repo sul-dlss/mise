@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_212009) do
     t.text "description"
     t.boolean "published"
     t.boolean "favorite", default: false
-    t.boolean "featured"
+    t.boolean "featured", default: false
     t.index ["featured"], name: "index_workspaces_on_featured"
     t.index ["project_id"], name: "index_workspaces_on_project_id"
     t.index ["slug"], name: "index_workspaces_on_slug", unique: true
