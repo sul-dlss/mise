@@ -5,7 +5,8 @@ class HomeController < ApplicationController
   skip_authorization_check
 
   def explore
-    @workspaces = Workspace.accessible_by(Ability.new(nil)).order(updated_at: :desc).limit(5)
+    @updated_workspaces = Workspace.publicly_accessible.order(updated_at: :desc).limit(5)
+    @featured_workspaces = Workspace.publicly_accessible.featured.order(updated_at: :desc).limit(5)
   end
 
   def dashboard
