@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   authenticated do
     root to: 'home#dashboard'
-    get 'explore', to: 'home#show', as: :explore
+    get 'explore', to: 'home#explore'
   end
 
   authenticate :user, lambda { |u| u.has_role? :superadmin } do
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  root to: 'home#show', as: :landing_page
+  root to: 'home#explore', as: :landing_page
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
