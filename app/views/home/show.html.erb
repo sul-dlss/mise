@@ -3,7 +3,12 @@
 <% end %>
 
 <div class="container">
-  <h2>Recently updated workspaces</h2>
+  <h1>Explore</h1>
+  <div class="h3 text-muted">
+    Public workspaces from the Mise community
+  </div>
+
+  <h2 class="mt-4 py-2 border-top h3">Recently updated</h2>
   <div class="row workspace-cards g-4 flex-wrap align-self-stretch">
     <%= render collection: @workspaces, partial: 'workspaces/card', as: :workspace %>
   </div>
