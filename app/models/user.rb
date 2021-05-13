@@ -48,4 +48,10 @@ class User < ApplicationRecord
   def resource_roles(resource)
     roles.where(resource: resource)
   end
+
+  protected
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end
