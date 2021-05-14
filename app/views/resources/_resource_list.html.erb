@@ -1,3 +1,11 @@
-<ul class="list-unstyled">
-  <%= render resources %>
-</ul>
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Items</th>
+      <th scope="col">Provider</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <%= render partial: 'resource', collection: resources %>
+</table>

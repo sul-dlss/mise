@@ -43,3 +43,8 @@ $body-bg: #f3f3f3;
 .project-description {
   max-width: 65ch;
 }
+
+.iiif-dnd {
+  position: relative;
+  z-index: 1;
+}

@@ -5,13 +5,25 @@ class ResourcesController < ApplicationController
   layout 'project'
 
   load_and_authorize_resource :project
-  load_and_authorize_resource through: :project, shallow: true
+  load_and_authorize_resource through: :project, shallow: true, except: [:show]
 
   # GET /resources or /resources.json
-  def index; end
+  def index
+    @catalog_resources = @project.workspaces.flat_map(&:catalog_resources).uniq { |resource| resource[:@id] }
+  end
 
   # GET /resources/1 or /resources/1.json
-  def show; end
+  def show
+    # NOTE: We *could* hang resources off of workspaces instead of projects, and
+    #       that'd get us out of the looping, but /shrug
+    @project.workspaces.each do |workspace|
+      next unless workspace.state['manifests'].key?(params[:id])
+
+      return render json: workspace.state['manifests'][params[:id]]['json']
+    end
+
+    render json: {}, status: :not_found
+  end
 
   # GET /resources/new
   def new; end
