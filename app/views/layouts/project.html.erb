@@ -12,6 +12,9 @@
     <li class="nav-item">
       <%= link_to 'Workspaces', project_workspaces_path(@project), class: "nav-link  #{'active' if current_page? project_workspaces_path(@project) }", aria: { current: ('page' if current_page? project_workspaces_path(@project)) } %>
     </li>
+    <li class="nav-item">
+      <%= link_to 'Resources', project_resources_path(@project), class: "nav-link  #{'active' if current_page? project_resources_path(@project) }", aria: { current: ('page' if current_page? project_resources_path(@project)) } %>
+    </li>
   </ul>
 <% end %>
 
