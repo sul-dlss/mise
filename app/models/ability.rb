@@ -17,7 +17,12 @@ class Ability
 
     return unless user
 
-    can :manage, :all if user.has_role? :site_admin
+    # Short-circuit if user is a site admin, else restrictions below will remove
+    # abilities from the admin user
+    if user.has_role? :site_admin
+      can :manage, :all
+      return
+    end
 
     can :create, Project
 
@@ -31,6 +36,7 @@ class Ability
     project_ids = projects.pluck(:id)
     can %i[read add_to], Project, id: project_ids
     can :manage, Workspace, project: { id: project_ids }
+    cannot :feature, Workspace # only site admins can feature workspaces
     can :manage, Resource, project: { id: project_ids }
     can :manage, Annotot::Annotation, project: { id: project_ids }
     can :manage, Role, resource: projects, name: 'viewer'

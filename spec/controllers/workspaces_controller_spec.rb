@@ -29,5 +29,23 @@ RSpec.describe WorkspacesController, type: :controller do
         patch :update, params: { id: workspace.id, workspace: { title: 'xyz' } }
       end.not_to(change { workspace.reload.state })
     end
+
+    context 'when featured param is present and user is mere mortal' do
+      it 'raises an access denied exception' do
+        expect do
+          patch :update, params: { id: workspace.id, workspace: { featured: '1' } }
+        end.to raise_error(CanCan::AccessDenied, /You are not authorized to access this page/)
+      end
+    end
+
+    context 'when featured param is present and user is site admin' do
+      let(:user) { create(:user, :site_admin) }
+
+      it 'updates the featured status' do
+        expect do
+          patch :update, params: { id: workspace.id, workspace: { featured: '1' } }
+        end.to change { workspace.reload.featured }.from(false).to(true)
+      end
+    end
   end
 end

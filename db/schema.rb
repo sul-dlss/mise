@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_205257) do
+ActiveRecord::Schema.define(version: 2021_05_12_212009) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -141,8 +141,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_205257) do
   end
 
   create_table "versions", force: :cascade do |t|
-    t.string "item_type"
-    t.string "{:null=>false}"
+    t.string "item_type", null: false
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
@@ -162,6 +161,8 @@ ActiveRecord::Schema.define(version: 2021_04_22_205257) do
     t.text "description"
     t.boolean "published"
     t.boolean "favorite", default: false
+    t.boolean "featured", default: false
+    t.index ["featured"], name: "index_workspaces_on_featured"
     t.index ["project_id"], name: "index_workspaces_on_project_id"
     t.index ["slug"], name: "index_workspaces_on_slug", unique: true
   end

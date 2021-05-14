@@ -7,5 +7,13 @@ FactoryBot.define do
     trait :published do
       published { true }
     end
+
+    trait :featured do
+      featured { true }
+    end
+
+    trait :favorite do
+      favorite { true }
+    end
   end
 end

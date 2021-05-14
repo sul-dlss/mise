@@ -21,5 +21,9 @@ FactoryBot.define do
         evaluator&.user&.add_role :editor, resource
       end
     end
+
+    trait :published do
+      published { true }
+    end
   end
 end

@@ -1,0 +1,22 @@
+<% content_for(:sidebar) do %>
+  <%= render(partial: 'layouts/sidebar') if current_user %>
+<% end %>
+
+<div class="container">
+  <h1>Explore</h1>
+  <div class="h3 text-muted">
+    Public workspaces from the Mise community
+  </div>
+
+  <% if @featured_workspaces.any? %>
+    <h2 class="mt-4 py-2 border-top h3">Featured</h2>
+    <div class="row workspace-cards g-4 flex-wrap align-self-stretch">
+      <%= render collection: @featured_workspaces, partial: 'workspaces/card', as: :workspace %>
+    </div>
+  <% end %>
+
+  <h2 class="mt-4 py-2 border-top h3">Recently updated</h2>
+  <div class="row workspace-cards g-4 flex-wrap align-self-stretch">
+    <%= render collection: @updated_workspaces, partial: 'workspaces/card', as: :workspace %>
+  </div>
+</div>

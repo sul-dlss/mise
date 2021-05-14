@@ -4,7 +4,10 @@
 # Workspace class
 class Workspace < ApplicationRecord
   has_one_attached :thumbnail
+
   scope :favorites, -> { where(favorite: true) }
+  scope :featured, -> { where(featured: true) }
+  scope :publicly_accessible, -> { accessible_by(Ability.new(nil)) }
 
   has_paper_trail
 
