@@ -31,4 +31,8 @@ class Workspace < ApplicationRecord
 
     ScreenshotWorkspaceJob.perform_later(self, (updated_at + 1.second).iso8601) if Settings.screenshot
   end
+
+  def attributes_for_template
+    attributes.slice('state', 'state_type', 'description', 'published').merge('title' => "Duplicate of #{title}")
+  end
 end
