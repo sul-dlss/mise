@@ -1,4 +1,6 @@
-<li>
-  <%= link_to resource[:label], resource[:@id] %>
-  
-</li>
+<tr>
+  <td><%= link_to resource[:label], url_for_project_resource(@project, resource) %></td>
+  <td>...</td>
+  <td>...</td>
+  <td><%= iiif_drag_n_drop(url_for_project_resource(@project, resource)) %></td>
+</tr>

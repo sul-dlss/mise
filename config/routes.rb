@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :resources, except: %i[show destroy edit] do
+    resources :resources, except: %i[destroy edit] do
       collection do
         get 'iiif', defaults: { format: :json }
       end
