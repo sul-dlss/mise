@@ -107,9 +107,7 @@ class WorkspacesController < ApplicationController
 
     authorize! :read, template
 
-    workspace_params.reverse_merge(
-      template.attributes.slice('title', 'state', 'state_type', 'description', 'published')
-    )
+    workspace_params.reverse_merge(template.attributes_for_template)
   end
 
   def deserialized_state
