@@ -1,2 +1,11 @@
 <h2 class="h3 mt-4 mb-3">Resources</h2>
-<%= render 'resource_list', resources: @catalog_resources %>
+
+<% if @catalog_resources.empty? %>
+  <% if @project %>
+    <p class="fst-italic">There are no resources in this project.</p>
+  <% else %>
+    <p class="fst-italic">You don't have any resources.</p>
+  <% end %>
+<% else %>
+  <%= render 'resource_list', resources: @catalog_resources %>
+<% end %>
