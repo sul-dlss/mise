@@ -6,8 +6,7 @@ import miradorImageToolsPlugin from 'mirador-image-tools/es/plugins/miradorImage
 import miradorAnnotationsPlugins from 'mirador-annotations/es';
 import { addResource, importMiradorState } from 'mirador/dist/es/src/state/actions';
 import {
-  getExportableState, getManifestTitle, getManifestProvider,
-  getManifestoInstance, getCanvases
+  getExportableState, getManifestTitle, getManifestProvider, getManifestThumbnail, getManifestoInstance, getCanvases
 } from 'mirador/dist/es/src/state/selectors';
 import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
 
@@ -72,6 +71,7 @@ class Viewer extends React.Component {
     return {
       label: getManifestTitle(state, { manifestId }),
       '@type': manifest.json.['@type'],
+      thumbnail: getManifestThumbnail(state, { manifestId }),
       itemcount: size,
       provider: getManifestProvider(state, { manifestId }),
     }

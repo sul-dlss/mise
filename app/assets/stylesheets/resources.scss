@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.resources-list {
+  th:first-child, td:first-child {
+    width: 150px;
+    text-align: right;
+  }
+
+  .resource-thumbnail {
+    max-height: 120px;
+  }
+
+  .resource-thumbnail-placeholder {
+    background-color: darkgray;
+    display: inline-block;
+    height: 120px;
+    width: 120px;
+  }
+}
+
 .favorite-action {
   position: absolute;
   top: 0;

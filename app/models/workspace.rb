@@ -29,6 +29,7 @@ class Workspace < ApplicationRecord
         '@type': state&.dig('__mise_cache__', 'manifests', manifest_id, '@type'),
         itemcount: state&.dig('__mise_cache__', 'manifests', manifest_id, 'itemcount'),
         provider: state&.dig('__mise_cache__', 'manifests', manifest_id, 'provider'), # IIIF v3 only
+        thumbnail: state&.dig('__mise_cache__', 'manifests', manifest_id, 'thumbnail'),
         '@id': manifest_id
       }
     end
