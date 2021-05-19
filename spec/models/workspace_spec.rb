@@ -54,4 +54,10 @@ RSpec.describe Workspace do
       expect(workspace.attributes_for_template).to include 'title' => 'Duplicate of project 1'
     end
   end
+
+  describe '#manifest_ids' do
+    it 'defaults to an empty array' do
+      expect(workspace.manifest_ids).to eq []
+    end
+  end
 end

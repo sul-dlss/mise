@@ -23,13 +23,17 @@ class Workspace < ApplicationRecord
   end
 
   def catalog_resources
-    state&.dig('catalog')&.pluck('manifestId')&.map do |manifest_id|
+    manifest_ids.map do |manifest_id|
       {
         label: state&.dig('__mise_cache__', 'manifests', manifest_id, 'label'),
         '@type': state&.dig('__mise_cache__', 'manifests', manifest_id, '@type'),
         '@id': manifest_id
       }
     end
+  end
+
+  def manifest_ids
+    state&.dig('catalog')&.pluck('manifestId') || []
   end
 
   before_validation do
