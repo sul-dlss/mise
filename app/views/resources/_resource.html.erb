@@ -1,6 +1,6 @@
 <tr>
   <td><%= link_to resource[:label], url_for_project_resource(@project, resource) %></td>
-  <td>...</td>
-  <td>...</td>
+  <td><%= number_with_delimiter resource[:itemcount].to_i %></td>
+  <td><%= resource[:provider] %></td>
   <td><%= iiif_drag_n_drop(url_for_project_resource(@project, resource)) %></td>
 </tr>
