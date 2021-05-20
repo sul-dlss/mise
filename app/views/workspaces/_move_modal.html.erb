@@ -5,7 +5,7 @@
             <div class="modal-body">
               <p>Where do you want the workspace to be moved?</p>
 
-              <%= form.label :project_id, 'Select a project', class: 'mb-2' %>
+              <%= form.label :project_id, 'Select a project', class: 'mb-2 fw-bold' %>
               <%= form.collection_select :project_id, Project.accessible_by(current_ability, :update), :id, :title, {}, class: 'form-select' %>
             </div>
             <div class="modal-footer justify-content-end">
