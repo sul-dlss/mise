@@ -54,32 +54,8 @@
 
       <h2 class="h4 mt-4">Workspace actions</h2>
       <%= link_to 'Open workspace', viewer_workspace_path(@workspace), class: 'btn btn-outline-primary my-2', data: { turbolinks: false } %>
-      <% if can? :update, @workspace %>
-        <%= button_tag 'Move workspace', class: 'btn btn-outline-primary my-2', data: { 'bs-toggle': 'modal', 'bs-target': '#moveWorkspaceModal' } %>
-        <div class="modal fade" id="moveWorkspaceModal" tabindex="-1" aria-labelledby="moveWorkspaceModalLabel" aria-hidden="true">
-          <%= form_with(model: @workspace, class: 'me-2 modal-dialog move-workspace') do |form| %>
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="moveWorkspaceModalLabel">Move workspace</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <%= form.collection_radio_buttons :project_id, Project.accessible_by(current_ability, :update), :id, :title do |b| %>
-                  <div>
-                    <%= b.radio_button class: 'btn-check' %>
-                    <%= b.label class: 'btn btn-outline-primary border-0' %>
-                  </div>
-                <% end %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
-                <%= form.submit 'Move', class: 'btn btn-primary'%>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-      <%= link_to 'Duplicate workspace', project_workspaces_path(@workspace.project, template: @workspace), class: 'btn btn-outline-secondary my-2', method: :post if can? :duplicate, @workspace %>
+      <%= render partial: 'workspaces/move_modal', locals: { button_classes: 'btn btn-outline-primary my-2', workspace: @workspace } %>
+      <%= render partial: 'workspaces/duplicate_modal', locals: { button_classes: 'btn btn-outline-secondary my-2', workspace: @workspace } %>
       <%= link_to 'Delete workspace', workspace_path(@workspace), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger my-2' if can? :delete, @workspace %>
     </nav>
   </div>

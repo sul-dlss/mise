@@ -13,9 +13,8 @@
         <% if can? :read, workspace %>
           <li><%= link_to 'Open workspace', viewer_workspace_path(workspace), class: 'dropdown-item', data: { turbolinks: false } %></li>
         <% end %>
-        <% if can? :duplicate, workspace %>
-          <li><%= link_to 'Duplicate workspace', project_workspaces_path(workspace.project, template: workspace), class: 'dropdown-item', method: :post %></li>
-        <% end %>
+        <%= render partial: 'workspaces/move_modal', locals: { button_classes: 'dropdown-item', workspace: workspace } %>
+        <%= render partial: 'workspaces/duplicate_modal', locals: { button_classes: 'dropdown-item', workspace: workspace } %>
         <% if can? :delete, workspace %>
           <li><%= link_to 'Delete workspace', workspace, class: 'dropdown-item', method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>

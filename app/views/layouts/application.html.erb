@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-controller='show-modal'>
     <%= render 'layouts/navbar' %>
     <div class="main-content <%= 'with-sidebar' if content_for?(:sidebar) %>">
       <% if content_for?(:sidebar) %>
@@ -26,6 +26,18 @@
 
         <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
+
+      <div class="modal fade" id="workspaceModal" tabindex="-1" aria-labelledby="workspaceModalLabel" aria-hidden="true">
+        <div class="modal-dialog" tabindex="-1">
+          <div class="modal-content">
+            <div class="modal-header text-body bg-light">
+              <h5 class="modal-title h4" id="workspaceModalLabel" data-show-modal-target="title"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div data-show-modal-target="container"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
