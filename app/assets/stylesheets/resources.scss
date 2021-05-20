@@ -4,19 +4,18 @@
 
 .resources-list {
   th:first-child, td:first-child {
-    width: 150px;
-    text-align: right;
+    width: 80px;
   }
 
   .resource-thumbnail {
-    max-height: 120px;
+    max-height: 50px;
   }
 
   .resource-thumbnail-placeholder {
     background-color: darkgray;
     display: inline-block;
-    height: 120px;
-    width: 120px;
+    height: 50px;
+    width: 50px;
   }
 }
 

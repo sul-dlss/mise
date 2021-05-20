@@ -1,5 +1,5 @@
 <tr>
-  <td>
+  <td class="text-end">
     <% if resource[:thumbnail].present? %>
       <%= image_tag resource[:thumbnail], alt:'', class: 'resource-thumbnail', skip_pipeline: true %>
     <% else %>
@@ -7,7 +7,7 @@
     <% end %>
   </td>
   <td><%= link_to resource[:label], url_for_project_resource(@project, resource) %></td>
-  <td><%= number_with_delimiter resource[:itemcount].to_i %></td>
-  <td><%= resource[:provider] %></td>
-  <td><%= iiif_drag_n_drop(url_for_project_resource(@project, resource)) %></td>
+  <td class="text-end"><%= number_with_delimiter resource[:itemcount].to_i %></td>
+  <!-- <td><%= resource[:provider] %></td> -->
+  <td class="text-end"><%= iiif_drag_n_drop(url_for_project_resource(@project, resource)) %></td>
 </tr>
