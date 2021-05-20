@@ -51,7 +51,7 @@ class WorkspacesController < ApplicationController
   def create
     respond_to do |format|
       if @workspace.save
-        format.html { redirect_to @workspace, notice: 'Workspace was successfully created.' }
+        format.html { redirect_to @workspace, notice: create_notice }
         format.json { render :show, status: :created, location: @workspace }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,7 +64,7 @@ class WorkspacesController < ApplicationController
   def update
     respond_to do |format|
       if @workspace.update(workspace_params)
-        format.html { redirect_to @workspace, notice: 'Workspace was successfully updated.' }
+        format.html { redirect_to @workspace, notice: update_notice }
         format.json { render :show, status: :ok, location: @workspace }
         format.js { render json: {}, status: :ok }
       else
@@ -88,12 +88,28 @@ class WorkspacesController < ApplicationController
 
   private
 
+  def create_notice
+    return 'Workspace was successfully created.' unless params[:template] && workspace_project_id.present?
+
+    "The '#{@workspace.title}' workspace was duplicated in '#{Project.find(workspace_project_id).title}.'"
+  end
+
+  def update_notice
+    return 'Workspace was successfully updated.' if workspace_project_id.blank?
+
+    "The '#{@workspace.title}' workspace was moved to '#{Project.find(workspace_project_id).title}.'"
+  end
+
+  def workspace_project_id
+    params.dig(:workspace, :project_id)
+  end
+
   # Only allow a list of trusted parameters through.
   def workspace_params
     return {} unless params[:workspace]
 
-    authorize! :update, Project.find(params.dig('workspace', 'project_id')) if params.dig('workspace', 'project_id')
-    authorize! :feature, @workspace if params.dig('workspace', 'featured')
+    authorize! :update, Project.find(workspace_project_id) if workspace_project_id
+    authorize! :feature, @workspace if params.dig(:workspace, :featured)
 
     params.require(:workspace)
           .permit(:title, :state, :state_type, :project_id, :description, :published, :favorite, :thumbnail, :featured)
