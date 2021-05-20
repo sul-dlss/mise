@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :roles, only: %i[index create update destroy]
   end
 
-  resources :workspaces, only: %i[index show destroy edit update] do
+  resources :workspaces, except: :new do
     member do
       post 'duplicate'
       get 'embed'

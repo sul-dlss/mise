@@ -1,0 +1,19 @@
+      <% if can? :update, workspace %>
+        <%= button_tag 'Move workspace', class: button_classes, data: { 'bs-toggle': 'modal', 'bs-target': '#moveWorkspaceModal', action: 'show-modal#copyFormTemplate' } %>
+        <template data-container="moveWorkspaceModalBodyAndFooter">
+          <%= form_with(model: workspace, namespace: 'move', class: 'me-2 move-workspace') do |form| %>
+            <div class="modal-body">
+              <%= form.collection_radio_buttons :project_id, Project.accessible_by(current_ability, :update), :id, :title do |b| %>
+                <div>
+                  <%= b.radio_button class: 'btn-check' %>
+                  <%= b.label class: 'btn btn-outline-primary border-0' %>
+                </div>
+              <% end %>
+            </div>
+            <div class="modal-footer justify-content-end">
+              <button type="button" class="btn btn-link" data-bs-dismiss="modal">Cancel</button>
+              <%= form.submit 'Move', class: 'btn btn-primary'%>
+            </div>
+          <% end %>
+        </template>
+      <% end %>

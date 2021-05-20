@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-controller='show-modal'>
     <%= render 'layouts/navbar' %>
     <div class="main-content <%= 'with-sidebar' if content_for?(:sidebar) %>">
       <% if content_for?(:sidebar) %>
@@ -26,6 +26,28 @@
 
         <%= content_for?(:content) ? yield(:content) : yield %>
       </main>
+    </div>
+    <div class="modal fade" id="duplicateWorkspaceModal" tabindex="-1" aria-labelledby="duplicateWorkspaceModalLabel" aria-hidden="true">
+      <div class="modal-dialog" tabindex="-1">
+        <div class="modal-content">
+          <div class="modal-header text-body bg-light">
+            <h5 class="modal-title h4" id="duplicateWorkspaceModalLabel">Duplicate workspace</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="duplicateWorkspaceModalBodyAndFooter"></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="moveWorkspaceModal" tabindex="-1" aria-labelledby="moveWorkspaceModalLabel" aria-hidden="true">
+      <div class="modal-dialog" tabindex="-1">
+        <div class="modal-content">
+          <div class="modal-header text-body bg-light">
+            <h5 class="modal-title h4" id="moveWorkspaceModalLabel">Move workspace</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="moveWorkspaceModalBodyAndFooter"></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
