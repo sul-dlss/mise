@@ -8,6 +8,7 @@ class Ability
   def initialize(user, service: false)
     alias_action :embed, to: :read
     alias_action :viewer, to: :read
+    alias_action :duplicate, to: :read
     anonymous_abilities
 
     if service
