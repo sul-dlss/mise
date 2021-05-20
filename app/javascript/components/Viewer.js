@@ -5,8 +5,11 @@ import Mirador from 'mirador/dist/es/src/index';
 import miradorImageToolsPlugin from 'mirador-image-tools/es/plugins/miradorImageToolsPlugin';
 import miradorAnnotationsPlugins from 'mirador-annotations/es';
 import { addResource, importMiradorState } from 'mirador/dist/es/src/state/actions';
-import { getExportableState } from 'mirador/dist/es/src/state/selectors';
+import {
+  getExportableState, getManifestTitle, getManifestProvider, getManifestThumbnail, getManifestoInstance, getCanvases
+} from 'mirador/dist/es/src/state/selectors';
 import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
+
 
 /** */
 class Viewer extends React.Component {
@@ -41,13 +44,40 @@ class Viewer extends React.Component {
       instance.store.subscribe(() => {
         const currentState = instance.store.getState();
         const inputElement = document.querySelector(updateStateSelector);
-        const __mise_cache__ = { manifests: mapValues(currentState.manifests, m => (m.json && { label: m.json.label, '@type': m.json.['@type'] })) };
+        const __mise_cache__ = {
+          manifests: mapValues(currentState.manifests, m => this.getManifestCache(currentState, m))
+        };
         if (inputElement) {
           inputElement.value = JSON.stringify({ ...getExportableState(currentState), __mise_cache__ });
         }
       });
     }
   }
+
+  getManifestCache(state, manifest) {
+    if(!manifest.json) return;
+
+    const manifestId = manifest.id;
+
+    const manifesto = getManifestoInstance(state, { manifestId });
+    const isCollection = (
+      manifesto || { isCollection: () => false }
+    ).isCollection();
+
+    const size = isCollection
+      ? manifesto.getTotalItems()
+      : getCanvases(state, { manifestId }).length;
+
+    return {
+      label: getManifestTitle(state, { manifestId }),
+      '@type': manifest.json.['@type'],
+      thumbnail: getManifestThumbnail(state, { manifestId }),
+      itemcount: size,
+      provider: getManifestProvider(state, { manifestId }),
+    }
+  }
+
+
 
   /** */
   render() {
