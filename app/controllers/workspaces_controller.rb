@@ -22,6 +22,7 @@ class WorkspacesController < ApplicationController
   # GET /workspaces
   def index
     @workspaces = current_user&.workspaces unless @project
+    @workspaces ||= []
     render layout: 'application' unless @project
   end
 
