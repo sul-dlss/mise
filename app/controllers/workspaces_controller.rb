@@ -90,13 +90,13 @@ class WorkspacesController < ApplicationController
   private
 
   def create_notice
-    return 'Workspace was successfully created.' unless params[:template] && workspace_project_id.present?
+    return 'Your new workspace has been created.' unless params[:template] && workspace_project_id.present?
 
     "The '#{@workspace.title}' workspace was duplicated in '#{Project.find(workspace_project_id).title}.'"
   end
 
   def update_notice
-    return 'Workspace was successfully updated.' if workspace_project_id.blank?
+    return 'Your workspace has been updated.' if workspace_project_id.blank?
 
     "The '#{@workspace.title}' workspace was moved to '#{Project.find(workspace_project_id).title}.'"
   end

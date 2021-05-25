@@ -1,7 +1,7 @@
       <% if can? :duplicate, workspace %>
         <%= button_tag 'Duplicate workspace', class: button_classes, data: { 'bs-toggle': 'modal', 'bs-target': '#workspaceModal', action: 'show-modal#copyFormTemplate' } %>
-        <template>
-          <%= form_with(model: workspace, namespace: "duplicate", url: workspaces_path(template: workspace), method: :post, class: 'me-2 duplicate-workspace') do |form| %>
+        <template data-title="Duplicate workspace">
+          <%= form_with(model: workspace, namespace: "duplicate", url: workspaces_path(template: workspace), method: :post, class: 'me-2 workspace-form') do |form| %>
             <div class="modal-body">
               <p>Where do you want the duplicated workspace to be created?</p>
 

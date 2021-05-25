@@ -29,6 +29,7 @@
       <% if can? :create, Project %>
         <li><%= link_to 'Project', projects_path, class: 'dropdown-item', method: :post %></li>
       <% end %>
+      <%= render partial: 'workspaces/new_modal', locals: { button_classes: 'dropdown-item' } %>
     <% end %>
 
     <% if new_content.present? %>
