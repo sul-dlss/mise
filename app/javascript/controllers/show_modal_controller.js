@@ -6,6 +6,6 @@ export default class extends Controller {
   copyFormTemplate(event) {
     const modalFormTemplate = event.target.nextElementSibling;
     this.containerTarget.innerHTML = modalFormTemplate.innerHTML;
-    this.titleTarget.innerText = event.target.innerText;
+    this.titleTarget.innerText = modalFormTemplate.dataset.title;
   }
 }
