@@ -1,0 +1,51 @@
+<div class="px-4 py-5 mb-4 text-center">
+  <h1 class="display-5 fw-bold">Mise</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">An exploratory-stage application aimed at curators, students, and scholars, Mise provides a collaborative environment for annotation-oriented projects using the Mirador IIIF viewer.</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-lg px-4 gap-3' %>
+      <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-secondary btn-lg px-4' %>
+    </div>
+  </div>
+</div>
+
+<div class="container px-4 border-top">
+  <div class="row g-4 pt-5 pb-4 row-cols-1 row-cols-lg-3">
+    <div class="col d-flex align-items-start">
+      <div class="icon-square flex-shrink-0 me-3">
+        <i class="bi bi-collection-fill"></i>
+      </div>
+      <div>
+        <h2>Gather</h2>
+        <p>Mise users can gather IIIF resources and local images and add them to Mirador workspaces. Workspaces are organized into projects. Projects can be shared with other Mise users for collaborative work.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <div class="icon-square flex-shrink-0 me-3">
+        <i class="bi bi-grid-1x2-fill"></i>
+      </div>
+      <div>
+        <h2>Arrange</h2>
+        <p>Mise users can leverage the feaures of the Mirador viewer and its plug-in ecosystem to arrange workspace windows, annotate resources, configure workspace options, and save their arrangements.</p>
+      </div>
+    </div>
+    <div class="col d-flex align-items-start">
+      <div class="icon-square flex-shrink-0 me-3">
+        <i class="bi bi-share-fill"></i>
+      </div>
+      <div>
+        <h2>Share</h2>
+        <p>Saved workspaces can be shared for duplication and collaboration within Mise, and for external publication purposes, as standalone or embeddable Mirador workspaces.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @featured_workspaces.any? %>
+  <div class="container text-center pt-5 border-top">
+    <h2>Interested? Explore public workspaces from the Mise community</h2>
+      <div class="row workspace-cards g-4 mt-1 flex-wrap justify-content-around align-self-stretch">
+        <%= render collection: @featured_workspaces, partial: 'workspaces/card', as: :workspace %>
+      </div>
+  </div>
+<% end %>

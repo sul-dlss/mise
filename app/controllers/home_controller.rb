@@ -4,6 +4,10 @@
 class HomeController < ApplicationController
   skip_authorization_check
 
+  def public
+    @featured_workspaces = Workspace.publicly_accessible.featured.order(updated_at: :desc).limit(3)
+  end
+
   def explore
     @updated_workspaces = Workspace.publicly_accessible.order(updated_at: :desc).limit(5)
     @featured_workspaces = Workspace.publicly_accessible.featured.order(updated_at: :desc).limit(5)
