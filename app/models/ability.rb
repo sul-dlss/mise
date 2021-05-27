@@ -5,16 +5,12 @@ class Ability
   include CanCan::Ability
 
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-  def initialize(user, service: false)
+  def initialize(user, token: nil)
     alias_action :embed, to: :read
     alias_action :viewer, to: :read
     alias_action :duplicate, to: :read
     anonymous_abilities
-
-    if service
-      can :read, :all
-      can :read_historical, :all
-    end
+    token_abilities(token)
 
     return unless user
 
@@ -58,5 +54,17 @@ class Ability
     can :read, Project, published: true
     can :read, Workspace, published: true, project: { published: true }
     can :read, Resource, project: { published: true }
+  end
+
+  def token_abilities(token)
+    return unless token
+
+    workspace = Workspace.find(token[:workspace])
+
+    can :read, Project, id: workspace.project_id
+    can :read, workspace
+    can :read_historical, workspace
+    can :read, Resource, project: { id: workspace.project_id }
+    can :read, Annotot::Annotation, project: { id: workspace.project_id }
   end
 end

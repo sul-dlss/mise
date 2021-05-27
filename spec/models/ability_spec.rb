@@ -4,11 +4,12 @@ require 'rails_helper'
 require 'cancan/matchers'
 
 RSpec.describe Ability do
-  subject { described_class.new(user) }
+  subject { described_class.new(user, token: token) }
 
   let(:user) { nil }
+  let(:token) { nil }
 
-  describe 'an anonymous user' do
+  context 'with an anonymous user' do
     let(:public_project) { create(:project, :published) }
     let(:workspace) { create(:workspace, project: public_project) }
     let(:public_workspace) { create(:workspace, :published, project: public_project) }
@@ -25,6 +26,38 @@ RSpec.describe Ability do
     it { is_expected.not_to be_able_to(:feature, public_workspace) }
     it { is_expected.not_to be_able_to(:feature, workspace) }
   end
+
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
+  context 'with a token' do
+    let(:token) { { workspace: workspace.id } }
+    let(:project) { create(:project) }
+    let(:workspace) { create(:workspace, project: project) }
+    let(:resource) { create(:resource, project: project) }
+    let(:annotation) { create(:annotation, project: project) }
+    let(:another_project) { create(:project) }
+    let(:another_workspace) { create(:workspace, project: another_project) }
+    let(:another_resource) { create(:resource, project: another_project) }
+    let(:another_annotation) { create(:annotation, project: another_project) }
+
+    it { is_expected.not_to be_able_to(:create, Project) }
+    it { is_expected.not_to be_able_to(:edit, Resource) }
+    it { is_expected.not_to be_able_to(:create, Resource) }
+    it { is_expected.not_to be_able_to(:delete, Resource) }
+    it { is_expected.not_to be_able_to(:feature, workspace) }
+
+    it { is_expected.to be_able_to(:read, project) }
+    it { is_expected.to be_able_to(:read, workspace) }
+    it { is_expected.to be_able_to(:read_historical, workspace) }
+    it { is_expected.to be_able_to(:read, resource) }
+    it { is_expected.to be_able_to(:read, annotation) }
+
+    it { is_expected.not_to be_able_to(:read, another_project) }
+    it { is_expected.not_to be_able_to(:read, another_workspace) }
+    it { is_expected.not_to be_able_to(:read_historical, another_workspace) }
+    it { is_expected.not_to be_able_to(:read, another_resource) }
+    it { is_expected.not_to be_able_to(:read, another_annotation) }
+  end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers
 
   context 'with a user with the owner role' do
     let(:user) { create(:user) }
