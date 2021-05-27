@@ -19,7 +19,13 @@
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+            <%= link_to 'IIIF', 'https://iiif.io/', class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Mirador', 'https://projectmirador.org/', class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Questions?', 'mailto:mise-project-team@lists.stanford.edu', class: 'nav-link' %>
           </li>
         <% end %>
       </ul>

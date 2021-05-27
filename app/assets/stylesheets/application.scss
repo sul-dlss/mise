@@ -16,6 +16,8 @@
 
 $body-bg: #f3f3f3;
 $light: #ced4da; // A darker grey than what Bootstrap ships
+$navbar-dark-color: $light; // Lighten the default link color
+$navbar-dark-hover-color: rgba(#fff, .9);
 @import 'bootstrap/scss/bootstrap';
 
 .small-font-size {
