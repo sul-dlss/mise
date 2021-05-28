@@ -5,7 +5,8 @@
     "fetch": true,
     "navigator": true,
     "page": true,
-    "document": true
+    "document": true,
+    "window": true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -19,6 +20,13 @@
       "natural": false
     }],
     "react/jsx-props-no-spreading": "off",
-    "arrow-parens": "off",
+    "arrow-parens": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["app/javascript"]
+      }
+    }
   }
 }

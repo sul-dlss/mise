@@ -6,8 +6,9 @@
 import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
-import 'channels';
 import 'bootstrap';
+import 'channels';
+import 'controllers';
 
 require('../direct_uploads');
 
@@ -20,5 +21,3 @@ const componentRequireContext = require.context('components', true);
 const ReactRailsUJS = require('react_ujs');
 
 ReactRailsUJS.useContext(componentRequireContext);
-
-import "controllers"
