@@ -9,6 +9,8 @@ class Ability
     alias_action :embed, to: :read
     alias_action :viewer, to: :read
     alias_action :duplicate, to: :read
+    alias_action :favorite, to: :read
+
     anonymous_abilities
     token_abilities(token)
 

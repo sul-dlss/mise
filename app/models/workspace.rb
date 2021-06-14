@@ -3,15 +3,15 @@
 ##
 # Workspace class
 class Workspace < ApplicationRecord
-  has_one_attached :thumbnail
-
-  scope :favorites, -> { where(favorite: true) }
-  scope :featured, -> { where(featured: true) }
-  scope :publicly_accessible, -> { accessible_by(Ability.new(nil)) }
-
-  has_paper_trail
+  acts_as_favoritable
 
   belongs_to :project, touch: true, counter_cache: true
+  has_one_attached :thumbnail
+  has_paper_trail
+
+  default_scope -> { order(updated_at: :desc) }
+  scope :featured, -> { where(featured: true) }
+  scope :publicly_accessible, -> { accessible_by(Ability.new(nil)) }
 
   include FriendlyId
   friendly_id :slug_candidates, use: %i[finders slugged], slug_generator_class: UuidSlugGenerator

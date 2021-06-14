@@ -76,7 +76,30 @@ class WorkspacesController < ApplicationController
     end
   end
 
+  # POST /workspaces/1/favorite
+  def favorite
+    params.permit(:favorite, :id)
+    authorize! :favorite, @workspace
+
+    if params[:favorite]
+      current_user.favorite(@workspace)
+    else
+      current_user.unfavorite(@workspace)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @workspace, notice: favorite_notice(params[:favorite]) }
+      format.json { render json: { favorite: params[:favorite] }, status: :ok }
+    end
+  end
+
   private
+
+  def favorite_notice(favorited)
+    return "You have added the '#{@workspace.title}' workspace to your favorites." if favorited
+
+    "You have removed the '#{@workspace.title}' workspace from your favorites."
+  end
 
   def create_notice
     return 'Your new workspace has been created.' unless params[:template] && workspace_project_id.present?
@@ -102,7 +125,7 @@ class WorkspacesController < ApplicationController
     authorize! :feature, @workspace if params.dig(:workspace, :featured)
 
     params.require(:workspace)
-          .permit(:title, :state, :state_type, :project_id, :description, :published, :favorite, :thumbnail, :featured)
+          .permit(:title, :state, :state_type, :project_id, :description, :published, :thumbnail, :featured)
           .merge(deserialized_state)
   end
 

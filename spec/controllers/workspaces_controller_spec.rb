@@ -11,6 +11,26 @@ RSpec.describe WorkspacesController, type: :controller do
     sign_in user
   end
 
+  describe 'POST favorite' do
+    context 'when user favorites a workspace' do
+      it 'associates the user and the workspace' do
+        expect do
+          post :favorite, params: { id: workspace.id }, body: { favorite: true }.to_json, as: :json
+        end.to change { workspace.user_favoritors.count }.from(0).to(1)
+      end
+    end
+
+    context 'when user unfavorites a workspace' do
+      before { user.favorite(workspace) }
+
+      it 'disassociates the user and the workspace' do
+        expect do
+          post :favorite, params: { id: workspace.id }, body: { favorite: false }.to_json, as: :json
+        end.to change { workspace.user_favoritors.count }.from(1).to(0)
+      end
+    end
+  end
+
   describe 'PATCH update' do
     it 'updates the title' do
       expect do
