@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :workspaces, except: :new do
     member do
-      post 'duplicate'
+      post 'favorite'
       get 'embed'
       get 'viewer'
     end

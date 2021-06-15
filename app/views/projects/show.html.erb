@@ -28,18 +28,18 @@
     <h2 class="h3 mt-5 py-2 border-top">Recent workspace activity</h2>
     <% if @project.workspaces.any? %>
       <div class="row workspace-cards g-4">
-        <%= render partial: 'workspaces/card', collection: @project.workspaces.accessible_by(current_ability).order(updated_at: :desc).first(2), as: :workspace %>
+        <%= render partial: 'workspaces/card', collection: @project.workspaces.accessible_by(current_ability).limit(2), as: :workspace %>
       </div>
     <% else %>
       <p class="fst-italic">There hasn't been any recent workspace activity in this project.</p>
     <% end %>
 
-    <% favorites = @project.workspaces.favorites.accessible_by(current_ability) %>
+    <% favorites = current_user.favorited_workspaces.accessible_by(current_ability, :favorite) %>
 
     <% if favorites.any? %>
       <h2 class="h3 mt-5 py-2 border-top">Favorite workspaces</h2>
       <div class="row workspace-cards g-4">
-        <%= render partial: 'workspaces/card', collection: favorites.order(updated_at: :desc), as: :workspace %>
+        <%= render partial: 'workspaces/card', collection: favorites, as: :workspace %>
       </div>
     <% end %>
   </div>

@@ -19,6 +19,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -156,4 +159,12 @@ Performance/MapCompact: # (new in 1.11)
 Rails/EnvironmentVariableAccess: # (new in 2.10)
   Enabled: true
 Rails/TimeZoneAssignment: # (new in 2.10)
+  Enabled: true
+Lint/EmptyInPattern: # (new in 1.16)
+  Enabled: true
+Style/InPatternThen: # (new in 1.16)
+  Enabled: true
+Style/MultilineInPatternThen: # (new in 1.16)
+  Enabled: true
+Style/QuotedSymbols: # (new in 1.16)
   Enabled: true

@@ -14,7 +14,7 @@ function Favorite({ csrfToken, favorite, updateUrl }) {
         'Content-Type': 'application/json',
         'X-CSRF-Token': csrfToken,
       },
-      method: 'PATCH',
+      method: 'POST',
     }).then(response => response.json())
       .then(data => setFavorite(data.favorite));
   };

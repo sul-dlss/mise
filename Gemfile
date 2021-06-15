@@ -80,12 +80,12 @@ gem 'honeybadger'
 gem 'newrelic_rpm'
 gem 'okcomputer'
 
+gem 'acts_as_favoritor'
 gem 'ancestry'
 gem 'cancancan'
 gem 'config'
 gem 'devise', '~> 4.8'
 gem 'devise_invitable'
-
 gem 'friendly_id'
 gem 'jwt'
 gem 'omniauth'
