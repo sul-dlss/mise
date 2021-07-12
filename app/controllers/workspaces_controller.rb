@@ -55,11 +55,25 @@ class WorkspacesController < ApplicationController
     respond_to do |format|
       if @workspace.update(workspace_params)
         format.html { redirect_to @workspace, notice: update_notice }
-        format.json { render :show, status: :ok, location: @workspace }
-        format.js { render json: {}, status: :ok }
+        format.json do
+          # render :show, status: :ok, location: @workspace
+          # Handle an XHR request to save a workspace by returning the flash messages pre-rendered
+          flash.now[:notice] = update_notice
+          render json: { flash: render_to_string(partial: '/flash_messages', formats: [:html]), persistedState: @workspace.state }
+        end
+        format.js do
+          # Handle an XHR request to save a workspace by returning the flash messages pre-rendered
+          flash.now[:notice] = update_notice
+          render json: { flash: render_to_string(partial: '/flash_messages'), state: @workspace.state }
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @workspace.errors, status: :unprocessable_entity }
+        format.js do
+          # Handle an XHR request to save a workspace by returning the flash messages pre-rendered
+          flash.now[:alert] = "Your workspace could not be saved: #{@workspace.errors}"
+          render partial: '/flash_messages'
+        end
       end
     end
   end

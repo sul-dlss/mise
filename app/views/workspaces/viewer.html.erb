@@ -6,10 +6,15 @@
     <% if can? :update, @workspace %>
       <%= react_component("EditInPlace", { field: 'title', value: @workspace.title, csrfToken: form_authenticity_token, url: url_for(@workspace) }, tag: 'h1') %>
 
-      <%= form_with(model: @workspace, class: 'me-2', data: { controller: 'save-workspace' }) do |form| %>
-        <%= form.hidden_field :state %>
-        <%= form.hidden_field :save_in_progress, value: false, data: { save_workspace_target: 'field' } %>
-        <%= form.submit 'Save workspace', class: 'btn btn-primary', data: { action: 'save-workspace#markSaveInProgress' } %>
+      <%=
+        form_with(model: @workspace, class: 'me-2', local: false, data: {
+          action: 'ajax:success->workspace#updateForm ajax:error->workspace#updateForm',
+          type: :json
+        }) do |form|
+      %>
+        <%= form.hidden_field :viewer_state, data: { workspace_target: 'viewerState' } %>
+        <%= form.hidden_field :persisted_state, data: { workspace_target: 'persistedState' } %>
+        <%= form.submit 'Save workspace', class: 'btn btn-primary' %>
       <% end %>
     <% else %>
       <h1><%= @workspace.title %></h1>
@@ -21,20 +26,20 @@
 <div class="<%= @embed ? 'embedded-mirador-container' : 'mirador-container mx-2' %>">
   <% viewer_props = if can?(:update, @workspace) && !@embed
         {
+          annototEndpointUrl: project_annotations_url(@workspace.project),
           config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.state&.dig('config') || {}),
           enabledPlugins: ['annotations'],
-          state: @workspace.state,
-          updateStateSelector: '#workspace_state',
-          saveInProgressSelector: '#workspace_save_in_progress',
+          initialState: @workspace.state,
+          persistedStateSelector: '#workspace_persisted_state',
           projectResourcesUrl: iiif_project_resources_url(@workspace.project),
-          annototEndpointUrl: project_annotations_url(@workspace.project),
+          viewerStateSelector: '#workspace_viewer_state',
         }
       else
         {
+          annototEndpointUrl: project_annotations_url(@workspace.project),
           config: { id: "m-#{SecureRandom.hex}" }.deep_merge(@workspace.embedded_workspace_config || {}),
           enabledPlugins: ['annotations'],
-          state: @workspace.state,
-          annototEndpointUrl: project_annotations_url(@workspace.project),
+          initialState: @workspace.state,
         }
       end
   %>

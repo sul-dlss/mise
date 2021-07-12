@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body data-controller='show-modal'>
+  <body data-controller='show-modal workspace'>
     <%= render 'layouts/navbar' %>
     <div class="main-content <%= 'with-sidebar' if content_for?(:sidebar) %>">
       <% if content_for?(:sidebar) %>
@@ -20,7 +20,9 @@
       <% end %>
 
       <main class='col py-4 pe-4'>
-        <%= render 'layouts/flash_messages' %>
+        <div class="flash_container" data-workspace-target="flash">
+          <%= render '/flash_messages' %>
+        </div>
 
         <%= content_for(:top_level_nav) if content_for?(:top_level_nav) %>
 
