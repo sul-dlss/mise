@@ -18,14 +18,15 @@ class Viewer extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentState: {},
+      viewerState: {},
     };
   }
 
   /** */
   componentDidMount() {
     const {
-      annototEndpointUrl, config, enabledPlugins, state, updateStateSelector, projectResourcesUrl,
+      annototEndpointUrl, config, enabledPlugins, initialState,
+      viewerStateSelector, projectResourcesUrl,
     } = this.props;
 
     delete config.export;
@@ -48,11 +49,11 @@ class Viewer extends React.Component {
       ],
     );
 
-    if (state) {
+    if (initialState) {
       instance.store.dispatch(
         importMiradorState(
           {
-            ...state,
+            ...initialState,
             config: instance.store.getState().config,
           },
         ),
@@ -60,14 +61,14 @@ class Viewer extends React.Component {
     }
 
     if (projectResourcesUrl) instance.store.dispatch(addResource(projectResourcesUrl));
-    if (updateStateSelector) {
+    if (viewerStateSelector) {
       instance.store.subscribe(() => {
-        const currentState = instance.store.getState();
-        const exportableState = getExportableState(currentState);
-        this.setState({ currentState: exportableState });
-        const inputElement = document.querySelector(updateStateSelector);
+        const viewerState = instance.store.getState();
+        const exportableState = getExportableState(viewerState);
+        this.setState({ viewerState: exportableState });
+        const inputElement = document.querySelector(viewerStateSelector);
         const __mise_cache__ = { // eslint-disable-line camelcase
-          manifests: mapValues(currentState.manifests, m => this.getManifestCache(currentState, m)),
+          manifests: mapValues(viewerState.manifests, m => this.getManifestCache(viewerState, m)),
         };
         if (inputElement) {
           inputElement.value = JSON.stringify(
@@ -112,22 +113,30 @@ class Viewer extends React.Component {
   }
 
   checkUnsavedChanges = (event) => {
-    const { currentState } = this.state;
-    const { state: initialState, saveInProgressSelector } = this.props;
-    // Skip checking for unsaved changes because a save is in progress
-    if (document.querySelector(saveInProgressSelector).value === 'true') return true;
+    const { viewerState } = this.state;
+    const { persistedStateSelector } = this.props;
+    // Get current persisted value of DOM element instead of using what is
+    // stuffed in props since the former may have been updated by a
+    // user-initiated save operation
+    const persistedState = document.querySelector(persistedStateSelector).value;
 
-    const expectedDiffPaths = ['__mise_cache__', 'config.annotation', 'config.export', 'workspace.id'];
     // Diff the two Mirador states
-    const difference = diff(initialState, currentState);
+    const difference = diff(persistedState, viewerState);
     // Remove known false positives from diff object
-    const filtered = omit(difference, expectedDiffPaths);
-    // Remove empty top-level objects created by prior call to omit
+    const filtered = omit(difference, ['__mise_cache__', 'config.annotation', 'config.export', 'workspace.id']);
+    // Remove empty top-level objects created by removing false positives
     const changes = omitBy(filtered, isEmpty);
+
     if (!isEmpty(changes)) {
+      console.dir(changes);
       event.preventDefault();
       event.returnValue = 'If you navigate away from the workspace now, changes you have made will be lost. Are you sure you want to navigate away?'; // eslint-disable-line no-param-reassign
       return event.returnValue;
+    } else {
+      console.log('client state:');
+      console.dir(viewerState);
+      console.log('server state:');
+      console.dir(persistedState);
     }
     return true;
   }
@@ -143,20 +152,20 @@ Viewer.propTypes = {
   annototEndpointUrl: PropTypes.string,
   config: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   enabledPlugins: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  initialState: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  persistedStateSelector: PropTypes.string,
   projectResourcesUrl: PropTypes.string,
-  saveInProgressSelector: PropTypes.string,
-  state: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  updateStateSelector: PropTypes.string,
+  viewerStateSelector: PropTypes.string,
 };
 
 Viewer.defaultProps = {
   annototEndpointUrl: null,
   config: {},
   enabledPlugins: [],
+  initialState: null,
+  persistedStateSelector: null,
   projectResourcesUrl: null,
-  saveInProgressSelector: null,
-  state: null,
-  updateStateSelector: null,
+  viewerStateSelector: null,
 };
 
 export default Viewer;
