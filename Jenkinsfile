@@ -2,12 +2,15 @@ pipeline {
   agent any
 
   environment {
+    PROJECT = 'sul-dlss/mise'
     SIDEKIQ_PRO_SECRET = credentials("sidekiq_pro_secret")
-    SLACK_WEBHOOK_URL = credentials("access_slack_webhook")
   }
 
   stages {
     stage('Capistrano Deploy') {
+      environment {
+        DEPLOY_ENVIRONMENT = 'stage'
+      }
 
       when {
         branch 'main'
@@ -28,27 +31,31 @@ pipeline {
           bundle install --without production
 
           # Deploy it
-          bundle exec cap stage deploy
+          bundle exec cap $DEPLOY_ENVIRONMENT deploy
           '''
         }
       }
 
       post {
-        success {
-          sh '''#!/bin/bash -l
-            curl -X POST -H 'Content-type: application/json' --data '{"text":"[mise] The deploy to stage was successful"}' $SLACK_WEBHOOK_URL
-          '''
-        }
-
-        failure {
-          sh '''#!/bin/bash -l
-            curl -X POST -H 'Content-type: application/json' --data '{"text":"[mise] The deploy to stage was unsuccessful"}' $SLACK_WEBHOOK_URL
-          '''
+        always {
+          build job: '/Continuous Deployment/Slack Deployment Notification', parameters: [
+            string(name: 'PROJECT', value: env.PROJECT),
+            string(name: 'GIT_COMMIT', value: env.GIT_COMMIT),
+            string(name: 'GIT_URL', value: env.GIT_URL),
+            string(name: 'GIT_PREVIOUS_SUCCESSFUL_COMMIT', value: env.GIT_PREVIOUS_SUCCESSFUL_COMMIT),
+            string(name: 'DEPLOY_ENVIRONMENT', value: env.DEPLOY_ENVIRONMENT),
+            string(name: 'TAG_NAME', value: env.TAG_NAME),
+            booleanParam(name: 'SUCCESS', value: currentBuild.resultIsBetterOrEqualTo('SUCCESS')),
+            string(name: 'RUN_DISPLAY_URL', value: env.RUN_DISPLAY_URL)
+          ]
         }
       }
     }
 
     stage('Deploy on release') {
+      environment {
+        DEPLOY_ENVIRONMENT = 'prod'
+      }
 
       when {
         tag "v*"
@@ -70,22 +77,23 @@ pipeline {
           bundle install --without production
 
           # Deploy it
-          bundle exec cap prod deploy
+          bundle exec cap $DEPLOY_ENVIRONMENT deploy
           '''
         }
       }
 
       post {
-        success {
-          sh '''#!/bin/bash -l
-            curl -X POST -H 'Content-type: application/json' --data '{"text":"[mise] The deploy to prod was successful"}' $SLACK_WEBHOOK_URL
-          '''
-        }
-
-        failure {
-          sh '''#!/bin/bash -l
-            curl -X POST -H 'Content-type: application/json' --data '{"text":"[mise] The deploy to prod was unsuccessful"}' $SLACK_WEBHOOK_URL
-          '''
+        always {
+          build job: '/Continuous Deployment/Slack Deployment Notification', parameters: [
+            string(name: 'PROJECT', value: env.PROJECT),
+            string(name: 'GIT_COMMIT', value: env.GIT_COMMIT),
+            string(name: 'GIT_URL', value: env.GIT_URL),
+            string(name: 'GIT_PREVIOUS_SUCCESSFUL_COMMIT', value: env.GIT_PREVIOUS_SUCCESSFUL_COMMIT),
+            string(name: 'DEPLOY_ENVIRONMENT', value: env.DEPLOY_ENVIRONMENT),
+            string(name: 'TAG_NAME', value: env.TAG_NAME),
+            booleanParam(name: 'SUCCESS', value: currentBuild.resultIsBetterOrEqualTo('SUCCESS')),
+            string(name: 'RUN_DISPLAY_URL', value: env.RUN_DISPLAY_URL)
+          ]
         }
       }
     }
