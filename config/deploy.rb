@@ -57,3 +57,9 @@ namespace :deploy do
     end
   end
 end
+
+if ENV['CI']
+  # Some version mismatch(?) is causing ruby's net-ssh to error with:
+  # > Net::SSH::Exception (could not verify server signature)
+  set :ssh_options, verify_host_key: :never
+end
