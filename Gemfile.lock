@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/mejackreed/annotot.git
-  revision: a6229b218a9271218708bdbbe005b361873e3e9b
+  revision: 2c0c097da5a6bb74ccdfd6325b5b8ec7498b622e
   specs:
     annotot (0.7.0)
-      rails (>= 5.1, < 7)
+      rails (>= 5.1, < 8)
 
 GEM
   remote: https://gems.contribsys.com/
@@ -88,7 +88,7 @@ GEM
       execjs (~> 2.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.9.3)
+    bootsnap (1.9.4)
       msgpack (~> 1.0)
     builder (3.2.4)
     bundler-audit (0.9.0.1)
@@ -189,7 +189,7 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    ffi (1.15.4)
+    ffi (1.15.5)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     globalid (1.0.0)
@@ -205,7 +205,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jwt (2.3.0)
-    listen (3.7.0)
+    listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.13.0)
@@ -227,14 +227,14 @@ GEM
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
-    newrelic_rpm (8.2.0)
+    newrelic_rpm (8.3.0)
     nio4r (2.5.8)
-    nokogiri (1.13.0)
+    nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
-    nokogiri (1.13.0-x86_64-darwin)
+    nokogiri (1.13.1-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.0-x86_64-linux)
+    nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     okcomputer (1.18.4)
     omniauth (2.0.4)
@@ -257,7 +257,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
-    puppeteer-ruby (0.39.0)
+    puppeteer-ruby (0.40.0)
       concurrent-ruby (~> 1.1.0)
       mime-types (>= 3.0)
       websocket-driver (>= 0.6.0)
@@ -297,7 +297,7 @@ GEM
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rake (13.0.6)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
