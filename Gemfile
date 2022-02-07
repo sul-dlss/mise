@@ -92,6 +92,7 @@ gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-shibboleth'
 gem 'paper_trail'
+gem 'redis', '~> 4.5.1' # 4.6.0 spews deprecation warnings out of sidekiq
 gem 'rolify'
 gem 'tophat'
 
