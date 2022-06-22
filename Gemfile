@@ -4,7 +4,11 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 7.0'
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem 'sprockets-rails'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 
@@ -34,8 +38,8 @@ gem 'react-rails'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
@@ -51,8 +55,6 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
 
   gem 'listen', '~> 3.3'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
 
 group :deployment do
