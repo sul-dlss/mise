@@ -110,3 +110,8 @@ gem 'sidekiq'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+# Setting version of rack-protection to < 3 due to incompatibility
+# between omniauth and rack-protection 3
+# https://github.com/sinatra/sinatra/issues/1817
+gem 'rack-protection', '< 3'
