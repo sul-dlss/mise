@@ -103,10 +103,10 @@ gem 'annotot', github: 'mejackreed/annotot'
 gem 'puppeteer-ruby'
 
 source 'https://gems.contribsys.com/' do
-  gem 'sidekiq-pro', group: :production
+  gem 'sidekiq-pro', '< 7', group: :production # Remain on v5 until Redis is updated to v7 on VMs
 end
 
-gem 'sidekiq'
+gem 'sidekiq', '< 7' # Remain on v6 until Redis is updated to v7 on VMs
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
