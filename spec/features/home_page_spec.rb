@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'The home page', type: :feature do
+RSpec.describe 'The home page' do
   let!(:project) do
     create(:project).tap do |project|
       create(:workspace, project: project)

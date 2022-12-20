@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe WorkspacesController, type: :controller do
+RSpec.describe WorkspacesController do
   let(:user) { create(:user) }
   let(:project) { create(:project, :with_owner, user: user) }
   let(:workspace) { create(:workspace, project: project, title: 'abc', state: { some: 'thing' }) }
