@@ -13,7 +13,7 @@ module TokenAbility
                                   Rails.application.secret_key_base,
                                   'HS256')
 
-    HashWithIndifferentAccess.new(payload)
+    ActiveSupport::HashWithIndifferentAccess.new(payload)
   end
 
   private
