@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Abstract parent of all controllers
 class ApplicationController < ActionController::Base
   include TokenAbility
 
