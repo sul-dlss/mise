@@ -31,7 +31,7 @@ jobs:
         BUNDLE_GEMS__CONTRIBSYS__COM: ${{ secrets.BUNDLE_GEMS__CONTRIBSYS__COM }}
       run: bundle config --local gems.contribsys.com ${BUNDLE_GEMS__CONTRIBSYS__COM}
     - name: Install dependencies
-      run: bin/setup
+      run: RAILS_ENV=test bin/setup
     - name: Lint JavaScript
       shell: bash {0}
       run: |
