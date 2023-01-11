@@ -95,7 +95,7 @@ gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-shibboleth'
 gem 'paper_trail'
-gem 'redis', '~> 4.5.1' # 4.6.0 spews deprecation warnings out of sidekiq
+gem 'redis', '~> 5.0'
 gem 'rolify'
 gem 'tophat'
 
@@ -104,10 +104,10 @@ gem 'annotot', github: 'mejackreed/annotot'
 gem 'puppeteer-ruby'
 
 source 'https://gems.contribsys.com/' do
-  gem 'sidekiq-pro', '< 7', group: :production # Remain on v5 until Redis is updated to v7 on VMs
+  gem 'sidekiq-pro', group: :production
 end
 
-gem 'sidekiq', '< 7' # Remain on v6 until Redis is updated to v7 on VMs
+gem 'sidekiq', '~> 7.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
