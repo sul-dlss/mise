@@ -138,6 +138,8 @@ GEM
       dry-validation (~> 1.0, >= 1.0.0)
     connection_pool (2.3.0)
     crass (1.0.6)
+    cssbundling-rails (1.1.2)
+      railties (>= 6.0.0)
     date (3.3.3)
     debug (1.7.1)
       irb (>= 1.5.0)
@@ -387,16 +389,6 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selenium-webdriver (4.7.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -475,6 +467,7 @@ DEPENDENCIES
   capistrano-shared_configs
   capybara (>= 3.26)
   config
+  cssbundling-rails (~> 1.1)
   debug
   devise (~> 4.8)
   devise_invitable
@@ -506,7 +499,6 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  sass-rails (>= 6)
   selenium-webdriver
   shakapacker (~> 6.4)
   sidekiq (~> 7.0)

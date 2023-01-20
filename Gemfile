@@ -16,8 +16,6 @@ gem 'pg'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
 
 gem 'shakapacker', '~> 6.4'
 
@@ -116,3 +114,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # between omniauth and rack-protection 3
 # https://github.com/sinatra/sinatra/issues/1817
 gem 'rack-protection', '< 3'
+
+gem 'cssbundling-rails', '~> 1.1'
