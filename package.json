@@ -2,7 +2,8 @@
   "name": "app",
   "private": true,
   "scripts": {
-    "lint": "eslint app"
+    "lint": "eslint app",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "dependencies": {
     "@babel/core": "7",
@@ -29,8 +30,9 @@
     "mirador-image-tools": "^0.10.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
     "react_ujs": "^2.6.1",
+    "react-dom": "^17.0.1",
+    "sass": "^1.57.1",
     "shakapacker": "6.5.4",
     "stimulus": "^2.0.0",
     "terser-webpack-plugin": "5",

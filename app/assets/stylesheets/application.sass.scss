@@ -1,0 +1,47 @@
+// Entry point for your Sass build
+
+ @import 'direct_uploads';
+ @import 'icons';
+ @import 'modals';
+ @import 'resources';
+ @import 'sidebar';
+ @import 'signin';
+ 
+ $body-bg: #f3f3f3;
+ $light: #ced4da; // A darker grey than what Bootstrap ships
+ $navbar-dark-color: $light; // Lighten the default link color
+ $navbar-dark-hover-color: rgba(#fff, .9);
+ @import 'bootstrap/scss/bootstrap';
+ 
+ .small-font-size {
+   font-size: .925rem;
+ }
+ 
+ .mirador-container {
+   @extend .border;
+   height: 80vh;
+   position: relative;
+ }
+ 
+ .embedded-mirador-container {
+   height: 100%;
+   width: 100%;
+ }
+ 
+ .workspace-card {
+   padding-left: 0;
+   padding-right: 0;
+   margin-left: calc(var(--bs-gutter-x) / 2);
+   margin-right: calc(var(--bs-gutter-x) / 2);
+   max-width: 18rem;
+ }
+ 
+ .project-description {
+   max-width: 65ch;
+ }
+ 
+ .iiif-dnd {
+   position: relative;
+   z-index: 1;
+ }
+ 

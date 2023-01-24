@@ -15,7 +15,7 @@ $ bin/setup
 Running a local server
 
 ```sh
-$ rails s
+$ bin/dev
 ```
 In a separate window
 ```sh
