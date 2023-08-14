@@ -44,6 +44,14 @@ group :development, :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 3.26'
+  gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
+
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -64,17 +72,6 @@ group :deployment do
   gem 'capistrano-rvm'
   gem 'capistrano-shared_configs'
   gem 'dlss-capistrano'
-end
-
-group :development, :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
-
-  gem 'factory_bot_rails'
-  gem 'rspec-rails'
 end
 
 gem 'honeybadger'
