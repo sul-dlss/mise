@@ -15,7 +15,7 @@ gem 'sqlite3', '~> 1.4'
 gem 'pg'
 
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 
 gem 'shakapacker', '~> 6.4'
 
