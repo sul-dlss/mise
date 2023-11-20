@@ -195,10 +195,10 @@ GEM
       zeitwerk (~> 2.6)
     erubi (1.12.0)
     execjs (2.9.1)
-    factory_bot (6.4.0)
+    factory_bot (6.2.1)
       activesupport (>= 5.0.0)
-    factory_bot_rails (6.4.0)
-      factory_bot (~> 6.4)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffi (1.16.3)
     friendly_id (5.5.1)
@@ -486,7 +486,7 @@ DEPENDENCIES
   devise (~> 4.8)
   devise_invitable
   dlss-capistrano
-  factory_bot_rails
+  factory_bot_rails (~> 6.2.0)
   friendly_id
   honeybadger
   image_processing (~> 1.2)
