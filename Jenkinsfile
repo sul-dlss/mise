@@ -67,7 +67,6 @@ pipeline {
         sshagent (['sul-devops-team', 'sul-continuous-deployment']){
           sh '''#!/bin/bash -l
           export DEPLOY=1
-          export REVISION=$TAG_NAME
 
           # Load RVM
           rvm use 3.3.1@mise --create
