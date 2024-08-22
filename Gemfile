@@ -53,8 +53,7 @@ group :development, :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 
-  # Pinned until https://github.com/thoughtbot/factory_bot_rails/issues/433 is resolved
-  gem 'factory_bot_rails', '~> 6.2.0'
+  gem 'factory_bot_rails', '~> 6.4'
   gem 'rspec-rails'
 end
 
