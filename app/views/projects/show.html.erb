@@ -34,7 +34,7 @@
       <p class="fst-italic">There hasn't been any recent workspace activity in this project.</p>
     <% end %>
 
-    <% favorites = current_user.favorited_workspaces.accessible_by(current_ability, :favorite) %>
+    <% favorites = current_user&.favorited_workspaces&.accessible_by(current_ability, :favorite) %>
 
     <% if favorites.any? %>
       <h2 class="h3 mt-5 py-2 border-top">Favorite workspaces</h2>
