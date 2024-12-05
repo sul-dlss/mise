@@ -93,7 +93,7 @@ gem 'redis', '~> 5.0'
 gem 'rolify'
 gem 'tophat'
 
-gem 'annotot', github: 'mejackreed/annotot'
+gem 'annotot', github: 'PenguinParadigm/annotot'
 
 gem 'puppeteer-ruby'
 
