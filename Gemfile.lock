@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/mejackreed/annotot.git
+  remote: https://github.com/PenguinParadigm/annotot.git
   revision: 2c0c097da5a6bb74ccdfd6325b5b8ec7498b622e
   specs:
     annotot (0.7.0)
@@ -472,6 +472,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-23
+  arm64-darwin-24
   x86_64-darwin-22
   x86_64-linux
 
