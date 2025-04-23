@@ -24,7 +24,7 @@ pipeline {
           export DEPLOY=1
 
           # Load RVM
-          rvm use 3.3.1@mise --create
+          rvm use 3.4.1@mise --create
           gem install bundler
 
           bundle config --global gems.contribsys.com $SIDEKIQ_PRO_SECRET
@@ -69,7 +69,7 @@ pipeline {
           export DEPLOY=1
 
           # Load RVM
-          rvm use 3.3.1@mise --create
+          rvm use 3.4.1@mise --create
           gem install bundler
 
           bundle config --global gems.contribsys.com $SIDEKIQ_PRO_SECRET
