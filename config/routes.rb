@@ -36,7 +36,6 @@ Rails.application.routes.draw do
 
   authenticate :user, lambda { |u| u.has_role? :superadmin } do
     require 'sidekiq/web'
-    require 'sidekiq/pro/web'
     mount Sidekiq::Web => '/sidekiq'
   end
 
