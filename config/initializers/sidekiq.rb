@@ -1,10 +1,3 @@
-begin
-  require 'sidekiq-pro'
-  Sidekiq::Client.reliable_push! unless Rails.env.test?
-rescue LoadError => e
-  $stderr.puts "Unable to load sidekiq-pro: #{e}" if Rails.application.config.active_job.queue_adapter == :sidekiq
-end
-
 Sidekiq.configure_server do |config|
   if defined? Sidekiq::Pro
     config.super_fetch!
