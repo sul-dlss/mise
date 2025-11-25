@@ -33,7 +33,7 @@
     "react_ujs": "^2.6.1",
     "react-dom": "^17.0.1",
     "sass": "^1.57.1",
-    "shakapacker": "6.5.4",
+    "shakapacker": "6.6.0",
     "stimulus": "^2.0.0",
     "terser-webpack-plugin": "5",
     "turbolinks": "^5.2.0",
