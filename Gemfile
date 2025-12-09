@@ -112,3 +112,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'rack-protection', '< 3'
 
 gem 'cssbundling-rails', '~> 1.1'
+
+gem 'connection_pool', '~> 2.5' # pinned until fix for https://github.com/rails/rails/issues/56291 is released
