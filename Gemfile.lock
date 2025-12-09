@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/PenguinParadigm/annotot.git
-  revision: 2c0c097da5a6bb74ccdfd6325b5b8ec7498b622e
+  revision: 92e5f3da3cd9b428c0f3203f33088aef08cc5805
   specs:
     annotot (0.7.0)
-      rails (>= 5.1, < 8)
+      rails (>= 7.0, < 9)
 
 GEM
   remote: https://gems.contribsys.com/
