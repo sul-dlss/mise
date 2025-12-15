@@ -24,17 +24,18 @@ jobs:
         key: ${{ runner.os }}-gems-202103-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gems-202103
-    - name: Bundle install
+    - name: Bundle install 
       run: bundle config path vendor/bundle
     - name: Use sidekiq pro
       env:
         BUNDLE_GEMS__CONTRIBSYS__COM: ${{ secrets.BUNDLE_GEMS__CONTRIBSYS__COM }}
       run: bundle config --local gems.contribsys.com ${BUNDLE_GEMS__CONTRIBSYS__COM}
     - name: Install dependencies
-      run: RAILS_ENV=test bin/setup
+      run: RAILS_ENV=test bin/setup --skip-server
     - name: Lint JavaScript
       shell: bash {0}
       run: |
+        yarn install
         yarn run lint
         exit 0
     - name: Run tests

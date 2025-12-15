@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint app",
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "yarn sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "dependencies": {
     "@babel/core": "7",
@@ -33,7 +33,7 @@
     "react_ujs": "^2.6.1",
     "react-dom": "^17.0.1",
     "sass": "^1.57.1",
-    "shakapacker": "6.5.4",
+    "shakapacker": "6.6.0",
     "stimulus": "^2.0.0",
     "terser-webpack-plugin": "5",
     "turbolinks": "^5.2.0",

@@ -4,18 +4,18 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.1.2'
+gem 'rails', '~> 8.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', '>= 2.1'
 
 gem 'pg'
 
 # Use Puma as the app server
-gem 'puma', '~> 6.0'
+gem 'puma', '~> 7.0'
 
 gem 'shakapacker', '~> 6.4'
 
@@ -60,7 +60,7 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'rack-mini-profiler', '~> 4.0'
 end
 
 group :deployment do
@@ -93,7 +93,7 @@ gem 'redis', '~> 5.0'
 gem 'rolify'
 gem 'tophat'
 
-gem 'annotot', github: 'PenguinParadigm/annotot'
+gem 'annotot', github: 'PenguinParadigm/annotot', branch: 'main'
 
 gem 'puppeteer-ruby'
 
