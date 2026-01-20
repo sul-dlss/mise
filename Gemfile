@@ -38,7 +38,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'debug'
 
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
@@ -102,9 +102,6 @@ source 'https://gems.contribsys.com/' do
 end
 
 gem 'sidekiq', '~> 8.0'
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Setting version of rack-protection to < 3 due to incompatibility
 # between omniauth and rack-protection 3
