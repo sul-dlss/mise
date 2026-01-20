@@ -168,7 +168,7 @@ GEM
     config (5.6.1)
       deep_merge (~> 1.2, >= 1.2.1)
       ostruct
-    connection_pool (2.5.5)
+    connection_pool (3.0.2)
     console (1.35.1)
       fiber-annotation
       fiber-local (~> 1.1)
@@ -566,7 +566,6 @@ DEPENDENCIES
   capistrano-shared_configs
   capybara (>= 3.26)
   config
-  connection_pool (~> 2.5)
   cssbundling-rails (~> 1.1)
   debug
   devise (~> 4.8)
