@@ -93,13 +93,13 @@ GEM
       activerecord (>= 5.0)
     addressable (2.8.9)
       public_suffix (>= 2.0.2, < 8.0)
-    airbrussh (1.6.0)
+    airbrussh (1.6.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    ancestry (5.0.0)
+    ancestry (5.1.0)
       activerecord (>= 5.2.6)
       logger
     ast (2.4.3)
-    async (2.36.0)
+    async (2.38.0)
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.11)
@@ -116,7 +116,7 @@ GEM
       protocol-http2 (~> 0.22)
       protocol-url (~> 0.2)
       traces (~> 0.10)
-    async-pool (0.11.1)
+    async-pool (0.11.2)
       async (>= 2.0)
     async-websocket (0.30.0)
       async-http (~> 0.76)
@@ -220,7 +220,7 @@ GEM
       activesupport (>= 6.1)
     hashie (5.1.0)
       logger
-    honeybadger (6.5.0)
+    honeybadger (6.5.2)
       logger
       ostruct
     i18n (1.14.8)
@@ -230,7 +230,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.2)
     io-endpoint (0.17.2)
-    io-event (1.14.2)
+    io-event (1.14.3)
     io-stream (0.11.1)
     irb (1.17.0)
       pp (>= 0.6.0)
@@ -240,8 +240,8 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.18.1)
-    json-schema (6.1.0)
+    json (2.19.1)
+    json-schema (6.2.0)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
     jwt (3.1.2)
@@ -260,13 +260,13 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
-    mcp (0.7.1)
+    mcp (0.8.0)
       json-schema (>= 4.1)
     metrics (0.15.0)
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0224)
+    mime-types-data (3.2026.0303)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -342,7 +342,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (7.0.2)
+    public_suffix (7.0.5)
     puma (7.2.0)
       nio4r (~> 2.0)
     puppeteer-ruby (0.51.0)
@@ -410,7 +410,7 @@ GEM
       tilt
     redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.26.4)
+    redis-client (0.27.0)
       connection_pool
     regexp_parser (2.11.3)
     reline (0.6.3)
@@ -439,7 +439,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.7)
-    rubocop (1.85.0)
+    rubocop (1.85.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
