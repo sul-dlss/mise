@@ -91,7 +91,7 @@ GEM
       uri (>= 0.13.1)
     acts_as_favoritor (6.0.2)
       activerecord (>= 5.0)
-    addressable (2.8.9)
+    addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     airbrussh (1.6.1)
       sshkit (>= 1.6.1, != 1.7.0)
@@ -99,7 +99,7 @@ GEM
       activerecord (>= 5.2.6)
       logger
     ast (2.4.3)
-    async (2.38.1)
+    async (2.39.0)
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.11)
@@ -131,7 +131,7 @@ GEM
     bcrypt (3.1.22)
     bcrypt_pbkdf (1.1.2)
     benchmark (0.5.0)
-    bigdecimal (4.1.0)
+    bigdecimal (4.1.1)
     bindex (0.8.1)
     bootsnap (1.23.0)
       msgpack (~> 1.2)
@@ -201,7 +201,7 @@ GEM
     ed25519 (1.4.0)
     erb (6.0.2)
     erubi (1.13.1)
-    execjs (2.10.0)
+    execjs (2.10.1)
     factory_bot (6.5.6)
       activesupport (>= 6.1.0)
     factory_bot_rails (6.5.1)
@@ -230,7 +230,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.2)
     io-endpoint (0.17.2)
-    io-event (1.14.5)
+    io-event (1.15.1)
     io-stream (0.11.1)
     irb (1.17.0)
       pp (>= 0.6.0)
@@ -261,11 +261,11 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0317)
+    mime-types-data (3.2026.0331)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (6.0.2)
+    minitest (6.0.3)
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.0)
@@ -309,7 +309,7 @@ GEM
     paper_trail (17.0.0)
       activerecord (>= 7.1)
       request_store (~> 1.4)
-    parallel (1.27.0)
+    parallel (1.28.0)
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
@@ -327,7 +327,7 @@ GEM
     protocol-http2 (0.24.0)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.47)
-    protocol-rack (0.22.0)
+    protocol-rack (0.22.1)
       io-stream (>= 0.10)
       protocol-http (~> 0.58)
       rack (>= 1.0)
@@ -347,7 +347,7 @@ GEM
       base64
       mime-types (>= 3.0)
     racc (1.8.1)
-    rack (3.2.5)
+    rack (3.2.6)
     rack-mini-profiler (4.0.1)
       rack (>= 1.2.0)
     rack-protection (2.2.4)
@@ -397,7 +397,7 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    react-rails (3.2.1)
+    react-rails (3.3.0)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
@@ -407,7 +407,7 @@ GEM
       redis-client (>= 0.22.0)
     redis-client (0.28.0)
       connection_pool
-    regexp_parser (2.11.3)
+    regexp_parser (2.12.0)
     reline (0.6.3)
       io-console (~> 0.5)
     request_store (1.7.0)
