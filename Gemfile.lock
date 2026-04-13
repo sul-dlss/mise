@@ -105,15 +105,15 @@ GEM
       io-event (~> 1.11)
       metrics (~> 0.12)
       traces (~> 0.18)
-    async-http (0.94.2)
+    async-http (0.95.0)
       async (>= 2.10.2)
       async-pool (~> 0.11)
       io-endpoint (~> 0.14)
       io-stream (~> 0.6)
       metrics (~> 0.12)
-      protocol-http (~> 0.58)
-      protocol-http1 (~> 0.36)
-      protocol-http2 (~> 0.22)
+      protocol-http (~> 0.62)
+      protocol-http1 (~> 0.39)
+      protocol-http2 (~> 0.26)
       protocol-url (~> 0.2)
       traces (~> 0.10)
     async-pool (0.11.2)
@@ -220,7 +220,7 @@ GEM
       activesupport (>= 6.1)
     hashie (5.1.0)
       logger
-    honeybadger (6.5.3)
+    honeybadger (6.5.5)
       logger
       ostruct
     i18n (1.14.8)
@@ -261,7 +261,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0331)
+    mime-types-data (3.2026.0407)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -283,7 +283,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     net-ssh (7.3.2)
-    newrelic_rpm (10.2.0)
+    newrelic_rpm (10.3.0)
       logger
     nio4r (2.7.5)
     nokogiri (1.19.2-arm64-darwin)
@@ -309,7 +309,7 @@ GEM
     paper_trail (17.0.0)
       activerecord (>= 7.1)
       request_store (~> 1.4)
-    parallel (1.28.0)
+    parallel (2.0.1)
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
@@ -321,12 +321,12 @@ GEM
     prettyprint (0.2.0)
     prism (1.9.0)
     protocol-hpack (1.5.1)
-    protocol-http (0.60.0)
-    protocol-http1 (0.37.0)
-      protocol-http (~> 0.58)
-    protocol-http2 (0.24.0)
+    protocol-http (0.62.0)
+    protocol-http1 (0.39.0)
+      protocol-http (~> 0.62)
+    protocol-http2 (0.26.0)
       protocol-hpack (~> 1.4)
-      protocol-http (~> 0.47)
+      protocol-http (~> 0.62)
     protocol-rack (0.22.1)
       io-stream (>= 0.10)
       protocol-http (~> 0.58)
@@ -354,7 +354,7 @@ GEM
       rack
     rack-proxy (0.7.7)
       rack
-    rack-session (2.1.1)
+    rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
@@ -434,11 +434,11 @@ GEM
       rspec-mocks (>= 3.13.0, < 5.0.0)
       rspec-support (>= 3.13.0, < 5.0.0)
     rspec-support (3.13.7)
-    rubocop (1.86.0)
+    rubocop (1.86.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
-      parallel (~> 1.10)
+      parallel (>= 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
@@ -477,7 +477,7 @@ GEM
       logger
     rubyzip (3.2.2)
     securerandom (0.4.1)
-    selenium-webdriver (4.41.0)
+    selenium-webdriver (4.43.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -612,4 +612,4 @@ DEPENDENCIES
   web-console (>= 4.1.0)
 
 BUNDLED WITH
-  4.0.9
+  4.0.10
