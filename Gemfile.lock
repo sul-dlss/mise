@@ -9,7 +9,7 @@ GIT
 GEM
   remote: https://gems.contribsys.com/
   specs:
-    sidekiq-pro (8.1.3)
+    sidekiq-pro (8.1.4)
       sidekiq (>= 8.1.0, < 9)
 
 GEM
@@ -118,7 +118,7 @@ GEM
       traces (~> 0.10)
     async-pool (0.11.2)
       async (>= 2.0)
-    async-websocket (0.30.0)
+    async-websocket (0.30.1)
       async-http (~> 0.76)
       protocol-http (~> 0.34)
       protocol-rack (~> 0.7)
@@ -220,7 +220,7 @@ GEM
       activesupport (>= 6.1)
     hashie (5.1.0)
       logger
-    honeybadger (6.7.0)
+    honeybadger (6.9.0)
       logger
       ostruct
     i18n (1.14.8)
@@ -230,8 +230,8 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.2)
     io-endpoint (0.17.2)
-    io-event (1.16.1)
-    io-stream (0.13.0)
+    io-event (1.16.2)
+    io-stream (0.13.1)
     irb (1.18.0)
       pp (>= 0.6.0)
       prism (>= 1.3.0)
@@ -240,7 +240,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.19.8)
+    json (2.19.9)
     jwt (3.2.0)
       base64
     language_server-protocol (3.17.0.5)
@@ -268,8 +268,8 @@ GEM
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
-    msgpack (1.8.1)
-    net-imap (0.6.4)
+    msgpack (1.8.3)
+    net-imap (0.6.4.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -405,7 +405,7 @@ GEM
       tilt
     redis (5.4.1)
       redis-client (>= 0.22.0)
-    redis-client (0.29.0)
+    redis-client (0.30.0)
       connection_pool
     regexp_parser (2.12.0)
     reline (0.6.3)
@@ -476,7 +476,7 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
-    rubyzip (3.3.1)
+    rubyzip (3.4.0)
     securerandom (0.4.1)
     selenium-webdriver (4.44.0)
       base64 (~> 0.2)
@@ -612,4 +612,4 @@ DEPENDENCIES
   web-console (>= 4.1.0)
 
 BUNDLED WITH
-  4.0.13
+  4.0.14
