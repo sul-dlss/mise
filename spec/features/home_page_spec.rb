@@ -24,7 +24,7 @@ RSpec.describe 'The home page' do
   it 'has links to sign up or log in' do
     visit '/'
 
-    expect(page).to have_content('Mise')
+    expect(page).to have_text('Mise')
       .and(have_link('Sign up', href: new_user_registration_path))
       .and(have_link('Log in', href: new_user_session_path))
   end
