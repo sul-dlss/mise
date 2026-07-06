@@ -99,7 +99,7 @@ GEM
       activerecord (>= 5.2.6)
       logger
     ast (2.4.3)
-    async (2.41.0)
+    async (2.42.0)
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.11)
@@ -230,7 +230,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.2)
     io-endpoint (0.17.2)
-    io-event (1.17.0)
+    io-event (1.19.1)
     io-stream (0.13.1)
     irb (1.18.0)
       pp (>= 0.6.0)
@@ -243,13 +243,13 @@ GEM
     json (2.20.0)
     jwt (3.2.0)
       base64
-    language_server-protocol (3.17.0.5)
+    language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
     logger (1.7.0)
     loofah (2.25.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
@@ -261,7 +261,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.0414)
+    mime-types-data (3.2026.0701)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -349,7 +349,7 @@ GEM
       rack (>= 1.2.0)
     rack-protection (2.2.4)
       rack
-    rack-proxy (0.8.2)
+    rack-proxy (0.8.3)
       rack
     rack-session (2.1.2)
       base64 (>= 0.1.0)
@@ -436,7 +436,7 @@ GEM
       rspec-mocks (>= 3.13.0, < 5.0.0)
       rspec-support (>= 3.13.0, < 5.0.0)
     rspec-support (3.13.7)
-    rubocop (1.88.0)
+    rubocop (1.88.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -447,7 +447,7 @@ GEM
       rubocop-ast (>= 1.49.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.49.1)
+    rubocop-ast (1.50.0)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
     rubocop-capybara (3.0.0)
