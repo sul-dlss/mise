@@ -99,7 +99,7 @@ GEM
       activerecord (>= 5.2.6)
       logger
     ast (2.4.3)
-    async (2.44.0)
+    async (2.44.1)
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.11)
@@ -129,8 +129,8 @@ GEM
     benchmark (0.5.0)
     bigdecimal (4.1.2)
     bindex (0.8.1)
-    bootsnap (1.24.6)
-      msgpack (~> 1.2)
+    bootsnap (1.25.0)
+      msgpack (~> 1.5)
     builder (3.3.0)
     cancancan (3.6.1)
     capistrano (3.20.1)
@@ -195,7 +195,7 @@ GEM
       ed25519
     drb (2.2.3)
     ed25519 (1.4.0)
-    erb (6.0.6)
+    erb (6.0.7)
     erubi (1.13.1)
     execjs (2.10.1)
     factory_bot (6.6.0)
@@ -224,7 +224,7 @@ GEM
     image_processing (1.14.0)
       mini_magick (>= 4.9.5, < 6)
       ruby-vips (>= 2.0.17, < 3)
-    io-console (0.8.2)
+    io-console (0.9.2)
     io-endpoint (0.17.2)
     io-event (1.19.4)
     io-stream (0.14.0)
@@ -258,7 +258,7 @@ GEM
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2026.0701)
-    mini_magick (5.3.2)
+    mini_magick (5.3.3)
       logger
     mini_mime (1.1.5)
     minitest (6.0.6)
@@ -279,7 +279,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     net-ssh (7.3.3)
-    newrelic_rpm (10.6.0)
+    newrelic_rpm (10.7.0)
       logger
     nio4r (2.7.5)
     nokogiri (1.19.4-arm64-darwin)
@@ -318,8 +318,8 @@ GEM
     prettyprint (0.2.0)
     prism (1.9.0)
     protocol-hpack (1.5.1)
-    protocol-http (0.68.0)
-    protocol-http1 (0.40.0)
+    protocol-http (0.70.0)
+    protocol-http1 (0.40.2)
       protocol-http (~> 0.68)
     protocol-http2 (0.26.2)
       protocol-hpack (~> 1.4)
@@ -328,7 +328,7 @@ GEM
       io-stream (>= 0.10)
       protocol-http (~> 0.58)
       rack (>= 1.0)
-    protocol-url (0.5.0)
+    protocol-url (0.10.0)
     protocol-websocket (0.21.1)
       protocol-http (~> 0.2)
     public_suffix (7.0.5)
@@ -388,7 +388,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.4.2)
-    rbs (4.1.2)
+    rbs (4.1.3)
       logger
       prism (>= 1.6.0)
       tsort
@@ -408,7 +408,7 @@ GEM
     redis-client (0.30.1)
       connection_pool
     regexp_parser (2.12.0)
-    reline (0.6.3)
+    reline (0.7.0)
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
@@ -434,7 +434,7 @@ GEM
       rspec-mocks (>= 3.13.0, < 5.0.0)
       rspec-support (>= 3.13.0, < 5.0.0)
     rspec-support (3.13.7)
-    rubocop (1.88.2)
+    rubocop (1.89.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -613,4 +613,4 @@ DEPENDENCIES
   web-console (>= 4.1.0)
 
 BUNDLED WITH
-  4.0.17
+  4.0.18
