@@ -9,7 +9,7 @@ GIT
 GEM
   remote: https://gems.contribsys.com/
   specs:
-    sidekiq-pro (8.1.5)
+    sidekiq-pro (8.1.6)
       sidekiq (>= 8.1.0, < 9)
 
 GEM
@@ -103,14 +103,14 @@ GEM
       console (~> 1.29)
       fiber-annotation
       io-event (~> 1.21)
-    async-http (0.101.0)
+    async-http (0.103.0)
       async (>= 2.35.1)
-      async-pool (~> 0.11)
+      async-pool (~> 0.12)
       io-endpoint (~> 0.18)
       io-stream (~> 0.14)
       protocol-http (~> 0.66)
       protocol-http1 (~> 0.41)
-      protocol-http2 (~> 0.26)
+      protocol-http2 (~> 0.28)
       protocol-url (~> 0.2)
     async-pool (0.12.0)
       async (>= 2.0)
@@ -129,7 +129,7 @@ GEM
     benchmark (0.5.0)
     bigdecimal (4.1.2)
     bindex (0.8.1)
-    bootsnap (1.25.0)
+    bootsnap (1.26.0)
       msgpack (~> 1.5)
     builder (3.3.0)
     cancancan (3.6.1)
@@ -239,7 +239,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.21.2)
+    json (3.0.0)
     jwt (3.2.0)
       base64
     language_server-protocol (3.17.0.6)
@@ -308,7 +308,7 @@ GEM
     paper_trail (17.0.0)
       activerecord (>= 7.1)
       request_store (~> 1.4)
-    parallel (2.1.0)
+    parallel (2.2.0)
     parser (3.3.12.0)
       ast (~> 2.4.1)
       racc
@@ -323,14 +323,14 @@ GEM
     protocol-http (0.71.0)
     protocol-http1 (0.41.0)
       protocol-http (~> 0.68)
-    protocol-http2 (0.27.0)
+    protocol-http2 (0.28.0)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.62)
     protocol-rack (0.22.1)
       io-stream (>= 0.10)
       protocol-http (~> 0.58)
       rack (>= 1.0)
-    protocol-url (0.18.0)
+    protocol-url (0.19.0)
     protocol-websocket (0.21.1)
       protocol-http (~> 0.2)
     public_suffix (7.0.5)
@@ -349,7 +349,7 @@ GEM
       rack (>= 1.2.0)
     rack-protection (2.2.4)
       rack
-    rack-proxy (1.0.1)
+    rack-proxy (2.0.0)
       rack (>= 2.0, < 4)
     rack-session (2.1.2)
       base64 (>= 0.1.0)
@@ -478,7 +478,7 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
-    rubyzip (3.5.0)
+    rubyzip (3.6.0)
     securerandom (0.4.1)
     selenium-webdriver (4.48.0)
       base64 (~> 0.2)
@@ -615,4 +615,4 @@ DEPENDENCIES
   web-console (>= 4.1.0)
 
 BUNDLED WITH
-  4.0.19
+  4.0.20
