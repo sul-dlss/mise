@@ -109,3 +109,8 @@ gem 'sidekiq', '~> 8.0'
 gem 'rack-protection', '< 3'
 
 gem 'cssbundling-rails', '~> 1.1'
+
+# Setting version of json to < 3 because json 3 dropped support for passing
+# JSON.parse a positional options hash, which ActiveSupport::JSON.decode does
+# https://github.com/rails/rails/pull/58601 (on 8-1-stable, not yet released)
+gem 'json', '< 3'
