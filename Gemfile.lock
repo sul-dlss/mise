@@ -132,7 +132,7 @@ GEM
     bootsnap (1.26.0)
       msgpack (~> 1.5)
     builder (3.3.0)
-    cancancan (3.6.2)
+    cancancan (3.7.0)
     capistrano (3.20.1)
       airbrussh (>= 1.0.0)
       i18n
@@ -228,7 +228,7 @@ GEM
     io-console (0.9.4)
     io-endpoint (0.19.0)
       openssl (>= 3.3.0)
-    io-event (1.22.1)
+    io-event (1.22.3)
     io-stream (0.14.0)
       openssl (>= 3.3)
     irb (1.18.0)
@@ -259,7 +259,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.1006)
+    mime-types-data (3.2026.1013)
     mini_magick (5.4.0)
       logger
     mini_mime (1.1.5)
@@ -267,7 +267,7 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     msgpack (1.8.5)
-    net-imap (0.6.7)
+    net-imap (0.6.8)
       date
       net-protocol
     net-pop (0.1.2)
@@ -450,9 +450,9 @@ GEM
     rubocop-ast (1.50.0)
       parser (>= 3.3.7.2)
       prism (~> 1.7)
-    rubocop-capybara (3.0.0)
+    rubocop-capybara (3.1.0)
       lint_roller (~> 1.1)
-      rubocop (~> 1.81)
+      rubocop (~> 1.89)
     rubocop-factory_bot (2.28.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
@@ -505,9 +505,9 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.9.6-arm64-darwin)
-    sqlite3 (2.9.6-x86_64-darwin)
-    sqlite3 (2.9.6-x86_64-linux-gnu)
+    sqlite3 (2.10.0-arm64-darwin)
+    sqlite3 (2.10.0-x86_64-darwin)
+    sqlite3 (2.10.0-x86_64-linux-gnu)
     sshkit (1.25.1)
       base64
       logger
@@ -530,9 +530,9 @@ GEM
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
     uri (1.1.2)
-    urlpattern (0.1.1-arm64-darwin)
-    urlpattern (0.1.1-x86_64-darwin)
-    urlpattern (0.1.1-x86_64-linux)
+    urlpattern (0.1.2-arm64-darwin)
+    urlpattern (0.1.2-x86_64-darwin)
+    urlpattern (0.1.2-x86_64-linux)
     useragent (0.16.11)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -615,4 +615,4 @@ DEPENDENCIES
   web-console (>= 4.1.0)
 
 BUNDLED WITH
-  4.0.22
+  4.0.23
