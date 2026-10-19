@@ -38,16 +38,17 @@ class Ability
     cannot :feature, Workspace # only site admins can feature workspaces
     can :manage, Resource, project: { id: project_ids }
     can :manage, Annotot::Annotation, project: { id: project_ids }
-    can :manage, Role, resource: projects, name: 'viewer'
-    can :manage, Role, resource: projects, name: 'editor'
+    can :manage, Role, resource_id: project_ids, resource_type: 'Project', name: 'viewer'
+    can :manage, Role, resource_id: project_ids, resource_type: 'Project', name: 'editor'
 
     projects = Project.with_roles(%i[manager], user)
-    can :manage, Role, resource: projects, name: 'manager'
+    project_ids = projects.pluck(:id)
+    can :manage, Role, resource_id: project_ids, resource_type: 'Project', name: 'manager'
 
     projects = Project.with_roles(%i[admin owner], user)
     project_ids = projects.pluck(:id)
     can :manage, Project, id: project_ids
-    can :manage, Role, resource: projects
+    can :manage, Role, resource_id: project_ids, resource_type: 'Project'
   end
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
