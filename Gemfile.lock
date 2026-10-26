@@ -114,7 +114,7 @@ GEM
       protocol-url (~> 0.2)
     async-pool (0.12.0)
       async (>= 2.0)
-    async-websocket (0.30.1)
+    async-websocket (0.30.2)
       async-http (~> 0.76)
       protocol-http (~> 0.34)
       protocol-rack (~> 0.7)
@@ -129,7 +129,7 @@ GEM
     benchmark (0.5.0)
     bigdecimal (4.1.3)
     bindex (0.8.1)
-    bootsnap (1.26.0)
+    bootsnap (1.26.1)
       msgpack (~> 1.5)
     builder (3.3.0)
     cancancan (3.7.0)
@@ -169,7 +169,7 @@ GEM
       fiber-annotation
       fiber-local (~> 1.1)
       json
-    crass (1.0.7)
+    crass (1.0.8)
     cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
     date (3.6.0)
@@ -215,9 +215,9 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.4.0)
       activesupport (>= 6.1)
-    hashie (5.1.0)
+    hashie (5.2.0)
       logger
-    honeybadger (6.9.3)
+    honeybadger (6.10.0)
       logger
       ostruct
     i18n (1.15.2)
@@ -259,7 +259,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2026.1013)
+    mime-types-data (3.2026.1020)
     mini_magick (5.4.0)
       logger
     mini_mime (1.1.5)
@@ -274,13 +274,15 @@ GEM
       net-protocol
     net-protocol (0.4.0)
       timeout
-    net-scp (4.1.0)
-      net-ssh (>= 2.6.5, < 8.0.0)
-    net-sftp (4.0.0)
-      net-ssh (>= 5.0.0, < 8.0.0)
+    net-scp (4.1.2)
+      net-ssh (>= 2.6.5, < 9.0.0)
+    net-sftp (4.0.2)
+      net-ssh (>= 5.0.0, < 9.0.0)
     net-smtp (0.5.2)
       net-protocol
-    net-ssh (7.3.6)
+    net-ssh (8.0.4)
+      logger
+      openssl (>= 3.2.0)
     newrelic_rpm (10.9.1)
       logger
     nio4r (2.7.5)
@@ -292,11 +294,11 @@ GEM
       racc (~> 1.4)
     okcomputer (1.20.0)
       benchmark
-    omniauth (2.1.4)
-      hashie (>= 3.4.6)
+    omniauth (2.3.1)
+      hashie (>= 3.5.2)
       logger
-      rack (>= 2.2.3)
-      rack-protection
+      rack (>= 2.2.8)
+      rack-protection (>= 2.2.0)
     omniauth-rails_csrf_protection (2.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
@@ -309,7 +311,7 @@ GEM
       activerecord (>= 7.1)
       request_store (~> 1.4)
     parallel (2.3.0)
-    parser (3.3.12.0)
+    parser (3.3.13.0)
       ast (~> 2.4.1)
       racc
     pg (1.7.0-arm64-darwin)
@@ -320,10 +322,10 @@ GEM
     prettyprint (0.2.1)
     prism (1.9.0)
     protocol-hpack (1.5.1)
-    protocol-http (0.72.0)
-    protocol-http1 (0.41.0)
+    protocol-http (0.72.1)
+    protocol-http1 (0.41.1)
       protocol-http (~> 0.68)
-    protocol-http2 (0.29.1)
+    protocol-http2 (0.29.2)
       protocol-hpack (~> 1.4)
       protocol-http (~> 0.62)
     protocol-rack (0.23.0)
@@ -332,7 +334,7 @@ GEM
       protocol-http (~> 0.58)
       rack (>= 1.0)
     protocol-url (0.19.0)
-    protocol-websocket (0.21.2)
+    protocol-websocket (0.21.3)
       protocol-http (~> 0.2)
     public_suffix (7.0.5)
     puma (7.2.1)
@@ -355,7 +357,7 @@ GEM
     rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
-    rack-test (2.2.0)
+    rack-test (2.3.0)
       rack (>= 1.3)
     rackup (2.3.1)
       rack (>= 3)
@@ -436,7 +438,7 @@ GEM
       rspec-mocks (>= 3.13.0, < 5.0.0)
       rspec-support (>= 3.13.0, < 5.0.0)
     rspec-support (3.13.7)
-    rubocop (1.92.0)
+    rubocop (1.92.1)
       json (>= 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -505,9 +507,9 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.10.0-arm64-darwin)
-    sqlite3 (2.10.0-x86_64-darwin)
-    sqlite3 (2.10.0-x86_64-linux-gnu)
+    sqlite3 (2.10.1-arm64-darwin)
+    sqlite3 (2.10.1-x86_64-darwin)
+    sqlite3 (2.10.1-x86_64-linux-gnu)
     sshkit (1.25.1)
       base64
       logger
